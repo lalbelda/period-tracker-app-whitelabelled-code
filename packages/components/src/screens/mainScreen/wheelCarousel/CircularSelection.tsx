@@ -9,11 +9,13 @@ import { ColourButtons } from '../ColourButtons'
 import { useSelector } from '../../../hooks/useSelector'
 import * as selectors from '../../../redux/selectors'
 import { navigateAndReset } from '../../../services/navigationService'
-import styled from 'styled-components/native'
-import { Text } from '../../../components/common/Text'
 import { useCheckDayWarning } from '../../../hooks/usePredictionWarnings'
 import { ThemedModal } from '../../../components/common/ThemedModal'
 import { SpinLoader } from '../../../components/common/SpinLoader'
+import moment from 'moment'
+import { ReduxState } from '../../../redux/store'
+
+const reduxState = (state: ReduxState) => state
 
 const { interpolate } = Animated
 const height = 0.55 * Dimensions.get('window').height
@@ -28,6 +30,7 @@ export function CircularSelection({
   currentIndex,
   absoluteIndex,
   disableInteraction = false,
+  fetchCardValues,
 }) {
   const [isVisible, setIsVisible] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
@@ -67,6 +70,7 @@ export function CircularSelection({
               top: -10,
               bottom: 10,
             },
+            // @ts-ignore
             {
               transform: transformOrigin(0, R - height / 2, {
                 // @ts-ignore
@@ -83,6 +87,7 @@ export function CircularSelection({
                   position: 'absolute',
                   top: 0,
                   left: 0,
+                  // backgroundColor:'cyan',
                   transform: [
                     { translateX: cx },
                     { translateY: cy },
@@ -95,6 +100,8 @@ export function CircularSelection({
                   segment={segment}
                   radius={r}
                   currentIndex={key}
+                  cardValues={fetchCardValues(dataEntry)}
+                  state={reduxState}
                   {...{ isActive, index, dataEntry }}
                 />
               </View>
@@ -129,7 +136,12 @@ export function CircularSelection({
             navigateToTutorial={navigateToTutorial}
             inputDay={data[currentIndex].date}
             hide={() => setIsVisible(false)}
+            isCalendar={false}
             onPress={() => setIsVisible(false)}
+            selectedDayInfo={data[currentIndex]}
+            cardValues={useSelector((state) =>
+              selectors.verifyPeriodDaySelectorWithDate(state, moment(data[currentIndex].date)),
+            )}
           />
         </ThemedModal>
       </View>

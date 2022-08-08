@@ -37,21 +37,26 @@ export class AccountController {
   }
 
   @Post('/signup')
-  public async signup(@Body()
-  {
-    preferredId,
-    name,
-    dateOfBirth,
-    gender,
-    location,
-    country,
-    province,
-    password,
-    secretQuestion,
-    secretAnswer,
-  }: SignupRequest) {
-    console.log('AAA', country, province)
-
+  public async signup(
+    @Body()
+    {
+      preferredId,
+      name,
+      dateOfBirth,
+      gender,
+      location,
+      country,
+      province,
+      password,
+      secretQuestion,
+      secretAnswer,
+    }: SignupRequest,
+  ) {
+    if (country === null || country === '00') {
+      // this is to stop account creation on the old variant of the app. Worth removing if the old variant is completely removed.
+      // At the time of writing the old variant of the app and the new english only version had the same endpoint for the backend
+      return
+    }
     const user = await this.okyUserApplicationService.signup({
       preferredId,
       name,
@@ -69,22 +74,21 @@ export class AccountController {
   }
 
   @Post('/login')
-  public async login(@Body()
-  {
-    name,
-    password,
-  }: LoginRequest) {
+  public async login(
+    @Body()
+    { name, password }: LoginRequest,
+  ) {
     const authenticationDescriptor = await this.okyUserApplicationService.login({
       name: name.trim(),
       password: password.trim(),
     })
 
     return authenticationDescriptor.fold(
-      authError => {
+      (authError) => {
         console.log(authError)
         throw new UnauthorizedError(authError)
       },
-      user => this.signTokenResponse(user),
+      (user) => this.signTokenResponse(user),
     )
   }
 
@@ -162,12 +166,10 @@ export class AccountController {
   }
 
   @Post('/reset-password')
-  public async resetPassword(@Body()
-  {
-    name: userName,
-    secretAnswer,
-    password: newPassword,
-  }: ResetPasswordRequest) {
+  public async resetPassword(
+    @Body()
+    { name: userName, secretAnswer, password: newPassword }: ResetPasswordRequest,
+  ) {
     await this.okyUserApplicationService.resetPassword({
       userName,
       secretAnswer,

@@ -12,9 +12,16 @@ export function ColourButtonsDemo({ showBlue = false }) {
       <Row style={{ marginBottom: 20 }}>
         <Column>
           <Button disabled={true}>
-            <Mask resizeMode="contain" source={assets.static.icons.clouds.period} />
+            <Mask
+              resizeMode="contain"
+              source={
+                showBlue
+                  ? assets.static.icons.clouds.period
+                  : assets.static.icons.clouds.notVerifiedDay
+              }
+            />
           </Button>
-          <InnerText style={{ top: -40 }}>{showBlue ? 'period' : 'start_early_button'}</InnerText>
+          <InnerText style={{ top: -40 }}>{showBlue ? 'period' : 'unverified_button'}</InnerText>
         </Column>
         <Column>
           <Button style={[{ marginHorizontal: 10 }]} disabled={true}>

@@ -71,7 +71,7 @@ const Label = styled(Text)`
   font-size: 12;
 `
 const Input = styled.TextInput`
-  height: 25;
+  height: 25px;
   width: 100%;
   border-width: 0;
   font-size: 18;

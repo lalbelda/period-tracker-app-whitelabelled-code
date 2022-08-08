@@ -14,6 +14,7 @@ const UndoPredictionStateContext = React.createContext<() => void>(undefined)
 
 const defaultState = PredictionState.fromData({
   isActive: true,
+  // isVerify: false,
   startDate: moment().startOf('day'),
   periodLength: 5,
   cycleLength: 30,
@@ -98,12 +99,16 @@ export function useCalculateFullInfoForDateRange(startDate: Moment, endDate: Mom
   }, [predictionEngine, startDate, endDate])
 }
 
-export function useCalculateStatusForDateRange(startDate: Moment, endDate: Moment) {
+export function useCalculateStatusForDateRange(
+  startDate: Moment,
+  endDate: Moment,
+  verifiedPeriodsData: any,
+) {
   const predictionEngine = usePredictionEngine()
 
   return React.useMemo(() => {
-    return predictionEngine.calculateStatusForDateRange(startDate, endDate)
-  }, [predictionEngine, startDate, endDate])
+    return predictionEngine.calculateStatusForDateRange(startDate, endDate, verifiedPeriodsData)
+  }, [predictionEngine, startDate, endDate, verifiedPeriodsData])
 }
 
 export function useTodayPrediction() {
@@ -136,5 +141,15 @@ export function useIsActiveSelector() {
 
   return React.useMemo(() => {
     return predictionEngine.getPredictorState().isActive
+  }, [predictionEngine])
+}
+
+export function useIsVerifySelector() {
+  const predictionEngine = usePredictionEngine()
+
+  return React.useMemo(() => {
+    return predictionEngine.getPredictorState()
+
+    // return predictionEngine.getPredictorState().isVerify
   }, [predictionEngine])
 }

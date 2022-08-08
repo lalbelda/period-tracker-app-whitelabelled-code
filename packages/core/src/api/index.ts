@@ -143,11 +143,10 @@ export function createHttpClient(
       )
       return response.data
     },
-    fetchSurveys: async ({ locale }: any) => {
+    fetchSurveys: async ({ locale, userID }: any) => {
       const response: AxiosResponse<types.SurveysResponse> = await axios.get(
-        `${cmsEndpoint}/mobile/surveys/${locale}`,
+        `${cmsEndpoint}/mobile/new-surveys/${locale}?user_id=${userID.id}`,
       )
-
       return response.data
     },
     fetchPrivacyPolicy: async ({ locale }: any) => {

@@ -11,8 +11,8 @@ import { dirs } from './dirs'
 import { bootstrap } from './api/bootstrap'
 
 function preloadServices(folders: string[]) {
-  folders.forEach(folder => {
-    fs.readdirSync(folder).forEach(file => {
+  folders.forEach((folder) => {
+    fs.readdirSync(folder).forEach((file) => {
       if (file.endsWith('.ts') || file.endsWith('.js')) {
         require(`${folder}/${file}`)
       }
@@ -32,6 +32,7 @@ export async function createServer() {
     username: env.db.username,
     password: env.db.password,
     database: env.db.database,
+    schema: env.db.schema,
     synchronize: env.db.synchronize,
     logging: env.db.logging,
     entities: dirs.entities,

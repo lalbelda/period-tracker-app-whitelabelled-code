@@ -1,7 +1,7 @@
 import { env } from './src/env'
 import { ConnectionOptions } from 'typeorm'
 
-export const ormconfig: ConnectionOptions = {
+const ormconfig: ConnectionOptions = {
   type: env.db.type as any,
   host: env.db.host,
   port: env.db.port,
@@ -9,6 +9,7 @@ export const ormconfig: ConnectionOptions = {
   password: env.db.password,
   database: env.db.database,
   synchronize: env.db.synchronize,
+  schema: env.db.schema,
   logging: env.db.logging,
   entities: [__dirname + '/src/entity/**/*{.ts,.js}'],
   subscribers: [__dirname + '/src/subscriber/**/*{.ts,.js}'],
@@ -18,3 +19,5 @@ export const ormconfig: ConnectionOptions = {
     subscribersDir: __dirname + '/src/subscriber',
   },
 }
+
+export = ormconfig

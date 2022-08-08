@@ -43,28 +43,28 @@ export const Category = ({ title, tags, onPress, isActive = false }) => {
 const CategoryContainer = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
-  padding-left: 20;
-  padding-right: 20;
-  padding-top: 15;
-  padding-bottom: 15;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: #fff;
   elevation: 5;
-  border-radius: 10;
-  margin-vertical: 5;
-  margin-horizontal: 3;
-  height: 80;
+  border-radius: 10px;
+  margin-vertical: 5px;
+  margin-horizontal: 3px;
+  height: 80px;
 `
 
 const TitleContainer = styled.View`
-  width: 200;
+  width: 200px;
   height: 100%;
   justify-content: center;
 `
 
 const TagsContainer = styled.View`
   flex-direction: row;
-  height: 50;
-  width: 50;
+  height: 50px;
+  width: 50px;
   justify-content: center;
   align-items: center;
   align-self: flex-end;

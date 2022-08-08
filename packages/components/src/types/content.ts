@@ -81,18 +81,80 @@ export interface Quizzes {
   allIds: string[]
 }
 
+// export interface Surveys {
+//   byId: {
+//     [id: string]: {
+//       id: string
+//       question: string
+//       answers: Array<{
+//         text: string
+//         emoji: string
+//       }>
+//     }
+//   }
+//   allIds: string[]
+// }
+// export interface Surveys extends Array<ContentItem> {}
 export interface Surveys {
-  byId: {
-    [id: string]: {
-      id: string
-      question: string
-      answers: Array<{
-        text: string
-        emoji: string
-      }>
-    }
-  }
-  allIds: string[]
+  date_created: string
+  id: string
+  isAgeRestricted: false
+  is_multiple: true
+  lang: string
+  live: true
+  option1: string
+  option2: string
+  option3: string
+  option4: string
+  option5: string
+  question: string
+  questions: ContentItem[]
+}
+// export interface AllSurveys {
+//   data: []
+// }
+interface SurveyContentItem {
+  date_created: string
+  id: string
+  isAgeRestricted: false
+  is_multiple: true
+  lang: string
+  live: true
+  option1: string
+  option2: string
+  option3: string
+  option4: string
+  option5: string
+  question: string
+  questions: SurveyQuestionContentItem[]
+  inProgress: boolean
+  currentQuestionIndex: number
+  answeredQuestion: AnsweredSurveyQuestionContentItem[]
+}
+interface SurveyQuestionContentItem {
+  id: string
+  is_multiple: boolean
+  next_question: ContentItem
+  options: ContentItem[]
+  question: string
+  response: string
+  sort_number: string
+  surveyId: string
+  answeredQuestion: AnsweredSurveyQuestionContentItem
+}
+
+interface AnsweredSurveyQuestionContentItem {
+  questionId: string
+  question: string
+  answerID: string
+  answer: string
+  response: string
+  isMultiple: boolean
+}
+export interface AllSurveys extends Array<SurveyContentItem> {}
+export interface CompletedSurveys extends Array<CompletedSurveyItem> {}
+interface CompletedSurveyItem {
+  id: string
 }
 
 interface HelpCenterItem {

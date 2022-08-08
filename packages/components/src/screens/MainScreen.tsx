@@ -16,24 +16,56 @@ import { useTodayPrediction } from '../components/context/PredictionProvider'
 import { useRandomText } from '../hooks/useRandomText'
 import { InformationButton } from '../components/common/InformationButton'
 import { assets } from '../assets'
+import * as actions from '../redux/actions'
+import { useDispatch } from 'react-redux'
+import { useSelector } from '../hooks/useSelector'
+import * as selectors from '../redux/selectors'
+import moment from 'moment'
 
 export function MainScreen({ navigation }) {
+  const { data } = useInfiniteScroll()
+  const todayInfo = useTodayPrediction()
+  const currentDate: any = { ...todayInfo.date }
+  const lastDate: any = moment(currentDate).add(4, 'days')
+  const wheelDaysInfo: any[] = Array(7)
+    .fill(1)
+    .map((i: number) => lastDate.subtract(i, 'days').format('DD MMMM'))
+  useTextToSpeechHook({ navigation, text: mainScreenSpeech({ data, wheelDaysInfo, todayInfo }) })
+
+  return <MainScreenContainer navigation={navigation} />
+}
+const MainScreenContainer = ({ navigation }) => {
+  const { data } = useInfiniteScroll()
+
   const theme = useTheme()
   const todayInfo = useTodayPrediction()
-  // @TODO: careful note here, may be worth the performance increase though May not work with Memo now
-  useRandomText({ navigation })
-  useTextToSpeechHook({ navigation, text: mainScreenSpeech({ todayInfo }) })
+  const dispatch = useDispatch()
+  const userID = useSelector(selectors.currentUserSelector).id
 
+  // @TODO: careful note here, may be worth the performance increase though May not work with Memo now
+  React.useEffect(() => {
+    dispatch(actions.fetchSurveyContentRequest(userID))
+  }, [])
+  useRandomText({ navigation })
   return <MainScreenActual key={theme.id} />
 }
 
 const MainScreenActual = React.memo(() => {
   const { data, index, isActive, currentIndex, absoluteIndex } = useInfiniteScroll()
-  const { onFertile } = useTodayPrediction()
+  const renamedUseSelector = useSelector
+  const allCardsData = renamedUseSelector((state) => selectors.allCardAnswersSelector(state))
+  const getCardAnswersValues = (inputDay: any) => {
+    const verifiedPeriodDaysData = renamedUseSelector((state) =>
+      selectors.verifyPeriodDaySelectorWithDate(state, moment(inputDay.date)),
+    )
+    return verifiedPeriodDaysData
+  }
+
+  const { onFertile, onPeriod } = useTodayPrediction()
   return (
     <BackgroundTheme>
       <TopSeparator>
-        {onFertile && (
+        {onFertile && !onPeriod && (
           <InformationButton
             icon={assets.static.icons.infoBlue}
             iconStyle={{ height: 25, width: 25 }}
@@ -50,15 +82,18 @@ const MainScreenActual = React.memo(() => {
         <AvatarSection>
           <CircleProgress
             isCalendarTextVisible={true}
-            onPress={() => navigate('Calendar', null)}
+            onPress={() => navigate('Calendar', { verifiedPeriodsData: allCardsData })}
             fillColor="#FFC900"
             emptyFill="#F49200"
             style={{ alignSelf: 'flex-start', marginLeft: 15, zIndex: 999 }}
           />
-          <Avatar style={{ position: 'absolute', top: Platform.OS === 'ios' ? 180 : 150 }} />
+          <Avatar style={{ position: 'absolute', top: Platform.OS === 'ios' ? 120 : 90 }} />
         </AvatarSection>
         <WheelSection>
-          <CircularSelection {...{ data, index, isActive, currentIndex, absoluteIndex }} />
+          <CircularSelection
+            {...{ data, index, isActive, currentIndex, absoluteIndex }}
+            fetchCardValues={getCardAnswersValues}
+          />
           <CenterCard />
         </WheelSection>
       </MiddleSection>
@@ -94,7 +129,7 @@ const WheelSection = styled.View`
 `
 const CarouselSection = styled.View`
   height: 30%;
-  padding-bottom: 20;
+  padding-bottom: 20px;
   width: 100%;
   align-items: center;
   justify-content: center;

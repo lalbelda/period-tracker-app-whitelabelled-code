@@ -22,7 +22,6 @@ const ACTIONS_TO_TRACK: ActionTypes[] = [
 
 function* onTrackAction(action) {
   const currentUser = yield select(selectors.currentUserSelector)
-
   yield put(
     actions.queueEvent({
       id: uuidv4(),

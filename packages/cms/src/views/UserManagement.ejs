@@ -1,11 +1,11 @@
-<% include partials/Header %> 
-<% include modals/UserModal %>
+<%- include('partials/Header') %> 
+<%- include('modals/UserModal') %>
 <div class="homePageContainer">
   <div class="sideBar">
     <% if(currentUser.type !== 'contentManager') {%>
       <a href="/user-management" class="special"><h6><%= __('Add a new user')%></h6></a>
     <% } %>
-    <% include partials/SideTab %> 
+    <%- include('partials/SideTab') %> 
   </div>
   <div class="mainContentContainer">
     <div class="homeTopTextContainer">
@@ -26,7 +26,6 @@
           <tr>
             <th style="width: 40%"> <%= __('Name') %></th>
             <th style="width: 20%"><%= __('Role') %></th>
-            <th style="width: 20%"><%= __('Language') %></th>
             <th class="pointer" style="width: 20%"><%= __('Date Created') %></th>
             <th style="width: 20%"><%= __('Edit') %></th>
             <th style="width: 20%"><%= __('Delete') %></th>
@@ -37,9 +36,6 @@
           <tr>
             <td><%= user.username %></td>
             <td style="text-transform: capitalize"><%= user.type.replace(/([A-Z])/g, ' $1') %></td>
-            <td style="text-transform: capitalize">
-              <%= user.lang.replace(/([A-Z])/g, ' $1') %>
-            </td>
             <td style="text-transform: capitalize">
               <%= moment(user.date_created).format('D/M/YY') %>
             </td>
@@ -68,4 +64,4 @@
   <span id="usersJSON" hidden><%= JSON.stringify(users); %> </span>
   <script type="application/javascript" src="/scripts/userViewScript.js"></script>
 </div>
-<% include partials/Footer %>
+<%- include('partials/Footer') %>

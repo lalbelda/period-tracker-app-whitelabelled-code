@@ -42,7 +42,7 @@ function* syncAppState() {
         appToken,
       })
 
-      yield put(actions.syncStore())
+      const temp = yield put(actions.syncStore())
 
       lastAppState = appState
     } catch (err) {
@@ -52,8 +52,11 @@ function* syncAppState() {
 }
 
 function* onRequestStoreFirebaseKey() {
-  const firebaseToken = yield firebase.messaging().getToken()
-  yield put(actions.storeFirebaseKey(firebaseToken))
+  if (yield fetchNetworkConnectionStatus()) {
+    // no internet connection
+    const firebaseToken = yield firebase.messaging().getToken()
+    yield put(actions.storeFirebaseKey(firebaseToken))
+  }
 }
 
 export function* appSaga() {

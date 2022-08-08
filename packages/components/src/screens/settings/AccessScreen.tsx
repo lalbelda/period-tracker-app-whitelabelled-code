@@ -17,11 +17,16 @@ import { translate } from '../../i18n'
 import { SpinLoader } from '../../components/common/SpinLoader'
 import { ConfirmAlert } from '../../components/common/ConfirmAlert'
 import { LanguageSelect } from '../../components/common/LanguageSelect'
+import { useTextToSpeechHook } from '../../hooks/useTextToSpeechHook'
+import { acessSettingsScreenText } from '../../config'
 
-export function AccessScreen() {
+export function AccessScreen({ navigation }) {
   const locale = useSelector(selectors.currentLocaleSelector)
   const dispatch = useDispatch()
   const [loading, setLoading] = React.useState(false)
+
+  const privacyContent = useSelector(selectors.privacyContent)
+  const speechText = privacyContent.map((item) => item.content)
   const shareLink = () => {
     // @TODO: app event
     dispatch(actions.shareApp())
@@ -33,18 +38,24 @@ export function AccessScreen() {
       .then((res) => null)
       .catch((err) => null)
   }
+  // useTextToSpeechHook({ navigation, text: speechText })
+  useTextToSpeechHook({
+    navigation,
+    text: acessSettingsScreenText(),
+  })
 
   return (
     <BackgroundTheme>
       <PageContainer>
         <Header screenTitle="access_setting" />
         <Container>
-          <ListItem
+          {/* // @TODO: LANGUAGES This is commented in case the client wants multiple languages */}
+          {/* <ListItem
             title="language"
             subtitle="language_subtitle"
             renderControls={() => (
               <LanguageSelect
-                onPress={(lang) => {
+                onPress={lang => {
                   if (lang !== locale) {
                     setLoading(true)
                     requestAnimationFrame(() => {
@@ -65,7 +76,7 @@ export function AccessScreen() {
                 }}
               />
             )}
-          />
+          /> */}
           <ListItem
             title="tutorial"
             subtitle="tutorial_subtitle"
@@ -102,11 +113,11 @@ export function AccessScreen() {
 }
 
 const Container = styled.View`
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 3;
   background: #fff;
-  margin-horizontal: 2;
-  margin-bottom: 30;
+  margin-horizontal: 2px;
+  margin-bottom: 30px;
 `
 
 const Empty = styled.View`
@@ -129,11 +140,11 @@ const ShareButtonText = styled(Text)`
 `
 
 const ShareButton = styled(TouchableOpacity)`
-  height: 55;
-  width: 100;
+  height: 55px;
+  width: 100px;
   align-self: center;
-  margin-top: 20;
-  border-radius: 10;
+  margin-top: 20px;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   background-color: #a2c72d;
@@ -142,6 +153,6 @@ const ErrorText = styled(Text)`
   font-size: 12;
   color: red;
   position: absolute;
-  top: -30;
-  left: -20;
+  top: -30px;
+  left: -20px;
 `

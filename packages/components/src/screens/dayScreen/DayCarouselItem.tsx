@@ -14,7 +14,8 @@ import { translate } from '../../i18n'
 const deviceWidth = Dimensions.get('window').width
 
 export function DayCarouselItem({ content, cardName, dataEntry, onPress, index }) {
-  const selectedEmojis = useSelector(state => selectors.cardAnswerSelector(state, dataEntry.date))
+  const selectedEmojis = useSelector((state) => selectors.cardAnswerSelector(state, dataEntry.date))
+
   const color = useColor(dataEntry.onPeriod, dataEntry.onFertile)
   const source = selectedEmojis[cardName]
     ? assets.static.icons.starOrange.full
@@ -99,10 +100,10 @@ const headingText = {
 
 const DayCarouselItemContainer = styled.View`
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   justify-content: space-between;
   elevation: 6;
-  margin-horizontal: 10;
+  margin-horizontal: 10px;
   padding-horizontal: 30;
   padding-vertical: 30;
 `
@@ -117,6 +118,7 @@ const EmojiContainer = styled.View`
   width: 33%;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `
 
 const ContentText = styled(Text)`

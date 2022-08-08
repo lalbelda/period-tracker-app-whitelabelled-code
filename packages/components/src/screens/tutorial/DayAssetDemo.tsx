@@ -7,10 +7,28 @@ import { TitleText } from '../../components/common/TitleText'
 import { Icon } from '../../components/common/Icon'
 import { EmojiSelector } from '../../components/common/EmojiSelector'
 import { translate } from '../../i18n'
+import Tts from 'react-native-tts'
+import { useSelector } from '../../hooks/useSelector'
+import * as selectors from '../../redux/selectors'
 const deviceWidth = Dimensions.get('window').width
 const deviceHeight = Dimensions.get('window').height
 
-export function DayAssetDemo() {
+export function DayAssetDemo({ step }) {
+  const hasTtsActive = useSelector(selectors.isTtsActiveSelector)
+
+  React.useEffect(() => {
+    if (hasTtsActive) {
+      if (step === 3) {
+        Tts.speak(translate('activity'))
+        Tts.speak(translate('daily_activity_content'))
+        Tts.speak(translate('daily_activity_heading'))
+        Object.keys(activity).map((item) => {
+          Tts.speak(translate(item))
+        })
+      }
+    }
+  }, [step, hasTtsActive])
+
   return (
     <DayCarouselItemContainer
       style={{
@@ -74,7 +92,7 @@ const activity = {
 }
 const DayCarouselItemContainer = styled.View`
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 6;
   margin-left: 30;
   justify-content: space-between;

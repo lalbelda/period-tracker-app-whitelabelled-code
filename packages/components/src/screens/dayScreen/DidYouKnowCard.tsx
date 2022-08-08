@@ -52,9 +52,9 @@ export const DidYouKnowCard = React.memo<{ index: number }>(({ index }) => {
 
 const DidYouKnowCardContainer = styled.View`
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 5;
-  margin-horizontal: 10;
+  margin-horizontal: 10px;
   padding-horizontal: 40;
   padding-vertical: 30;
 `

@@ -25,6 +25,8 @@ export const TextInput = ({
   value,
   errorHeading = 'No error Heading',
   errorContent = 'No message',
+  placeholderColor = '#28b9cb',
+  infoAccessibilityLabel = '',
 }) => {
   const [isVisible, setIsVisible] = React.useState(false)
   return (
@@ -40,7 +42,7 @@ export const TextInput = ({
             numberOfLines={numberOfLines}
             onChangeText={onChange}
             onEndEditing={onEndEditing}
-            placeholderTextColor="#28b9cb"
+            placeholderTextColor={placeholderColor || '#28b9cb'}
             keyboardType={keyboardType || 'default'}
             style={{ color: '#555', ...inputStyle }}
             secureTextEntry={secureTextEntry}
@@ -60,6 +62,7 @@ export const TextInput = ({
           )}
           {showInfoButton && (
             <TouchableOpacity
+              accessibilityLabel={infoAccessibilityLabel}
               style={{
                 height: '90%',
                 aspectRatio: 1,
@@ -79,7 +82,7 @@ export const TextInput = ({
       </FormControl>
       <ThemedModal {...{ isVisible, setIsVisible }}>
         <CardPicker>
-          <Heading>{errorHeading}</Heading>
+          <Heading accessibilityLabel={errorHeading}>{errorHeading}</Heading>
           <TextContent>{errorContent}</TextContent>
         </CardPicker>
       </ThemedModal>
@@ -88,10 +91,10 @@ export const TextInput = ({
 }
 
 const FormControl = styled.View`
-  height: 45;
+  height: 45px;
   width: 100%;
-  margin-top: 10;
-  margin-bottom: 10;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 const Row = styled.View`
   height: 100%;
@@ -99,39 +102,39 @@ const Row = styled.View`
   flex-direction: column;
 `
 const Input = styled.TextInput`
-  height: 45;
+  height: 45px;
   width: 100%;
-  padding-left: 30;
-  padding-right: 30;
+  padding-left: 30px;
+  padding-right: 30px;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: 22.5;
+  border-radius: 22.5px;
   background-color: #efefef;
-  border-width: 0;
+  border-width: 0px;
   font-family: Roboto-Regular;
   font-size: 15;
-  padding-vertical: 0;
-  padding-horizontal: 10;
+  padding-vertical: 0px;
+  padding-horizontal: 10px;
 `
 const CardPicker = styled.View`
   width: 95%;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;
-  padding-vertical: 15;
-  padding-horizontal: 15;
+  padding-vertical: 15px;
+  padding-horizontal: 15px;
 `
 const Heading = styled(Text)`
   font-family: Roboto-Black;
   font-size: 18;
-  margin-bottom: 10;
+  margin-bottom: 10px;
   color: #a2c72d;
 `
 const TextContent = styled(Text)`
   font-family: Roboto-Regular;
   font-size: 16;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `

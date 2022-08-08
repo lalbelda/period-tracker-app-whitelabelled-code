@@ -36,9 +36,24 @@ export const CalendarCardContent = ({ setQuestionAnswer, answersData, questionAn
         }}
         highlightedDates={{
           [moment(questionAnswer, 'DD-MMM-YYYY').format('YYYY-MM-DD')]: {
-            color: '#E3629B',
-            startingDay: true,
-            endingDay: true,
+            // color: '#E3629B',
+            // startingDay: true,
+            // endingDay: true,
+            customStyles: {
+              container: {
+                borderColor: '#E3629B',
+                borderWidth: 2,
+                backgroundColor: '#E3629B',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              text: {
+                color: 'white',
+                fontWeight: '600',
+              },
+              selected: true,
+              marked: true,
+            },
           },
         }}
       />
@@ -46,8 +61,8 @@ export const CalendarCardContent = ({ setQuestionAnswer, answersData, questionAn
   )
 }
 const CalendarContainer = styled.View`
-  height: 360;
-  width: 300;
+  height: 360px;
+  width: 300px;
   align-items: center;
   justify-content: center;
   overflow: hidden;

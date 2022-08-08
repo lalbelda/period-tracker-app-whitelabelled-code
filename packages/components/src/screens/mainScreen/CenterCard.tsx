@@ -25,10 +25,10 @@ export const CenterCard = ({ style = null }) => {
 
 const CenterCardContainer = styled.View`
   position: absolute;
-  right: 15;
+  right: 15px;
   width: ${width};
-  height: 70;
-  border-radius: 10;
+  height: 70px;
+  border-radius: 10px;
   flex-direction: row;
   background-color: white;
   elevation: 6;
@@ -38,8 +38,8 @@ const Container = styled.View<{ color: string }>`
   flex: 1;
   flex-direction: row;
   align-items: center;
-  margin-top: 4;
-  margin-bottom: 4;
+  margin-top: 4px;
+  margin-bottom: 4px;
 `
 
 const TextNoTranslate = styled(TextWithoutTranslation)`
@@ -55,5 +55,5 @@ const TextTranslate = styled(Text)`
   text-align: left;
   align-items: flex-start;
   justify-content: center;
-  font-size: ${props => props.theme.fontSize};
+  font-size: ${(props) => props.theme.fontSize};
 `

@@ -20,10 +20,11 @@ import firebase from 'react-native-firebase'
 import DeviceInfo from 'react-native-device-info'
 import { useAlert } from '../components/context/AlertContext'
 import { httpClient } from '../services/HttpClient'
+import { fetchNetworkConnectionStatus } from '../services/network'
 
 export function SplashScreen() {
   const dispatch = useDispatch()
-  const user = useSelector(selectors.currentUserSelector)
+  const user: any = useSelector(selectors.currentUserSelector)
   const Alert = useAlert()
 
   const locale = useSelector(selectors.currentLocaleSelector)
@@ -85,6 +86,10 @@ export function SplashScreen() {
   }
 
   React.useEffect(() => {
+    // firebase.analytics().setUserId(user.)
+    if (fetchNetworkConnectionStatus()) {
+      firebase.analytics().logEvent('app_open', { user })
+    }
     checkForPermanentAlerts()
     requestUserPermission()
     createNotificationChannel()
@@ -96,9 +101,12 @@ export function SplashScreen() {
     if (currentAppVersion !== DeviceInfo.getVersion()) {
       dispatch(actions.setUpdatedVersion())
     }
-    if (currentFirebaseToken === null) {
-      dispatch(actions.requestStoreFirebaseKey())
+    if (fetchNetworkConnectionStatus()) {
+      if (currentFirebaseToken === null) {
+        dispatch(actions.requestStoreFirebaseKey())
+      }
     }
+
     Spin()
     requestAnimationFrame(() => {
       if (!hasOpened) {
@@ -160,18 +168,18 @@ const Container = styled.View`
 `
 
 const Face = styled.Image`
-  height: 120;
-  width: 120;
+  height: 120px;
+  width: 120px;
   align-self: center;
 `
 const Spinner = styled.Image`
-  height: 123;
-  width: 123;
+  height: 123px;
+  width: 123px;
 `
 
 const AnimatedContainer = styled(Animated.View)`
-  height: 123;
-  width: 123;
+  height: 123px;
+  width: 123px;
   position: absolute;
   align-self: center;
 `

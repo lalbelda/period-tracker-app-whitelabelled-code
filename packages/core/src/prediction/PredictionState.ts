@@ -21,11 +21,16 @@ type History = Array<{
   cycleLength: number
 }>
 
+// type VerifiedDates = Array<{
+//   verifiedCycleDate: Moment
+// }>
+
 export class PredictionState {
   public isActive: boolean
   public currentCycle: CurrentCycle
   public smartPrediction: SmartPrediction
   public history: History
+  // public verifiedDates: VerifiedDates
 
   private constructor() {}
 

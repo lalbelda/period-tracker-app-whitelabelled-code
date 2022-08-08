@@ -28,7 +28,12 @@ export function configureStore(key = 'primary') {
     transforms: [encryptor],
   }
   const persistedReducer = persistReducer(persistConfig, rootReducer)
-  const composeEnhancers = composeWithDevTools({ port: 8000 })
+  const composeEnhancers = composeWithDevTools({
+    //  port: 8081,
+    realtime: true,
+    port: 8000,
+    hostname: '192.168.29.5', // add your computer's IP
+  })
   const sagaMiddleware = createSagaMiddleware()
 
   const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))

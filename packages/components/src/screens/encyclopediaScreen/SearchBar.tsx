@@ -48,7 +48,7 @@ export const SearchBar = ({
             placeholder: translate('type_to_search'),
             keyboardType: 'default',
             returnKeyType: 'search',
-            onChangeText: text => {
+            onChangeText: (text) => {
               setSearchStr(text)
               setActiveCategory([])
               const filteredResults = handleSearchResult(
@@ -81,6 +81,7 @@ export const SearchBar = ({
                 setSearchStr('')
               }}
               name="close"
+              accessibilityLabel={translate('clear_search')}
             />
           </AbsoluteContainer>
         )}
@@ -115,7 +116,7 @@ export const SearchBar = ({
                         shownCategories,
                         emojiFilter.indexOf(object.emoji) === -1
                           ? [...emojiFilter, object.emoji]
-                          : emojiFilter.filter(item => item !== object.emoji),
+                          : emojiFilter.filter((item) => item !== object.emoji),
                         searchStr,
                         subCategories,
                         articles,
@@ -125,7 +126,7 @@ export const SearchBar = ({
                     updateEmojiFilter(
                       emojiFilter.indexOf(object.emoji) === -1
                         ? [...emojiFilter, object.emoji]
-                        : emojiFilter.filter(item => item !== object.emoji),
+                        : emojiFilter.filter((item) => item !== object.emoji),
                     )
                   }}
                 />

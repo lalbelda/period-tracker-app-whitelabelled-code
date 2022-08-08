@@ -1,20 +1,87 @@
 import { translate } from '../i18n'
+import moment from 'moment'
+export const mainScreenSpeech = ({ data, wheelDaysInfo, todayInfo }) => {
+  const infiniteDays = data.map((day: any) => [
+    translate('day') + day.cycleDay.toString(),
+    day.date.format('DD MMMM'),
+    translate('mood'),
+    translate('body'),
+    translate('activity'),
+    translate('flow'),
+  ])
 
-export const mainScreenSpeech = ({ todayInfo }) => [
-  translate('calendar'),
-  todayInfo.cycleLength + translate('days'),
-  todayInfo.onPeriod
-    ? todayInfo.daysLeftOnPeriod.toString() + translate('left')
-    : todayInfo.daysUntilNextPeriod.toString() + translate('to_go'),
-  todayInfo.date.format('DD MMMM'),
-  translate('day') + todayInfo.cycleDay.toString(),
-  translate('mood'),
-  translate('body'),
-  translate('activity'),
-  translate('flow'),
+  return [
+    translate('calendar'),
+    translate('main_calendar_screen'),
+    translate('calendar_shortcut'),
+    translate('avatar'),
+    translate('wheel_text'),
+    ...wheelDaysInfo,
+    todayInfo.cycleLength + translate('days'),
+    todayInfo.onPeriod
+      ? todayInfo.daysLeftOnPeriod.toString() + translate('left')
+      : todayInfo.daysUntilNextPeriod.toString() + translate('to_go'),
+    translate('large_day_card'),
+    ...infiniteDays[0].flat(),
+  ]
+}
+
+export const predictionChangeScreenSpeech = () => [
+  translate('tutorial_launch_label'),
+  translate('share_period_details_heading'),
+  translate('user_input_instructions'),
+  translate('prediction_change'),
+  translate('period_start_cloud'),
+  translate('period_day_cloud'),
+  translate('no_period_day_cloud'),
 ]
+export const spinLoaderSpeech = () => [translate('please_wait_tutorial')]
+export const calendarScreenSpeech = ({
+  opacity,
+  isVisible,
+  weekDays,
+  monthDaysInfo,
+  currentDay,
+}) => {
+  const check = moment(currentDay, 'YYYY/MM/DD')
+  const month = check.format('MM')
+  const day = check.format('D')
+  const year = check.format('YYYY')
+  const monthDate = moment(year + '-' + month, 'YYYY-MM')
+  let daysInMonth = monthDate.daysInMonth()
+  const arrDays = []
 
-export const profileScreenSpeech = ({ currentUser, todayInfo, dateOfBirth }) => [
+  while (daysInMonth) {
+    const current = moment(currentDay).date(daysInMonth)
+    arrDays.push(current.format('DD MMM'))
+    daysInMonth--
+  }
+  const currenMonthDays = arrDays.reverse()
+  if (isVisible && opacity === 0) return predictionChangeScreenSpeech()
+  return isVisible
+    ? [
+        translate('daily_card_and_period_info'),
+        translate('to_daily_card'),
+        translate('change_period'),
+      ]
+    : [
+        translate('arrow_button'),
+        translate('calendar'),
+        translate('previous_month'),
+        `${currentDay.format('MMMM')} ${currentDay.format('YYYY')}`,
+        translate('next_month'),
+        ...weekDays,
+        ...currenMonthDays,
+      ]
+}
+export const profileScreenSpeech = ({
+  currentUser,
+  todayInfo,
+  dateOfBirth,
+  selectedAvatar,
+  theme,
+}) => [
+  translate('arrow_button'),
   translate('profile'),
   translate('name'),
   currentUser.name,
@@ -22,15 +89,21 @@ export const profileScreenSpeech = ({ currentUser, todayInfo, dateOfBirth }) => 
   translate(dateOfBirth.format('MMM')) + ' ' + dateOfBirth.format('YYYY'),
   translate('gender'),
   translate(currentUser.gender),
+  translate('green_btn_with_two_arrows'),
   translate('location'),
   translate(currentUser.location),
+  translate('green_btn_with_two_arrows'),
   translate('cycle_length'),
   todayInfo.cycleLength.toString() + translate('days'),
   translate('period_length'),
   todayInfo.periodLength.toString() + translate('days'),
+  translate(`selected_avatar`),
+  translate(selectedAvatar),
+  translate('selected_theme'),
+  translate(theme),
 ]
 
-export const settingsScreenText = () => [
+export const settingsScreenText = ({ hasPasswordRequestOn, hasTtsActive }) => [
   translate('settings'),
   translate('about'),
   translate('about_info'),
@@ -42,14 +115,26 @@ export const settingsScreenText = () => [
   translate('settings_info'),
   translate('text_to_speech'),
   translate('text_to_speech_info'),
+  `text to speech ${hasTtsActive ? 'on' : 'off'}`,
   translate('password_request'),
   translate('password_request_info'),
+  `Passcode request ${hasPasswordRequestOn ? 'on' : 'off'}`,
   translate('logout'),
   translate('delete_account_button'),
   translate('contact_us'),
 ]
 
+export const acessSettingsScreenText = () => [
+  translate('access_setting'),
+  translate('tutorial'),
+  translate('tutorial_subtitle'),
+  translate('launch'),
+  translate('share'),
+  translate('share_qr_description'),
+  translate('share_setting'),
+]
 export const aboutScreenText = () => [
+  translate('arrow_button'),
   translate('about'),
   translate('about_content_1'),
   translate('about_heading_1'),
@@ -68,6 +153,7 @@ export const aboutScreenText = () => [
 ]
 
 export const privacyScreenText = () => [
+  translate('arrow_button'),
   translate('privacy_heading_1'),
   translate('privacy_content_1'),
   translate('privacy_heading_2'),
@@ -113,6 +199,7 @@ export const privacyScreenText = () => [
 ]
 
 export const termsScreenText = () => [
+  translate('arrow_button'),
   translate('terms'),
   translate('t_and_c_heading_1'),
   translate('t_and_c_heading_2'),
@@ -152,3 +239,29 @@ export const termsScreenText = () => [
   translate('t_and_c_heading_16'),
   translate('t_and_c_content_21'),
 ]
+
+export const encyclopediaScreenText = (categories) => {
+  let textArray = []
+  categories.map(
+    (category: any) => (textArray = [...textArray, category.name, category.tags.primary.name]),
+  )
+  return [
+    translate('arrow_button'),
+    translate('encyclopedia'),
+    translate('text_input'),
+    translate('clear_search'),
+    ...textArray,
+  ]
+}
+
+export const contactUsScreenText = ({ isVisible }) =>
+  isVisible
+    ? [translate('thank_you')]
+    : [
+        translate('arrow_button'),
+        translate('contact_us'),
+        translate('reason_text_input'),
+        translate('green_btn_with_two_arrows'),
+        translate('message_text_input'),
+        translate('send'),
+      ]

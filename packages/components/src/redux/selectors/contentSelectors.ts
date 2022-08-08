@@ -11,7 +11,8 @@ export const articleByIDSelector = (state: ReduxState, id) => s(state).articles.
 
 export const articlesObjectByIDSelector = (state: ReduxState) => s(state).articles.byId
 
-export const allHelpCentersForCurrentLocale = (state: ReduxState) =>
+// @ts-ignore
+export const allHelpCentersForCurrentLocale: any = (state: ReduxState) =>
   s(state).helpCenters.filter((item) => item.lang === state.app.locale)
 
 export const allCategoriesSelector = (state: ReduxState) =>
@@ -32,8 +33,8 @@ export const allSubCategoriesObjectSelector = (state: ReduxState) => s(state).su
 
 export const subCategoryByIDSelector = (state: ReduxState, id) => s(state).subCategories.byId[id]
 
-export const allSurveysSelectors = (state: ReduxState) =>
-  s(state).surveys.allIds.map((id) => s(state).surveys.byId[id])
+// export const allSurveysSelectors = (state: ReduxState) =>
+//   s(state).surveys.allIds.map(id => s(state).surveys.byId[id])
 
 export const allAvatarText = (state: ReduxState) => s(state).avatarMessages
 
@@ -42,6 +43,9 @@ export const privacyContent = (state: ReduxState) => s(state).privacyPolicy
 export const termsAndConditionsContent = (state: ReduxState) => s(state).termsAndConditions
 
 export const aboutContent = (state: ReduxState) => s(state).about
+// export const surveyContent = (state: ReduxState) => s(state).surveys
+export const allSurveys = (state: ReduxState) => s(state).allSurveys
+export const completedSurveys = (state: ReduxState) => s(state).completedSurveys
 
 export const aboutBanner = (state: ReduxState) => s(state).aboutBanner
 
@@ -50,7 +54,14 @@ export const allQuizzesSelectors = (state: ReduxState) => {
   // moment()
   //   .utc()
   //   .diff(state.auth.user.dateOfBirth) < 15
+  const tempArr = []
   const filteredArray = s(state).quizzes.allIds.reduce((acc, id) => {
+    if (
+      (!s(state).quizzes.byId[id]?.isAgeRestricted && isUserYoungerThan15) ||
+      !isUserYoungerThan15
+    ) {
+      tempArr.push(s(state).quizzes.byId[id])
+    }
     if (
       (!s(state).quizzes.byId[id].isAgeRestricted && isUserYoungerThan15) ||
       !isUserYoungerThan15

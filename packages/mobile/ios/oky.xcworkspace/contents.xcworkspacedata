@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/ankitbansal/dev/code/unicef/alextyers/period-tracker-app-whitelabelled/packages/mobile/ios/period-tracker-app.xcodeproj">
+      location = "group:oky.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

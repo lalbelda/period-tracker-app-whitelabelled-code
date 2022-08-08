@@ -2,6 +2,7 @@
 $('#articleModal').on('show.bs.modal', event => {
   $('#error1').hide()
   $('#error2').hide()
+  $('#errorTitle2').hide()
   $('#error3').hide()
   $('#error4').hide()
   var button = $(event.relatedTarget) // Button that triggered the modal
@@ -14,6 +15,8 @@ $('#articleModal').on('show.bs.modal', event => {
     $('#col3TableModal').val('')
     $('#col4TableModal').prop('checked', false)
     $('#itemID').text(0)
+    $('#countdown2').text(70 + ' characters remaining.')
+    $('#col1TableModal').attr('disabled', true)
     return
   }
   var articles = JSON.parse($('#articlesJSON').text())
@@ -28,6 +31,8 @@ $('#articleModal').on('show.bs.modal', event => {
   $('#col3TableModal').val(articleInfo.article_text)
   $('#col4TableModal').prop('checked', articleInfo.live)
   $('#itemID').text(articleId)
+  $('#countdown2').text(70- articleInfo.article_heading.length + ' characters remaining.')
+  handleSubCategorySelect(articleInfo.category_id);
 })
 
 $('#categoryModal').on('show.bs.modal', event => {
@@ -93,7 +98,7 @@ $('#btnArticleEditConfirm').on('click', () => {
     data.category === '' ||
     data.subcategory === '' ||
     data.article_heading === '' ||
-    data.article_heading.length > 60 ||
+    data.article_heading.length > 70 ||
     data.article_text === ''
   ) {
     $('#error1').show()
@@ -107,9 +112,13 @@ $('#btnArticleEditConfirm').on('click', () => {
     type: articleID === '0' ? 'POST' : 'PUT',
     data: data,
     success: result => {
-      $('#articleModal').modal('hide')
-      $('#infoArticleModal').modal('show')
-      setTimeout(() => location.reload(), 1500)
+      if (result.isExist){
+        $('#errorTitle2').show();
+      } else {
+        $('#articleModal').modal('hide')
+        $('#infoArticleModal').modal('show')
+        setTimeout(() => location.reload(), 1500)
+      }
     },
     error: error => {
       console.log(error)
@@ -170,8 +179,8 @@ $('#btnSubcategoryConfirm').on('click', () => {
 })
 
 // ==================== Live check =============================
-$('.liveCheckbox').on('click', () => {
-  var button = $(event.currentTarget) // Button that triggered the modal
+$(document).on('click','.liveCheckbox', () => {
+  var button = $(event.target) // Button that triggered the modal
   var articleId = button.data('value') // Extract info from data-* attributes
   var articles = JSON.parse($('#articlesJSON').text())
   var articleInfo = articles.find(item => {
@@ -318,7 +327,7 @@ filterButton.click(event => {
     return
   }
   filteredArticles = articles.filter((index, elem) =>
-    elem.children[0].innerText.toLowerCase().includes(filterText),
+  new Array(articles[0].children.length).fill().some((_, childIndex) => elem.children[childIndex].innerText.toLowerCase().includes(filterText.toLowerCase()))
   )
   articleList.empty().prepend(filteredArticles)
 })
@@ -348,5 +357,18 @@ function makeUpdateCountdown({ countdownElement, tableElement, maxLength }) {
 makeUpdateCountdown({
   countdownElement: $('#countdown2'),
   tableElement: $('#col2TableModal'),
-  maxLength: 60,
+  maxLength: 70,
 })
+//control subcategory select
+$('#col0TableModal').change(event => {
+  $('#col1TableModal').val('');
+  var catId = event.target.value;
+  handleSubCategorySelect(catId);
+})
+const handleSubCategorySelect = (catId) => {
+  $('#col1TableModal').attr('disabled', false);
+  $('#col1TableModal').children().map((_, child) => {
+    if (child.dataset.id == catId) $(child).css('display', 'block');
+    else $(child).css('display', 'none')
+  })
+}

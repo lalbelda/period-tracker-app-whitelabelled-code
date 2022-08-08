@@ -12,7 +12,7 @@ import { translate } from '../../i18n'
 const cardNames = ['mood', 'body', 'activity', 'flow']
 
 export const CycleCard = ({ item, cycleNumber }) => {
-  const cardAnswersValues = useSelector(state =>
+  const cardAnswersValues = useSelector((state) =>
     selectors.mostAnsweredSelector(state, item.cycleStartDate, item.cycleEndDate),
   )
 
@@ -111,30 +111,30 @@ const Row = styled.View`
 `
 
 const CycleCardContainer = styled.View`
-  margin-top: 15;
+  margin-top: 15px;
   background-color: #fff;
   elevation: 3;
-  margin-horizontal: 3;
-  border-radius: 10;
+  margin-horizontal: 3px;
+  border-radius: 10px;
 `
 
 const CycleCardHeader = styled.View`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 40;
-  border-top-left-radius: 10;
-  border-top-right-radius: 10;
+  height: 40px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background-color: #e3629b;
-  padding-horizontal: 20;
+  padding-horizontal: 20px;
 `
 
 const CycleCardBody = styled.View`
   flex-direction: row;
   width: 100%;
-  padding-left: 20;
-  padding-right: 10;
-  padding-vertical: 15;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-vertical: 15px;
 `
 
 const CycleCardHeadingText = styled.Text`

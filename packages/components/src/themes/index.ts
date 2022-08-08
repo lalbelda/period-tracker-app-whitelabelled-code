@@ -13,4 +13,4 @@ export const themes: Themes = {
 }
 
 export const defaultTheme: ThemeName = 'hills'
-export const defaultAvatar: AvatarName = 'ari'
+export const defaultAvatar: AvatarName = 'default'

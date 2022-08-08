@@ -26,26 +26,26 @@ export const Message = ({ avatar, message }: { avatar: string; message: ChatMess
 
 const SmallAvatar = styled.Image`
   width: 30;
-  height: 30;
-  border-radius: 10;
+  height: 30px;
+  border-radius: 10px;
   margin-right: 5;
 `
 
 const ChatRow = styled.View<{ wasSent: boolean }>`
   flex-direction: row;
-  margin-vertical: 8;
-  justify-content: ${props => (props.wasSent ? 'flex-end' : 'flex-start')};
+  margin-vertical: 8px;
+  justify-content: ${(props) => (props.wasSent ? 'flex-end' : 'flex-start')};
 `
 
 const MessageBox = styled.View<{ wasSent: boolean }>`
-  background-color: ${props => (props.wasSent ? '#e1ffc7' : '#FFF')};
-  border-radius: 5;
-  border-top-right-radius: ${props => (props.wasSent ? 0 : 5)};
+  background-color: ${(props) => (props.wasSent ? '#e1ffc7' : '#FFF')};
+  border-radius: 5px;
+  border-top-right-radius: ${(props) => (props.wasSent ? 0 : 5)};
   max-width: 80%;
-  padding-left: 10;
-  padding-right: 10;
-  padding-top: 10;
-  padding-bottom: 10;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -54,7 +54,7 @@ const MessageBox = styled.View<{ wasSent: boolean }>`
 
 const MessageText = styled.Text`
   font-size: 14;
-  padding-bottom: 5;
+  padding-bottom: 5px;
   color: #000;
   width: 80%;
 `
@@ -70,17 +70,17 @@ const ReceivedMessageTriangle = styled.View`
   height: 0;
   background-color: transparent;
   border-style: solid;
-  border-top-width: 5;
-  border-right-width: 10;
-  border-bottom-width: 5;
-  top: 10;
+  border-top-width: 5px;
+  border-right-width: 10px;
+  border-bottom-width: 5px;
+  top: 10px;
   border-left-width: 0;
   border-top-color: transparent;
   border-right-color: white;
   border-bottom-color: transparent;
   border-left-color: transparent;
   position: relative;
-  left: 0;
+  left: 0px;
 `
 
 const SentMessageTriangle = styled.View`
@@ -89,9 +89,9 @@ const SentMessageTriangle = styled.View`
   height: 0;
   background-color: transparent;
   border-style: solid;
-  border-top-width: 10;
-  border-right-width: 7;
-  border-bottom-width: 0;
+  border-top-width: 10px;
+  border-right-width: 7px;
+  border-bottom-width: 0px;
   top: 0;
   border-left-width: 0;
   border-top-color: #e1ffc7;
@@ -105,7 +105,7 @@ const SentMessageTriangle = styled.View`
 const AnswersSection = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 15;
+  margin-top: 15px;
   width: 100%;
   justify-content: center;
 `

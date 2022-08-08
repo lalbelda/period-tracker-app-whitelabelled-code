@@ -6,6 +6,6 @@ export const Icon = ({ source, style = null }) => {
 }
 
 const ImageContainer = styled.Image`
-  height: 20;
-  width: 20;
+  height: 20px;
+  width: 20px;
 `

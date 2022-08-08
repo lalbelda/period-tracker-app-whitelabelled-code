@@ -54,7 +54,6 @@ export function SignUp({ heightInner }) {
     )
     navigate('AvatarAndThemeScreen', { signingUp: true }) // @TODO: wait on isCreatingAccount
   }
-
   return (
     <MultiStepForm
       initialStep={'ask-user-confirmation'}

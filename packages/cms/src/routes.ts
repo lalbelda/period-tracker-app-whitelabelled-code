@@ -63,6 +63,12 @@ export const Routes = [
   },
   {
     method: 'get',
+    route: '/answered-surveys',
+    controller: RenderController,
+    action: 'renderAnsweredSurvey',
+  },
+  {
+    method: 'get',
     route: '/suggestions-management',
     controller: RenderController,
     action: 'renderSuggestion',
@@ -557,6 +563,12 @@ export const Routes = [
     route: '/mobile/surveys/:lang',
     controller: SurveyController,
     action: 'mobileSurveysByLanguage',
+  },
+  {
+    method: 'get',
+    route: '/mobile/new-surveys/:lang',
+    controller: SurveyController,
+    action: 'newMobileSurveysByLanguage',
   },
   {
     method: 'get',

@@ -6,7 +6,7 @@ export const en = {
   header: 'Header',
   terms: 't&c',
   share: 'share',
-  skip: 'skip',
+  skip: 'Skip',
   hi: 'Hi!',
   auth_welcome: 'Welcome to\nPeriod Tracker App!',
   auth_catchphrase: 'Your body, your health, your Period Tracker App.',
@@ -38,7 +38,8 @@ export const en = {
   encyclopedia: 'encyclopedia',
   day: 'day',
   quiz: 'quiz',
-  survey: 'survey',
+  // survey: 'survey',
+  survey: 'Feedback',
   didYouKnow: 'Did You Know?',
   quiz_question: 'what should you avoid during your period',
   birth_info_heading: `Birth month`,
@@ -47,6 +48,8 @@ export const en = {
   birth_month_and_year: 'birth month and year',
   name: 'name',
   enter_name: 'enter your name',
+  name_info_label:
+    'Info button for your Period Tracker App username. The name you will use to sign in to Period Tracker App. Minimum 3 characters',
   correct: `That's correct!`,
   not_correct: `Oops, that one wasn't quite right. No need to worry, you will get the next one`,
   profile: 'your profile',
@@ -54,11 +57,13 @@ export const en = {
   passcode_description: 'Choose a passcode to keep your Period Tracker App account private!',
   password: 'enter passcode',
   confirm_password: 'confirm passcode',
+  password_info_label: 'Info button for passcode requirements. This will keep your account private',
   secret_question: 'choose secret question',
   secret_answer: 'answer to secret question',
   old_secret_answer: 'old secret answer',
   splash_text: 'helps make\nyour periods\nstress-free!',
-  user_input_instructions: `Was the Period Tracker App prediction right? If not, change it!`,
+  // user_input_instructions: `Was the Period Tracker App prediction right? If not, change it!`,
+  user_input_instructions: 'Did you have your period today?',
   logout: 'Log out',
   on: 'On',
   off: 'Off',
@@ -136,10 +141,10 @@ export const en = {
   ari: 'ari',
   nur: 'nur',
   julia: 'anu',
-  default: 'default',
-
   avatar_amp_themes: 'personalise Period Tracker App',
   avatar_amp_themes_login: 'Choose your Period Tracker App buddy and background picture!',
+  selected_avatar: 'Selected avatar',
+  selected_theme: 'Selected theme',
 
   // ------------------------- Onboard ----------------------------
   calendar_onboard: `Get to know YOU by tracking what's going on with your body and mood every month.`,
@@ -176,7 +181,7 @@ export const en = {
   tutorial_3: `This number shows you how many days Period Tracker App thinks there are until your next period, or if you are on your period, how many days until it ends!`,
   tutorial_4: `Period Tracker App shows you a prediction for every day by giving the shapes different colours.`,
   tutorial_5: `Each day, tap on the shape and let Period Tracker App know if the prediction was right!`,
-  tutorial_6: `For example, if today's shape says it's a non-period day, but it's the first day of your period, tap the 'Period Start' shape.`,
+  tutorial_6: `Has your period started? Tap today’s cloud to keep track of your cycle.`,
   tutorial_7: `Or, if Period Tracker App thinks your period is over, but it is actually still happening, tap the 'Period Day' shape!`,
   tutorial_8: `And if Period Tracker App predicted you would have your period, but actually you didn't, then tap the 'No Period' shape!`,
   tutorial_9: `Each day, track how you feel and what you did using the Diary cards! Swipe right to get to the next card. This improves Period Tracker App's predictions and helps you learn more about yourself...`,
@@ -191,7 +196,7 @@ export const en = {
   tutorial_3_content: `Countdown`,
   tutorial_4_content: `Colours`,
   tutorial_5_content: `Correct Period Tracker App's prediction`,
-  tutorial_6_content: `Period Start`,
+  tutorial_6_content: `Predicted Period`,
   tutorial_7_content: `Period`,
   tutorial_8_content: `No Period`,
   tutorial_9_content: `Daily diary`,
@@ -214,6 +219,10 @@ export const en = {
   launch: 'Launch',
   to_daily_card: 'Go to daily card',
   change_period: 'Add period info',
+  period_day: 'Period\nDay',
+  new_cycle: 'Period\nStart',
+
+  share_period_details_heading: `Tell Period Tracker App about your period to get better predictions. Did you have your period today?`,
   // ------------------------------------------------------------------
   day_card_mood: 'Mood',
   day_card_body: 'Body',
@@ -223,8 +232,10 @@ export const en = {
   non_period: 'No\n Period',
   ovulation: 'Fertile Days',
   start_early_button: 'Period\nStart',
+  unverified_button: 'Predicted\nPeriod',
   too_far_behind: `Sorry dear, that's too long ago to change!`,
   too_far_ahead: `You can't fill in information for days in the future! 😅`,
+  too_close: `That seems too close to the previous period`,
   period_too_long: `You can't change this as it seems too long for a period, sorry!`,
   cycle_length: 'cycle length',
   period_length: 'period length',
@@ -317,6 +328,7 @@ export const en = {
   no: 'no',
   Yes: 'Yes',
   No: 'No',
+  not_now: 'No - Not now',
   cancel: 'cancel',
   type_to_search: 'Type to search',
   note_saved: 'Note has been saved',
@@ -327,6 +339,16 @@ export const en = {
   province: 'province',
   contact_details: 'contact details',
   are_you_on_period: 'Are you on your period?',
+  will_you_answer_survey_questions: 'Will you answer a few questions? It will take 2 to 3 minutes',
+  thank_you_msg:
+    'Thank you! If you want to provide some additional feedback you can always do it from the settings menu ⚙️',
+  anonymous_answer: 'Tell us about your experience with Period Tracker App.',
+  submit: 'Submit',
+  thanks_for_response:
+    'Thank you! If you want to provide some additional feedback you can always do it from the settings menu ⚙️',
+  type_answer_placeholder: 'Type your answer here',
+  info_button_survey:
+    'Information you share will be processed by Period Tracker App to improve our services and your experience with Period Tracker App. Survey responses are anonymous. To find out more about how Period Tracker App uses your data, see the privacy policy in the settings menu ⚙️',
   // -------------------------Months-----------------------------
   January: 'January',
   February: 'February',
@@ -352,6 +374,8 @@ export const en = {
   Nov: 'Nov',
   Dec: 'Dec',
   // -------------------------Error messages-----------------------------
+  username_too_short: 'Uesrname is too short, minimum 3 characters',
+  passcodes_mismatch: 'Passcodes do not match',
   name_error_heading: 'Name',
   name_error_content:
     'The name you will use to sign in to Period Tracker App. Minimum 3 characters.',
@@ -373,7 +397,9 @@ export const en = {
     'Something went wrong when sending. Please make sure you have internet and try again.',
   thank_you: 'Thank you',
   thank_you_content: `Thanks for messaging us! Your comments help us improve 🙂. Sorry, but we can't get back to every message individually. \n\n If you need urgent help, go to Encyclopedia > Find help for details of organisations you can contact.`,
-  reset_secret_question: 'In order to reset your passcode you need to input your secret answer',
+  reset_secret_question:
+    'In order to reset your secret question you need to input your secret answer',
+  reset_password_question: 'In order to reset your password you need to input your secret answer',
   change_secret: 'change secret \nquestion',
   error_connect_guest: 'Error connecting guest',
   error_same_name: 'There is a user with the same name.\nPlease change your name and try again.',
@@ -425,7 +451,7 @@ export const en = {
   about_content_9: `Period Tracker App is developed in an open way so others can learn from the process of creating a digital public health resource. This way, it can be useful to more people and contribute to changing the way our digital information is used for profit rather than for public good.`,
 
   privacy_heading_1: `PERIOD TRACKER APP PRIVACY POLICY\n\n`,
-  privacy_heading_2: `1. What information does Period Tracker App collect about you?\n\n`,
+  privacy_heading_2: `1. What information does Period Tracker- collect about you?\n\n`,
   privacy_heading_3: `1.1 To provide you with our services and to understand your needs\n`,
   privacy_heading_4: `Login information\n\n`,
   privacy_heading_5: `Device data\n\n`,
@@ -438,36 +464,36 @@ export const en = {
   privacy_heading_12: `3. Third parties websites\n\n`,
   privacy_heading_13: `4. Notifications of changes to the Privacy Policy\n\n`,
 
-  privacy_content_1: `Taking care of your information is important to Period Tracker App. We do our best so that the information you enter into the app is kept as private and as safe as possible. The information that you share about your menstrual cycle is very personal and we respect that.\n
-When you enter information into the app, Period Tracker App uses technology to turn that ‘data’ into helpful information that can help you learn more about your menstrual cycle patterns, to enable you to take control of your body and your health: for example, by giving you information about managing menstruation or pain.\n
+  privacy_content_1: `Taking care of your information is important to Period Tracker-. We do our best so that the information you enter into the app is kept as private and as safe as possible. The information that you share about your menstrual cycle is very personal and we respect that.\n
+When you enter information into the app, Period Tracker- uses technology to turn that ‘data’ into helpful information that can help you learn more about your menstrual cycle patterns, to enable you to take control of your body and your health: for example, by giving you information about managing menstruation or pain.\n
 We aim for the highest standards of privacy and security and we are committed to being transparent about how we process and use data.\n`,
   privacy_content_1_1: `This Privacy Policy explains what happens to the data you enter when you track your period: how your information is collected, stored and used, and what steps we take to ensure your data stays safe.\n
-Please read our Privacy Policy carefully before using Period Tracker App and refer back to it regularly to check for updates. Remember, by accessing and using the app or website, you agree to this Privacy Policy\n
-Period Tracker App is made by Organization. Please do not hesitate to contact us if you have any questions about the use of data in Period Tracker App. There is a contact form on the Period Tracker App website:\n\n`,
+Please read our Privacy Policy carefully before using Period Tracker- and refer back to it regularly to check for updates. Remember, by accessing and using the app or website, you agree to this Privacy Policy\n
+Period Tracker- is made by Organization. Please do not hesitate to contact us if you have any questions about the use of data in Period Tracker-. There is a contact form on the Period Tracker- website:\n\n`,
   privacy_content_2: `For the purpose of this Privacy Policy, “Personal Information” means any information that enables us to identify an individual, directly or indirectly, by reference to an identifier such as name, identification number, location data, online identifier or one or more factors specific to the individual.\n
 Described below are the purposes for which we obtain and process personal information and the sources and types of data processed for these purposes:\n\n`,
   privacy_content_3: `In order to use the period tracker functions on the app, you need to create a login. During login creation, we ask you for a display or user name, date of birth, gender and location. We encourage you to select a display name that does not disclose your real name or other information that could identify you – especially if you are under the age of 18.\n`,
-  privacy_content_4: `On the app, we collect information on the device you use to access Period Tracker App’s services, such as the model, operating system, language, location and the session’s duration. \n\n`,
+  privacy_content_4: `On the app, we collect information on the device you use to access Period Tracker-’s services, such as the model, operating system, language, location and the session’s duration. \n\n`,
   privacy_content_5: `When you use the app, we and our third-party service providers process data about how you are interacting with the app. We use an App center together with some custom created tracking features to record these interactions.\n`,
-  privacy_content_6: `We do this to understand your usage of our services, for example which functions of the app you are using and to ensure all the features provided by the app are  functioning properly. We collect this information and use it to better understand which features are most useful to all our users and to communicate with you about the app and its services. \n \n
+  privacy_content_6: `We do this to understand your usage of our services, for example which functions of the app you are using and to ensure all the features provided by the app are  functioning properly. We collect this information and use it to better understand which features are most useful to all our users and to communicate with you about the app and its services. \n \n 
 For instance, we are currently tracking whether the user is modifying the start of their period, as this provides insightful information regarding the accuracy of the predictions.\n`,
   privacy_content_7: `We also do this to enable us to send reminders to your smartphone via in-app messages and push notifications. You can change how you receive notifications in the app and on your device at any time by going to Settings.\n`,
-  privacy_content_8: `In summary, we process this data to give you the best service possible through Period Tracker App.\n`,
+  privacy_content_8: `In summary, we process this data to give you the best service possible through Period Tracker-.\n`,
   privacy_content_9: `We do not process personal data that identifies you as a person (such as your first name, surname, email) or health-related data.\n`,
   privacy_content_10: `Similarly, we use Google Analytics to track a user’s interactions with the website. This will allow us to assess which pages have been visited the most, the duration of each visit etc.\n\n`,
-  privacy_content_11: `On our website (https://period-tracker-app.com/), we use cookies, which are small text files which identify your computer, phone, and other devices to our server. By using the website, you consent to the placement of cookies and similar technologies in your browser in accordance with this Privacy Policy. The information collected in this manner through the website includes your IP address, network location, what browser you are using, device IDs and characteristics, operating system version, language preferences, referring URLs, and information about the usage of our website.\n`,
+  privacy_content_11: `On our website (https://period-tracker-app.info/), we use cookies, which are small text files which identify your computer, phone, and other devices to our server. By using the website, you consent to the placement of cookies and similar technologies in your browser in accordance with this Privacy Policy. The information collected in this manner through the website includes your IP address, network location, what browser you are using, device IDs and characteristics, operating system version, language preferences, referring URLs, and information about the usage of our website.\n`,
   privacy_content_12: `We also work with Google Analytics, which uses cookies and similar technologies to collect and analyze information about the use of the website and report on activities and trends. You can learn more about Google’s practices by going to https://www.google.com/policies/privacy/partners/. \n`,
-  privacy_content_13: `If you do not want information collected through the use of cookies, most browsers allow you to automatically decline cookies or be given the choice of declining or accepting the transfer to your computer of a particular cookie (or cookies) from a particular website. \n \n
+  privacy_content_13: `If you do not want information collected through the use of cookies, most browsers allow you to automatically decline cookies or be given the choice of declining or accepting the transfer to your computer of a particular cookie (or cookies) from a particular website. \n \n 
 You may also wish to refer to http://www.allaboutcookies.org/manage-cookies/index.html for more general information about cookies.  If, however, you do not accept our cookies, you may experience some inconvenience in your use of the website.\n\n`,
-  privacy_content_14: `The information you track using Period Tracker App about your health and activities is considered sensitive personal data. For the Period Tracker App app, most of the data is stored, including the user’s interaction with the prediction engine. \n \n
+  privacy_content_14: `The information you track using Period Tracker App about your health and activities is considered sensitive personal data. For the Period Tracker App app, most of the data is stored, including the user’s interaction with the prediction engine. \n \n 
 The user’s user name, language, theme and answers to the daily cards and quizzes are stored, and it is recorded if a user modifies their period prediction, shortens it, modifies current prediction etc.\n`,
   privacy_content_15: `If the user deletes their account, all the data will be erased from the servers.\n\n`,
-  privacy_content_16: `Health data, such as dates of your past and current periods, and mood, body or activity events you track in the app (e.g. pain, bloating, exercise, sleep, menstrual flow) are collected and used to provide services to you – such as predicting future period dates or providing you with reminders or notifications related to menstruation and health. \n \n
+  privacy_content_16: `Health data, such as dates of your past and current periods, and mood, body or activity events you track in the app (e.g. pain, bloating, exercise, sleep, menstrual flow) are collected and used to provide services to you – such as predicting future period dates or providing you with reminders or notifications related to menstruation and health. \n \n 
 The predictive technology used by Period Tracker App processes this data and provides you with information. However, your personal information in these regards is not shared with any other parties.\n`,
-  privacy_content_17: `Period Tracker App uses questions in the app to ask your feedback about the app, e.g. on the performance of the app or on the usefulness of the information Period Tracker App provides and your experience of using the app. \n \n
+  privacy_content_17: `Period Tracker App uses questions in the app to ask your feedback about the app, e.g. on the performance of the app or on the usefulness of the information Period Tracker App provides and your experience of using the app. \n \n 
 Information given by you via such surveys and questions is processed by Period Tracker App for the purposes as set out in this Privacy Policy.`,
   privacy_content_18: `Information you enter in the Notes  remains completely private: this information is not collected, accessed or used by the app in any way.\n\n`,
-  privacy_content_19: `We may de-identify and aggregate information collected through the app for statistical analysis and other lawful purpose, including in research studies intended to improve our understanding of young people’s use of technology and digital tools. \n \n
+  privacy_content_19: `We may de-identify and aggregate information collected through the app for statistical analysis and other lawful purpose, including in research studies intended to improve our understanding of young people’s use of technology and digital tools. \n \n 
 The results of this research may be shared with third parties, such as our partners, supporters, educators and researchers through conferences, journals, and other publications. If we do this, all data will be aggregated and none of your data will be used to identify you: we will not process personal data that identifies you as a person (such as your first name, surname, email) or health-related data.\n`,
   privacy_content_20: `Some further information that may be useful about your personal information and privacy:\n`,
   privacy_content_21: `i. We may use your Personal Information to enforce our Terms of Use, to defend our legal rights, and to comply with our legal obligations and internal policies.\n
@@ -476,18 +502,18 @@ iii. The security of our servers is regularly checked by experts to ensure your 
 iv. We do not retain your data in an identifiable format for longer than necessary to deliver our services.\n
 v. As a user of Period Tracker App you may exercise your user rights to request information on your personal data processed by Period Tracker App. Upon your request, this information will be provided to you electronically.\n\n
   `,
-  privacy_content_22: `We use many reasonable measures – physical and electronic – to prevent your Personal Information against unauthorized access and disclosure. However, it is always a possibility that third parties may unlawfully intercept or access your Personal Information or private communications. \n \n
+  privacy_content_22: `We use many reasonable measures – physical and electronic – to prevent your Personal Information against unauthorized access and disclosure. However, it is always a possibility that third parties may unlawfully intercept or access your Personal Information or private communications. \n \n 
 So, although we work extremely hard to safeguard your Personal Information, we cannot guarantee that your information or communications will always remain private.\n`,
   privacy_content_23: `We believe the biggest threat to the security and privacy of your data is if someone—probably someone you know—gains access to your device. The data you enter into Period Tracker App is private and it should stay that way. We have outlined some ways to keep your devices secure below.\n`,
   privacy_content_24: `i. Activate a unique PIN or password code to create a login. Make it personal and not easy for others to guess. Do not use your date of birth or your name, for example. If you share your device with others, activating a unique PIN or password code will ensure you are the only person who can access your Period Tracker App-related data on the device.\n`,
   privacy_content_25: `ii. Set up a feature that will allow you to erase all the data from your device if it's lost or stolen.\n`,
   privacy_content_26: `For Android, download and set up Find My Device (formerly Android Device Manager) from the Google Play Store and, if needed, use the connected web interface to lock or wipe your phone remotely.\n\n`,
-  privacy_content_27: `Our app or website may contain links to other sites that are not covered by this Privacy Policy. This Privacy Policy applies only to the processing of your Personal Information by Period Tracker App. It does not address, and we are not responsible for, the privacy, information, or other practices of any third parties, including any third party operating any site or service to which the website or app links. \n \n
+  privacy_content_27: `Our app or website may contain links to other sites that are not covered by this Privacy Policy. This Privacy Policy applies only to the processing of your Personal Information by Period Tracker App. It does not address, and we are not responsible for, the privacy, information, or other practices of any third parties, including any third party operating any site or service to which the website or app links. \n \n 
 The inclusion of a link on the website or app does not imply endorsement of the linked site or service by Organization. Please be aware that the terms of this Privacy Policy do not apply to these outside websites or content, or to any collection of data after you click on links to such outside websites.\n\n`,
   privacy_content_28: `We review our security measures and our Privacy Policy and we may modify our policies as we deem appropriate. If we make changes to our privacy practices, we will post a notification to our website or app alerting that the Privacy Policy has been amended. \n \n
-Such changes will be effective immediately upon posting them to our app or website. For this reason, we encourage you to check our Privacy Policy frequently.  The “Last Updated” date at the bottom of this page indicates when this Privacy Policy was last revised. \n \n
+Such changes will be effective immediately upon posting them to our app or website. For this reason, we encourage you to check our Privacy Policy frequently.  The “Last Updated” date at the bottom of this page indicates when this Privacy Policy was last revised. \n \n 
 Your continued use of our app or website following these changes means that you accept the revised Privacy Policy.\n`,
-  privacy_content_29: `Feel free to contact us if you require further information about this Privacy Policy. There is a contact form on the Period Tracker App website: https://period-tracker-app.com/ \n
+  privacy_content_29: `Feel free to contact us if you require further information about this Privacy Policy. There is a contact form on the Period Tracker App website: https://period-tracker-app.info/ \n
 Last updated: 16th October 2019`,
 
   t_and_c_heading_1: `Period Tracker App Terms and Conditions\n`,
@@ -530,4 +556,28 @@ These combined data points allow the app to make associations and identify patte
   t_and_c_content_19: `We will only use your personal information as set out in our Privacy Policy.\n\n`,
   t_and_c_content_20: `These  terms of use, their subject matter and their formation, are governed by US law. The courts of the US will have exclusive jurisdiction.\n\n`,
   t_and_c_content_21: `The Organization name and emblem are the exclusive property of Organization. They are protected under international law. Unauthorized use is prohibited. They may not be copied or reproduced in any way without the prior written permission of Organization. If you have any questions about this please contact Organization.`,
+
+  privacy_policy_link: 'Link to the  Privacy Policy for Period Tracker App',
+  t_and_c_link: 'Link to the  Privacy Policy for Period Tracker App',
+  month_selector: 'month selector',
+  clear_search: 'Clear search',
+  arrow_button: 'Arrow button',
+  // main page text
+  main_calendar_screen: 'main calendar screen',
+  calendar_shortcut: 'calendar shortcut',
+  avatar: 'avatar',
+  wheel_text: 'wheel with daily period predictions',
+  large_day_card: 'Large Day Card',
+  previous_month: 'previous month',
+  next_month: 'next month',
+  text_input: 'text input',
+  // prediction change
+  daily_card_and_period_info: 'shortcut to daily cards and period info',
+  prediction_change: 'Period prediction changes',
+  period_start_cloud: 'period start cloud',
+  period_day_cloud: 'period day cloud',
+  no_period_day_cloud: 'no period day cloud',
+  green_btn_with_two_arrows: 'Green button with 2 arrows to go up and down',
+  reason_text_input: 'reason text input',
+  message_text_input: 'message text input',
 }

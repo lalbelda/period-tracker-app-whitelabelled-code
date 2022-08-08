@@ -7,7 +7,7 @@ A period prediction engine with simple moving average future predictions.
 import the single instance of the predictor for the prediction engine
 
 ```bash
-import { predictor } from '@period-tracker-app/core'
+import { predictor } from '@oky/core'
 ```
 
 ## Notes

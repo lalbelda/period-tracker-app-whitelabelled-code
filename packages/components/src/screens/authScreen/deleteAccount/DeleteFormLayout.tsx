@@ -28,14 +28,14 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   width: 100%;
-  shadow-color: #efefef;
+  shadow-color: #d2d2d2;
   shadow-offset: 0px 2px;
-  shadow-opacity: 1;
-  shadow-radius: 1;
+  shadow-opacity: 2;
+  shadow-radius: 2;
 `
 
 const Touchable = styled.TouchableOpacity`
-  height: 80;
+  height: 80px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -44,6 +44,6 @@ const HeaderText = styled(Text)<{ expanded: boolean }>`
   font-size: 16;
   text-align: center;
   align-self: center;
-  color: ${props => (props.expanded ? `#fff` : `#000`)};
+  color: ${(props) => (props.expanded ? `#fff` : `#000`)};
   font-family: Roboto-Black;
 `

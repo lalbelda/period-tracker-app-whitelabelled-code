@@ -24,6 +24,6 @@ export function DeleteSuccess({ step, toggle, setContentState }) {
 const QuestionText = styled(Text)`
   font-size: 16;
   text-align: center;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `

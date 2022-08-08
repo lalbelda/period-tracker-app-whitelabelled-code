@@ -13,6 +13,9 @@ import { SearchBar } from './encyclopediaScreen/SearchBar'
 import _ from 'lodash'
 import { Avatar } from '../components/common/Avatar/Avatar'
 import { useTextToSpeechHook } from '../hooks/useTextToSpeechHook'
+import { encyclopediaScreenText } from '../config'
+// import firebase from 'react-native-firebase'
+// import { fetchNetworkConnectionStatus } from '../services/network'
 
 export function EncyclopediaScreen({ navigation }) {
   const categories = useSelector(selectors.allCategoriesSelector)
@@ -24,13 +27,13 @@ export function EncyclopediaScreen({ navigation }) {
   const [shownCategories, setShownCategories] = React.useState(categories)
   const [searching, setSearching] = React.useState(false)
   const [position] = React.useState(new Animated.Value(0))
+  const currentUser = useSelector(selectors.currentUserSelector)
 
-  const categoryNames = categories.map(item => item.name)
+  const categoryNames = categories.map((item) => item?.name)
   const [textArray, setTextArray] = React.useState(categoryNames)
+  useTextToSpeechHook({ navigation, text: encyclopediaScreenText(categories) })
 
-  useTextToSpeechHook({ navigation, text: textArray })
-
-  const togglePosition = isUp => {
+  const togglePosition = (isUp) => {
     Animated.timing(position, {
       duration: 1000,
       useNativeDriver: true,
@@ -44,6 +47,7 @@ export function EncyclopediaScreen({ navigation }) {
   }
 
   React.useEffect(() => {
+    // firebase.analytics().logEvent('users_accessing_encyclopedia', { user: currentUser })
     setShownCategories(categories)
     setActiveCategory([])
     setFilteredCategories(categories)
@@ -52,10 +56,10 @@ export function EncyclopediaScreen({ navigation }) {
   React.useEffect(() => {
     if (!_.isEmpty(activeCategories)) {
       const subCatNamesText = categories[activeCategories[0]].subCategories.map(
-        item => subCategoriesObject[item].name,
+        (item) => subCategoriesObject[item].name,
       )
-      const textArray = [categories[activeCategories[0]].name].concat(subCatNamesText) // this adds the category name to the front of the array
-      setTextArray(textArray)
+      const tempCategoryArray = [categories[activeCategories[0]].name].concat(subCatNamesText) // this adds the category name to the front of the array
+      setTextArray(tempCategoryArray)
       return
     }
     setTextArray(categoryNames)
@@ -102,12 +106,15 @@ export function EncyclopediaScreen({ navigation }) {
               onChange={() => true}
               renderContent={(category: any) => (
                 <Row>
-                  {category.subCategories.map(subCategory => (
+                  {category.subCategories.map((subCategory) => (
                     <SubCategoryCard
                       key={subCategory}
                       title={
-                        (subCategories.find(item => item.id === subCategory) || { name: 'no_name' })
-                          .name
+                        (
+                          subCategories.find((item) => item?.id === subCategory) || {
+                            name: 'no_name',
+                          }
+                        ).name
                       }
                       onPress={() => navigate('Articles', { subCategory })}
                     />
@@ -143,7 +150,7 @@ const Row = styled.View`
 `
 
 const EmptyFill = styled.View`
-  height: 40;
+  height: 40px;
 `
 
 const FloatingContainer = styled.TouchableOpacity``

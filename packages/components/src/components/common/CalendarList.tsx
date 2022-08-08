@@ -90,22 +90,40 @@ LocaleConfig.locales.en = {
   dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
 }
 
-export function CalendarList({ highlightedDates = {}, setInputDay, width = null }: any) {
+export function CalendarList({
+  handleMonthChange,
+  currentMonth = moment().format(),
+  highlightedDates = {},
+  setInputDay,
+  width = null,
+}: any) {
   const locale = useSelector(selectors.currentLocaleSelector)
   LocaleConfig.defaultLocale = locale
   const [markedDates, setMarkedDates] = React.useState({})
+  const calendarRef = React.useRef()
 
   React.useEffect(() => {
     setMarkedDates(highlightedDates)
   }, [highlightedDates])
 
+  const arrowFunctiions =
+    typeof handleMonthChange !== 'undefined'
+      ? {
+          current: currentMonth,
+          onPressArrowLeft: () => handleMonthChange('sub'),
+          onPressArrowRight: () => handleMonthChange('add'),
+        }
+      : {}
   return (
     <DefaultCalendarList
+      {...arrowFunctiions}
+      ref={calendarRef}
       initialNumToRender={3}
       theme={{
         monthTextColor: '#f49200',
         textMonthFontSize: 20,
         textMonthFontFamily: 'Roboto-Black',
+        // @ts-ignore
         'stylesheet.day.period': {
           base: {
             overflow: 'hidden',
@@ -139,7 +157,7 @@ export function CalendarList({ highlightedDates = {}, setInputDay, width = null 
       calendarWidth={width || 340}
       onDayPress={(day) => setInputDay(moment(day.timestamp).startOf('day'))}
       markedDates={markedDates}
-      markingType={'period'}
+      markingType={'custom'}
       hideArrows={false}
     />
   )

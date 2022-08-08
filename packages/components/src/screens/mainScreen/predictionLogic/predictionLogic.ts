@@ -84,7 +84,6 @@ export function decisionProcessNonPeriod({
       day: inputDay.clone().add(1, 'days'),
     }
   }
-
   return {
     type: 'adjust-mens-end',
     day: inputDay.clone().subtract(1, 'days'),

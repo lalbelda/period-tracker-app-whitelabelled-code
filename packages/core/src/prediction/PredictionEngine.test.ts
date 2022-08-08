@@ -22,20 +22,14 @@ const stateWithHistory = PredictionState.fromData({
 })
 
 const stateWithHistoryAndCurrentCycle = PredictionState.fromData({
-  startDate: moment
-    .utc()
-    .startOf('day')
-    .subtract(5, 'days'),
+  startDate: moment.utc().startOf('day').subtract(5, 'days'),
   periodLength: 5,
   cycleLength: 30,
   history,
 })
 
 const newCyclePrimedCycle = PredictionState.fromData({
-  startDate: moment
-    .utc()
-    .startOf('day')
-    .subtract(20, 'days'),
+  startDate: moment.utc().startOf('day').subtract(20, 'days'),
   periodLength: 5,
   cycleLength: 30,
   history,
@@ -62,22 +56,21 @@ it('Date Range known to be empty', () => {
   const predictor = PredictionEngine.fromState(stateWithHistory)
   const startDate = moment.utc('01-11-2018', 'DD-MM-YYYY')
   const endDate = moment.utc('20-11-2018', 'DD-MM-YYYY')
-  expect(predictor.calculateStatusForDateRange(startDate, endDate)).toStrictEqual({})
+  const verifiedDates = []
+  expect(predictor.calculateStatusForDateRange(startDate, endDate, verifiedDates)).toStrictEqual({})
 })
 
 it('Date Range somewhere in the future that should not be empty', () => {
   const predictor = PredictionEngine.fromState(stateWithHistory)
   const startDate = moment.utc('01-11-2022', 'DD-MM-YYYY')
   const endDate = moment.utc('23-12-2022', 'DD-MM-YYYY')
-  expect(predictor.calculateStatusForDateRange(startDate, endDate)).toBeTruthy()
+  const verifiedDates = []
+  expect(predictor.calculateStatusForDateRange(startDate, endDate, verifiedDates)).toBeTruthy()
 })
 
 it('User Input change menstruation', () => {
   const predictor = PredictionEngine.fromState(stateWithHistoryAndCurrentCycle)
-  const userInputDay = moment
-    .utc()
-    .startOf('day')
-    .add(2, 'days')
+  const userInputDay = moment.utc().startOf('day').add(2, 'days')
   predictor.userInputDispatch({
     type: 'adjust-mens-end',
     inputDay: userInputDay,
@@ -87,10 +80,7 @@ it('User Input change menstruation', () => {
 
 it('User Input history adjust', () => {
   const predictor = PredictionEngine.fromState(stateWithHistoryAndCurrentCycle)
-  const userInputDay = moment
-    .utc()
-    .startOf('day')
-    .subtract(6, 'days')
+  const userInputDay = moment.utc().startOf('day').subtract(6, 'days')
   predictor.userInputDispatch({
     type: 'current-start-adjust',
     inputDay: userInputDay,
@@ -100,14 +90,8 @@ it('User Input history adjust', () => {
 
 it('User Input future adjust', () => {
   const predictor = PredictionEngine.fromState(stateWithHistoryAndCurrentCycle)
-  const userInputDay = moment
-    .utc()
-    .startOf('day')
-    .add(30, 'days')
-  const testDay = moment
-    .utc()
-    .startOf('day')
-    .add(28, 'days')
+  const userInputDay = moment.utc().startOf('day').add(30, 'days')
+  const testDay = moment.utc().startOf('day').add(28, 'days')
   predictor.userInputDispatch({
     type: 'future-start-adjust',
     inputDay: userInputDay,
@@ -118,10 +102,7 @@ it('User Input future adjust', () => {
 it('User Input start next cycle', () => {
   const predictor = PredictionEngine.fromState(newCyclePrimedCycle)
   const userInputDay = moment.utc().startOf('day')
-  const testDay = moment
-    .utc()
-    .startOf('day')
-    .add(1, 'days')
+  const testDay = moment.utc().startOf('day').add(1, 'days')
   predictor.userInputDispatch({
     type: 'start-next-cycle',
     inputDay: userInputDay,

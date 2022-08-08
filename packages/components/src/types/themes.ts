@@ -5,6 +5,7 @@ export interface Theme {
   id: ThemeName
   primaryBackgroundColor: string
   periodColor: string
+  periodNotVerifiedColor: string
   nonPeriodColor: string
   fertileColor: string
   fontSize: number

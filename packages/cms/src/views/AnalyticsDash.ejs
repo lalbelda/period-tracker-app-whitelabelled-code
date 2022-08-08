@@ -1,5 +1,5 @@
-<% include partials/Header %>
-<% include modals/GraphModal %>
+<%- include('partials/Header') %>
+<%- include('modals/GraphModal') %>
 <script src="//www.amcharts.com/lib/4/themes/material.js"></script>
 
 
@@ -21,6 +21,18 @@
   <div class="mainContentContainer">
     <div class="homeTopTextContainer">
       <h2><%= __('Analytics Dashboard')%></h2>
+      <select class="custom-select filter-select" id="currentGender" aria-placeholder="Gender">
+        <option value="">Gender</option>
+        <% ['Male', 'Female', 'Other'].forEach((item, index) =>{ %>
+        <option value="<%= item %>" <%= item == query.gender ? "selected" : '' %>><%= item %></option>
+        <% }) %>
+      </select>
+      <select class="custom-select filter-select" id="currentLoc" title="Location">
+        <option value="">Location</option>
+        <% ['Rural', 'Urban'].forEach((item, index) =>{ %>
+        <option value="<%= item %>" <%= item == query.location ? "selected" : '' %>><%= item %></option>
+        <% }) %>
+      </select>
       <button id="downloadCSV" class="btn btn-primary">
         <%= __('Download Results')%>
     </button>
@@ -90,7 +102,7 @@
                 <div class="panel panel-primary">
                   <div class="panel-heading" style="display: flex; flex-direction: row; align-items: center; justify-content: center;"><%= __('User Provinces')%>
                     <select class="custom-select" id="currentCountry">
-                      <% Object.keys(usersCountries).forEach((item, index) =>{ %>
+                      <% Object.keys(usersCountries).sort().forEach((item, index) =>{ %>
                       <option value="<%= item %>"><%= item %></option>
                       <% }) %>
                     </select>
@@ -151,4 +163,4 @@
     <%= JSON.stringify(directDownloads); %>
 </span>
 <script type="application/javascript" src="/scripts/analyticsScript.js"></script>
-<% include partials/Footer %>
+<%- include('partials/Footer') %>

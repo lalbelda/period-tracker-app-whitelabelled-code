@@ -5,10 +5,27 @@ import { assets } from '../../assets/index'
 import { Icon } from '../../components/common/Icon'
 import { TextInput } from '../../components/common/TextInput'
 import { Text } from '../../components/common/Text'
+import { translate } from '../../i18n'
+import Tts from 'react-native-tts'
+import { useSelector } from '../../hooks/useSelector'
+import * as selectors from '../../redux/selectors'
+
 const deviceWidth = Dimensions.get('window').width
 const deviceHeight = Dimensions.get('screen').height
 
-export function NoteAssetDemo() {
+export function NoteAssetDemo({ step }) {
+  const hasTtsActive = useSelector(selectors.isTtsActiveSelector)
+
+  React.useEffect(() => {
+    if (hasTtsActive) {
+      if (step === 4) {
+        Tts.speak(translate('title'))
+        Tts.speak(translate('daily_note_description'))
+        Tts.speak(translate('save'))
+      }
+    }
+  }, [step, hasTtsActive])
+
   return (
     <NoteCardContainer
       style={{
@@ -71,9 +88,9 @@ export function NoteAssetDemo() {
 const NoteCardContainer = styled.View`
   flex-direction: column;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 6;
-  margin-horizontal: 10;
+  margin-horizontal: 10px;
 `
 
 const Row = styled.View`
@@ -101,7 +118,7 @@ const UpperContent = styled.View`
 `
 
 const LowerContent = styled.TouchableOpacity`
-  height: 40
+  height: 40px;
   width: 100%;
   elevation: 4;
   border-bottom-left-radius: 10;

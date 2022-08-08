@@ -21,7 +21,7 @@ export function AnimatedContainer({ toggled }) {
 
   const toggle = () => {
     if (expanded) {
-      setExpanded(val => !val)
+      setExpanded((val) => !val)
       Animated.timing(innerOpacity.current, {
         toValue: expanded ? 0 : 1,
         duration: 350,
@@ -35,7 +35,7 @@ export function AnimatedContainer({ toggled }) {
       duration: 350,
     }).start(() => {
       if (!expanded) {
-        setExpanded(val => !val)
+        setExpanded((val) => !val)
         Animated.timing(innerOpacity.current, {
           toValue: expanded ? 0 : 1,
           duration: 350,
@@ -123,6 +123,7 @@ export function AnimatedContainer({ toggled }) {
                     marginBottom: 10,
                     fontFamily: 'Roboto-Black',
                     textDecorationLine: 'underline',
+                    color: '#000',
                   }}
                 >
                   forgot_password
@@ -140,7 +141,13 @@ export function AnimatedContainer({ toggled }) {
                   toggle()
                 }}
               >
-                <Text style={{ fontFamily: 'Roboto-Black', textDecorationLine: 'underline' }}>
+                <Text
+                  style={{
+                    fontFamily: 'Roboto-Black',
+                    textDecorationLine: 'underline',
+                    color: '#000',
+                  }}
+                >
                   delete_account
                 </Text>
               </TouchableText>
@@ -180,17 +187,17 @@ const HeaderText = styled(Text)<{ expanded: boolean }>`
   font-size: 16;
   text-align: center;
   align-self: center;
-  color: ${props => (props.expanded ? `#fff` : `#000`)};
+  color: ${(props) => (props.expanded ? `#fff` : `#000`)};
   font-family: Roboto-Black;
 `
 
 const UpperContent = styled.TouchableOpacity<{ expanded: boolean }>`
   border-top-left-radius: 10;
   border-top-right-radius: 10;
-  background-color: ${props => (props.expanded ? `#e3629b` : `#fff`)};
-  elevation: ${props => (props.expanded ? 4 : 0)};
-  height: 80;
-  border-bottom-width: ${props => (props.expanded ? 0 : 0.7)};
+  background-color: ${(props) => (props.expanded ? `#e3629b` : `#fff`)};
+  elevation: ${(props) => (props.expanded ? 4 : 0)};
+  height: 80px;
+  border-bottom-width: ${(props) => (props.expanded ? 0 : 0.7)};
   border-color: #dbdcdd;
   justify-content: center;
   align-items: center;

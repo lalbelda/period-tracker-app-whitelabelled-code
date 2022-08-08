@@ -39,18 +39,18 @@ const Row = styled.View`
 `
 
 const Col = styled.View`
-  margin-horizontal: 3;
+  margin-horizontal: 3px;
 `
 
 const Button = styled.TouchableOpacity`
   width: 32;
-  height: 32;
-  border-radius: 32;
+  height: 32px;
+  border-radius: 32px;
 `
 
 const Background = styled.ImageBackground`
   width: 32;
-  height: 32;
+  height: 32px;
   justify-content: center;
   align-items: center;
 `
@@ -58,9 +58,10 @@ const Background = styled.ImageBackground`
 const Label = styled(Text)`
   font-size: 8;
   text-align: center;
+  color: #000;
 `
 
 const Icon = styled.Image`
-  width: 21;
-  height: 16;
+  width: 21px;
+  height: 16px;
 `

@@ -41,7 +41,7 @@ export function Avatar({
   const [animatedProgress] = React.useState(new Animated.Value(0))
 
   const { onPeriod } = useTodayPrediction()
-  const cardAnswersToday = useSelector(state => selectors.cardAnswerSelector(state, moment.utc()))
+  const cardAnswersToday = useSelector((state) => selectors.cardAnswerSelector(state, moment.utc()))
   React.useEffect(() => {
     const intervalId = setTimeout(hideDisplayText, 3000)
     return () => {
@@ -95,7 +95,7 @@ export function Avatar({
     })
   }
 
-  const runSequencedAnimation = animation => {
+  const runSequencedAnimation = (animation) => {
     Animated.sequence([
       Animated.timing(animatedProgress, {
         toValue: animation.start,
@@ -114,7 +114,6 @@ export function Avatar({
       runLookingAnimation()
     })
   }
-
   return (
     <Container style={style}>
       {displayedText !== null && !disable && alertTextVisible && (
@@ -133,6 +132,7 @@ export function Avatar({
         disabled={disable}
         style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}
         activeOpacity={1}
+        accessibilityLabel={displayedText}
         onPress={() => {
           isJumpingToggled.current = true
           setAnimatedHearts(animatedHearts + 1)
@@ -154,7 +154,40 @@ export function Avatar({
           <Image source={assets.avatars[selectedAvatar].stationary_colour} />
         )}
       </TouchableOpacity>
-      {}
+      {isProgressVisible && (
+        <OverallProgressContainer
+          style={{
+            position: 'absolute',
+            bottom: selectedAvatar === 'default' ? 10 : 115,
+          }}
+        >
+          <ProgressBarContainer>
+            <Icon
+              source={heartImageFill(animatedHearts * 5)}
+              style={{ height: 12, width: 20, marginRight: 5 }}
+            />
+            <ProgressBar
+              color="#e3629b"
+              value={animatedHearts * 5 >= 100 ? 100 : animatedHearts * 5}
+            />
+          </ProgressBarContainer>
+          {onPeriod && (
+            <ProgressBarContainer>
+              <Icon
+                source={starImageFill(Object.keys(cardAnswersToday).length)}
+                style={{ height: 12, width: 20, marginRight: 5 }}
+              />
+              <ProgressBar
+                value={
+                  Object.keys(cardAnswersToday).length * 25 >= 100
+                    ? 100
+                    : Object.keys(cardAnswersToday).length * 25
+                }
+              />
+            </ProgressBarContainer>
+          )}
+        </OverallProgressContainer>
+      )}
       {textShown !== '' && !isProgressVisible && (
         <InfoText style={{ bottom: 30 }}>{textShown}</InfoText>
       )}
@@ -163,13 +196,13 @@ export function Avatar({
   )
 }
 
-const heartImageFill = fill => {
+const heartImageFill = (fill) => {
   if (fill < 50) return assets.static.icons.heart.empty
   if (fill >= 50 && fill < 100) return assets.static.icons.heart.half
   if (fill >= 100) return assets.static.icons.heart.full
 }
 
-const starImageFill = numberOfElements => {
+const starImageFill = (numberOfElements) => {
   if (numberOfElements === null) return assets.static.icons.starOrange.empty
   if (numberOfElements < 2) return assets.static.icons.starOrange.empty
   if (numberOfElements >= 2 && numberOfElements < 4) return assets.static.icons.starOrange.half
@@ -182,15 +215,15 @@ const Container = styled.View`
 `
 
 const ProgressBarContainer = styled.View`
-  padding-horizontal: 15;
-  padding-left: 10;
+  padding-horizontal: 13px;
+  padding-left: 10px;
   flex-direction: row;
   align-items: flex-end;
 `
 
 const OverallProgressContainer = styled.View`
   justify-content: space-around;
-  height: 30;
+  height: 27px;
   align-items: flex-start;
 `
 

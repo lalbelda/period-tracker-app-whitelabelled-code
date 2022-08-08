@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
+import _, { transform } from 'lodash'
 import styled from 'styled-components/native'
 import { SignUpFormLayout } from './SignUpFormLayout'
 import { useMultiStepForm } from '../../../components/common/MultiStepForm'
@@ -9,6 +9,7 @@ import { formHeights } from './FormHeights'
 import { ModalSearchBox } from '../../../components/common/ModalSearchBox'
 import { useSelector } from '../../../hooks/useSelector'
 import * as selectors from '../../../redux/selectors'
+import { translate } from '../../../i18n'
 import { countries } from '../../../config/countries'
 import { provinces } from '../../../config/provinces'
 
@@ -68,6 +69,7 @@ export function AskLocation({ step, createAccount }) {
           height={45}
           buttonStyle={{ right: 5, bottom: 7 }}
           searchInputPlaceholder={`search_country`}
+          accessibilityLabel={translate('search_country')}
         />
         <ModalSearchBox
           isValid={derivedProvince !== null}
@@ -88,7 +90,7 @@ export function AskLocation({ step, createAccount }) {
         />
         <LocationText>location</LocationText>
         <Row>
-          {['Urban', 'Rural'].map(value => {
+          {['Urban', 'Rural'].map((value) => {
             return (
               <GenderSelectItem
                 key={value}

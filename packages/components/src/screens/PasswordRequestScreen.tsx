@@ -42,14 +42,14 @@ export function PasswordRequestScreen() {
               >
                 <TextInput
                   style={{ marginTop: 20 }}
-                  onChange={text => setName(text)}
+                  onChange={(text) => setName(text)}
                   label="name"
                   isValid={valid}
                   hasError={nameError}
                   value={name}
                 />
                 <TextInput
-                  onChange={text => setPassword(text)}
+                  onChange={(text) => setPassword(text)}
                   label="password"
                   secureTextEntry={true}
                   isValid={valid}
@@ -120,10 +120,10 @@ const HeaderText = styled(Text)`
 `
 
 const UpperContent = styled.View`
-  border-top-left-radius: 10;
-  border-top-right-radius: 10;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background-color: #e3629b;
-  height: 80;
+  height: 80px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -133,8 +133,8 @@ const UpperContent = styled.View`
 
 const LowerContent = styled.View`
   width: 100%;
-  border-bottom-left-radius: 10;
-  border-bottom-right-radius: 10;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: #fff;
   justify-content: center;
   align-items: center;
@@ -146,12 +146,12 @@ const Container = styled.View`
   width: 100%;
   shadow-color: #efefef;
   shadow-offset: 0px 2px;
-  shadow-opacity: 10;
-  shadow-radius: 2;
+  shadow-opacity: 10px;
+  shadow-radius: 2px;
 `
 
 const Touchable = styled.TouchableOpacity`
-  height: 80;
+  height: 80px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -161,9 +161,9 @@ const TouchableText = styled.TouchableOpacity``
 
 const Column = styled.View`
   width: 100%;
-  margin-top: 10;
+  margin-top: 10px;
   align-items: flex-end;
-  padding-right: 10;
+  padding-right: 10px;
 `
 
 const Overlay = styled.View`

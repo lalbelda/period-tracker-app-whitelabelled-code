@@ -5,4 +5,5 @@ export const baseTheme = {
   fontSize: 14,
   lightGreen: '#bae146',
   mediumGreen: '#a2c72d',
+  periodNotVerifiedColor: 'cyan',
 }

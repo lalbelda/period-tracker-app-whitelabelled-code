@@ -1,5 +1,7 @@
 import { ReduxState } from '../store'
-import { allSurveysSelectors, allQuizzesSelectors } from './contentSelectors'
+// import { allSurveysSelectors, allQuizzesSelectors } from './contentSelectors'
+import { allQuizzesSelectors } from './contentSelectors'
+
 import { Moment } from 'moment'
 import { toShortISO } from '../../services/dateUtils'
 import _ from 'lodash'
@@ -11,9 +13,9 @@ export const surveyHasAnswerSelector = (state: ReduxState, id: string) => {
   return id in s(state)[state.auth.user.id].surveys
 }
 
-export const surveysWithoutAnswersSelector = (state: ReduxState) => {
-  return allSurveysSelectors(state).filter(({ id }) => !surveyHasAnswerSelector(state, id))
-}
+// export const surveysWithoutAnswersSelector = (state: ReduxState) => {
+//   return allSurveysSelectors(state).filter(({ id }) => !surveyHasAnswerSelector(state, id))
+// }
 
 export const quizHasAnswerSelector = (state: ReduxState, id: string) => {
   if (!s(state)[state.auth.user.id]) return false
@@ -43,7 +45,21 @@ export const quizzesWithoutAnswersSelector = (state: ReduxState) => {
 export const cardAnswerSelector = (state: ReduxState, date: Moment) => {
   if (!state.auth.user) return {} // for the use case on info screen where there is no authed user
   if (!s(state)[state.auth.user.id]) return {}
-  return s(state)[state.auth.user.id].cards[toShortISO(date)] || {}
+  return s(state)[state.auth.user.id]?.cards[toShortISO(date)] || {}
+}
+export const verifyPeriodDaySelectorWithDate = (state: ReduxState, date: Moment) => {
+  if (!state.auth.user) return {} // for the use case on info screen where there is no authed user
+  if (!s(state)[state.auth.user.id]) return {}
+  if (s(state)[state.auth.user.id]?.verifiedDates) {
+    return s(state)[state.auth.user.id]?.verifiedDates[toShortISO(date)]
+  }
+  return {}
+  // return s(state)[state.auth.user.id]?.verifiedDates[toShortISO(date)] || {}
+}
+export const allCardAnswersSelector = (state: ReduxState) => {
+  if (!state.auth.user) return {} // for the use case on info screen where there is no authed user
+  if (!s(state)[state.auth.user.id]) return {}
+  return s(state)[state.auth.user.id]?.verifiedDates || {}
 }
 
 export const notesAnswerSelector = (state: ReduxState, date: Moment) => {
@@ -54,7 +70,7 @@ export const notesAnswerSelector = (state: ReduxState, date: Moment) => {
 export const mostAnsweredSelector = (state: ReduxState, startDate: Moment, endDate: Moment) => {
   if (!s(state)[state.auth.user.id]) return {}
   const dates = Object.keys(s(state)[state.auth.user.id].cards)
-  const filteredDates = dates.filter(item => {
+  const filteredDates = dates.filter((item) => {
     return (
       parseInt(item, 10) > parseInt(startDate.format('YYYYMMDD'), 10) &&
       parseInt(item, 10) <= parseInt(endDate.format('YYYYMMDD'), 10)
@@ -67,25 +83,25 @@ export const mostAnsweredSelector = (state: ReduxState, startDate: Moment, endDa
   }, [])
 
   // This counts occurrences of each item
-  const moodCountedObject = _.countBy(moodsInDateRange, mood => mood)
+  const moodCountedObject = _.countBy(moodsInDateRange, (mood) => mood)
 
   const bodyInDateRange = filteredDates.reduce((acc, filteredDate) => {
     return acc.concat(s(state)[state.auth.user.id].cards[filteredDate].body)
   }, [])
 
-  const bodyCountedObject = _.countBy(bodyInDateRange, body => body)
+  const bodyCountedObject = _.countBy(bodyInDateRange, (body) => body)
 
   const activityInDateRange = filteredDates.reduce((acc, filteredDate) => {
     return acc.concat(s(state)[state.auth.user.id].cards[filteredDate].activity)
   }, [])
 
-  const activityCountedObject = _.countBy(activityInDateRange, activity => activity)
+  const activityCountedObject = _.countBy(activityInDateRange, (activity) => activity)
 
   const flowInDateRange = filteredDates.reduce((acc, filteredDate) => {
     return acc.concat(s(state)[state.auth.user.id].cards[filteredDate].flow)
   }, [])
 
-  const flowCountedObject = _.countBy(flowInDateRange, flow => flow)
+  const flowCountedObject = _.countBy(flowInDateRange, (flow) => flow)
 
   delete moodCountedObject.undefined
   delete bodyCountedObject.undefined

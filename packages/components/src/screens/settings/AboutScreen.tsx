@@ -47,11 +47,11 @@ export const AboutScreen = ({ navigation }) => {
 }
 
 const Container = styled.View`
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 2;
   flex: 1;
-  margin-bottom: 30;
-  margin-horizontal: 10;
+  margin-bottom: 30px;
+  margin-horizontal: 10px;
   flex-direction: column;
   overflow: hidden;
 `
@@ -59,19 +59,19 @@ const Container = styled.View`
 // this bug would cause views greater than a few thousand pixels the view colour would make itself transparent
 
 const HeadingText = styled(TextWithoutTranslation)`
-  padding-left: 42;
-  padding-right: 42;
+  padding-left: 42px;
+  padding-right: 42px;
   font-size: 16;
-  padding-bottom: 10;
+  padding-bottom: 10px;
   font-family: Roboto-Black;
   text-align: justify;
   color: #4d4d4d;
   background-color: #fff;
 `
 const TextStyle = styled(TextWithoutTranslation)`
-  padding-left: 42;
-  padding-right: 42;
-  padding-bottom: 10;
+  padding-left: 42px;
+  padding-right: 42px;
+  padding-bottom: 10px;
   font-size: 16;
   text-align: justify;
   color: #4d4d4d;
@@ -80,8 +80,8 @@ const TextStyle = styled(TextWithoutTranslation)`
 
 const ImagesContainer = styled.View`
   align-items: center;
-  padding-top: 30;
-  padding-bottom: 30;
+  padding-top: 30px;
+  padding-bottom: 30px;
   width: 100%;
   background-color: #fff;
 `

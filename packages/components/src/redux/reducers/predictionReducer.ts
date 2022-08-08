@@ -10,6 +10,8 @@ export function predictionReducer(state = initialState, action: Actions): Predic
   if (action.type === 'SET_PREDICTION_ENGINE_STATE') {
     return action.payload.predictionState.toJSON()
   }
-
+  // if(action.type === 'VERIFY_PERIOD_DAY'){
+  //   return action.payload.
+  // }
   return state
 }

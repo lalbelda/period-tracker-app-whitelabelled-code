@@ -17,7 +17,11 @@ export const Header = ({
   return (
     <Container style={style}>
       {showGoBackButton && !LeftComponent && (
-        <IconButton onPress={onPressBackButton || (() => BackOneScreen())} name="back" />
+        <IconButton
+          accessibilityLabel={translate('arrow_buton')}
+          onPress={onPressBackButton || (() => BackOneScreen())}
+          name="back"
+        />
       )}
       {LeftComponent && <LeftComponent />}
       {showScreenTitle && (
@@ -47,8 +51,8 @@ const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-horizontal: 10;
-  margin-vertical: 10;
-  height: 35;
+  padding-horizontal: 10px;
+  margin-vertical: 10px;
+  height: 35px;
   z-index: 9;
 `

@@ -113,7 +113,7 @@ export function useInfiniteScroll() {
       onChange(floorAbsoluteIndex, [
         call(
           [floorAbsoluteIndex],
-          _.debounce(idx => {
+          _.debounce((idx) => {
             const nextIndex = idx[0]
 
             const absIndex = Math.abs(nextIndex)

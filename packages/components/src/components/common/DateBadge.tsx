@@ -3,9 +3,23 @@ import { assets } from '../../assets/index'
 import styled from 'styled-components/native'
 import { useTheme } from '../context/ThemeContext'
 import { translate } from '../../i18n'
+import { TouchableOpacity } from 'react-native'
+import { useSelector } from 'react-redux'
+import * as selectors from '../../redux/selectors'
+import _ from 'lodash'
 
-function useStatusForSource(isOnPeriod, isOnFertile, themeName) {
+function checkForVerifiedDay(cardValues) {
+  if (_.has(cardValues, 'periodDay')) {
+    return cardValues.periodDay
+  }
+  return false
+}
+
+function useStatusForSource(isOnPeriod, isOnFertile, themeName, cardValues) {
+  const isVerified = checkForVerifiedDay(cardValues)
   const themeIcon = switcher(themeName)
+
+  if (!isVerified && isOnPeriod) return assets.static.icons[themeIcon].notVerifiedDay
   if (isOnPeriod) return assets.static.icons[themeIcon].period
   if (isOnFertile) return assets.static.icons[themeIcon].fertile
   return assets.static.icons[themeIcon].nonPeriod
@@ -22,31 +36,53 @@ function switcher(value) {
   }
 }
 
-export function DateBadge({ dataEntry, style, textStyle = null }) {
+export function DateBadge({ dataEntry, style, textStyle = null, showModal, cardValues }) {
   const { id: themeName } = useTheme()
-  const source = useStatusForSource(dataEntry.onPeriod, dataEntry.onFertile, themeName)
+  // const verifiedDates = useSelector(selectors.userVerifiedDates)
+
+  const source = useStatusForSource(dataEntry.onPeriod, dataEntry.onFertile, themeName, cardValues)
   const cloudAdjust =
     themeName !== 'mosaic' && themeName !== 'desert' ? { left: -3 } : { fontSize: 8, right: -2 }
   return (
-    <Background
-      resizeMode="contain"
-      style={[
-        style,
-        themeName === 'mosaic' && { height: 52, width: 52 },
-        themeName === 'desert' && { height: 40, width: 40 },
-      ]}
-      source={source}
+    <TouchableOpacity
+      accessibilityLabel={`${dataEntry.date.format('DD')}\n${translate(
+        dataEntry.date.format('MMM'),
+      )}`}
+      onPress={() => {
+        showModal()
+      }}
     >
-      <DateText style={[textStyle, cloudAdjust]}>
+      <Background
+        resizeMode="contain"
+        style={[
+          style,
+          themeName === 'mosaic' && { height: 52, width: 52 },
+          themeName === 'desert' && { height: 40, width: 40 },
+        ]}
+        source={source}
+      >
+        {/* <DateText style={[textStyle, cloudAdjust, {color: dataEntry.onPeriod && !userVerified ? '#e3629b' : 'white',}]}>
         {`${dataEntry.date.format('DD')}\n${translate(dataEntry.date.format('MMM'))}`}
-      </DateText>
-    </Background>
+      </DateText> */}
+        <DateText
+          style={[
+            textStyle,
+            cloudAdjust,
+            {
+              color: dataEntry.onPeriod && !checkForVerifiedDay(cardValues) ? '#e3629b' : 'white',
+            },
+          ]}
+        >
+          {`${dataEntry.date.format('DD')}\n${translate(dataEntry.date.format('MMM'))}`}
+        </DateText>
+      </Background>
+    </TouchableOpacity>
   )
 }
 
 const Background = styled.ImageBackground`
-  width: 55;
-  height: 55;
+  width: 55px;
+  px;
   justify-content: center;
   align-items: center;
 `

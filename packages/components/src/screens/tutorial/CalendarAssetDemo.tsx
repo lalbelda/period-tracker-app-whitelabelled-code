@@ -30,9 +30,9 @@ export function CalendarAssetDemo() {
 
 const DayCarouselItemContainer = styled.View`
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 6;
-  margin-horizontal: 10;
+  margin-horizontal: 10px;
   padding-horizontal: 20;
   padding-vertical: 15;
 `

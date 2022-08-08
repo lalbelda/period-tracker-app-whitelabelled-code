@@ -32,7 +32,7 @@ export function AskPassword({ step }) {
   return (
     <DeleteFormLayout onSubmit={onSubmit}>
       <TextInput
-        onChange={password => dispatch({ type: 'change-password', password })}
+        onChange={(password) => dispatch({ type: 'change-password', password })}
         label="password"
         value={state.password}
       />
@@ -46,8 +46,8 @@ export function AskPassword({ step }) {
 
 const ErrorMessage = styled(Text)`
   font-size: 14;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: red;
 `
 const WarningContainer = styled.View`

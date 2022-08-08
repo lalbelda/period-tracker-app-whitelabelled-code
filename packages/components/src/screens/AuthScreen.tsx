@@ -5,15 +5,18 @@ import { Text } from '../components/common/Text'
 import { BackgroundTheme } from '../components/layout/BackgroundTheme'
 import { assets } from '../assets/index'
 import { AnimatedContainer } from './authScreen/AnimatedContainer'
-import { LanguageSelect } from '../components/common/LanguageSelect'
-import { useSelector } from '../hooks/useSelector'
-import * as selectors from '../redux/selectors'
+// @TODO: LANGUAGES This is commented in case the client wants multiple languages
+// import { LanguageSelect } from '../components/common/LanguageSelect'
+// import { useSelector } from '../hooks/useSelector'
+// import * as selectors from '../redux/selectors'
 import { PrimaryButton } from '../components/common/buttons/PrimaryButton'
 import { navigate } from '../services/navigationService'
 
 export function AuthScreen() {
   const [toggled, setToggled] = React.useState(true)
-  const locale = useSelector(selectors.currentLocaleSelector)
+  // @TODO: LANGUAGES This is commented in case the client wants multiple languages
+  // const locale = useSelector(selectors.currentLocaleSelector)
+
   return (
     <BackgroundTheme>
       <PageContainer style={{ justifyContent: 'center' }}>
@@ -28,7 +31,7 @@ export function AuthScreen() {
         )}
         <Container />
         <Container>
-          <AnimatedContainer toggled={val => setToggled(val)} />
+          <AnimatedContainer toggled={(val) => setToggled(val)} />
         </Container>
         {toggled && (
           <BottomRow style={{}}>
@@ -36,8 +39,8 @@ export function AuthScreen() {
               <PrimaryButton onPress={() => navigate('InfoScreen', null)}>info</PrimaryButton>
             </ButtonContainer>
             <ButtonContainer style={{ paddingLeft: 30 }}>
-              {/* @TODO: PENAL CODE */}
-              {locale !== 'id' && <LanguageSelect />}
+              {/* // @TODO: LANGUAGES This is commented in case the client wants multiple languages */}
+              {/* <LanguageSelect /> */}
             </ButtonContainer>
           </BottomRow>
         )}

@@ -24,6 +24,6 @@ export function ResetPasswordSuccess({ step, toggle, setContentState }) {
 
 const QuestionText = styled(Text)`
   font-size: 16;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `

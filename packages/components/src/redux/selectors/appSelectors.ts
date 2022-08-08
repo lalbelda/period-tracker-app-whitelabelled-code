@@ -23,3 +23,5 @@ export const isLoginPasswordActiveSelector = (state: ReduxState) => s(state).isL
 export const currentAppVersion = (state: ReduxState) => s(state).appVersionName
 
 export const currentFirebaseToken = (state: ReduxState) => s(state).firebaseToken
+
+export const userVerifiedDates = (state: ReduxState) => s(state).verifiedDates

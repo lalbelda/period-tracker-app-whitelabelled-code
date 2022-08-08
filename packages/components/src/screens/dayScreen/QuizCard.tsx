@@ -14,6 +14,7 @@ const deviceWidth = Dimensions.get('window').width
 
 function useQuiz() {
   const unansweredQuizzes = useSelector(selectors.quizzesWithoutAnswersSelector)
+
   const allQuizzes = useSelector(selectors.allQuizzesSelectors)
   const randomQuiz = React.useMemo(() => {
     if (_.isEmpty(unansweredQuizzes)) {
@@ -28,7 +29,7 @@ export const QuizCard = React.memo<{ dataEntry: any; index: number }>(({ dataEnt
   const dispatch = useDispatch()
   const userID = useSelector(selectors.currentUserSelector).id
   const selectedQuestion = useQuiz()
-  const answeredQuestion = useSelector(state => selectors.quizAnswerByDate(state, dataEntry.date))
+  const answeredQuestion = useSelector((state) => selectors.quizAnswerByDate(state, dataEntry.date))
 
   const QuizContent = () => {
     return selectedQuestion.answers.map((item, ind) => {
@@ -176,7 +177,7 @@ const AnswerText = styled(TextWithoutTranslation)<{ colorSelect: boolean }>`
   width: 100%;
   font-family: Roboto-Black;
   text-align: left;
-  color: ${props => (props.colorSelect ? '#e3629b' : '#f49200')};
+  color: ${(props) => (props.colorSelect ? '#e3629b' : '#f49200')};
 `
 const TextContainer = styled.View`
   height: 95;

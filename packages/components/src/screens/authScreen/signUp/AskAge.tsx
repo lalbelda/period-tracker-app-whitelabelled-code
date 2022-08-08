@@ -12,6 +12,7 @@ import { translate } from '../../../i18n'
 import { TouchableOpacity, Animated, Platform } from 'react-native'
 import { ThemedModal } from '../../../components/common/ThemedModal'
 import { formHeights } from './FormHeights'
+import { Picker } from '@react-native-picker/picker'
 
 const now = moment()
 const currentYear = now.year()
@@ -106,16 +107,41 @@ export function AskAge({ step, heightInner }) {
           animationOutTiming={Platform.OS === 'ios' ? 100 : 600}
         >
           {!infoDisplay && (
-            <CardPicker>
-              <WheelPicker
-                style={{ width: 250, height: 200 }}
-                itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
-                selectedItem={selectedItem}
-                data={flag ? monthRange.map(item => `${translate(item)}`) : yearRange}
-                onItemSelected={option =>
-                  flag ? setMonthSelected(monthRange[option]) : setYearSelected(yearRange[option])
-                }
-              />
+            <CardPicker accessibilityLabel={translate('month_selector')}>
+              {Platform.OS === 'ios' ? (
+                <Picker
+                  style={{ width: 250, height: 200 }}
+                  selectedValue={(flag ? monthSelected : yearSelected) || selectedItem}
+                  onValueChange={(itemValue, itemIndex) => {
+                    flag
+                      ? setMonthSelected(monthRange[itemIndex])
+                      : setYearSelected(yearRange[itemIndex])
+                  }}
+                >
+                  {flag
+                    ? monthRange.map((item, index) => (
+                        <Picker.Item
+                          label={`${translate(item)}`}
+                          value={`${translate(item)}`}
+                          key={index}
+                        />
+                      ))
+                    : yearRange.map((item, index) => (
+                        <Picker.Item label={item} value={item} key={index} />
+                      ))}
+                </Picker>
+              ) : (
+                <WheelPicker
+                  style={{ width: 250, height: 200 }}
+                  // @ts-ignore
+                  itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
+                  selectedItem={selectedItem}
+                  data={flag ? monthRange.map((item) => `${translate(item)}`) : yearRange}
+                  onItemSelected={(option) =>
+                    flag ? setMonthSelected(monthRange[option]) : setYearSelected(yearRange[option])
+                  }
+                />
+              )}
 
               <Confirm
                 onPress={() => {
@@ -197,36 +223,36 @@ const Row = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `
 
 const AgePicker = styled.TouchableOpacity`
   width: 100%;
-  height: 45;
-  border-radius: 22.5;
+  height: 45px;
+  border-radius: 22.5px;
   background-color: #efefef;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10;
-  margin-top: 10;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 const Confirm = styled.TouchableOpacity`
-  width: 200;
-  height: 45;
-  border-radius: 22.5;
+  width: 200px;
+  height: 45px;
+  border-radius: 22.5px;
   background-color: #a2c72d;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10;
-  margin-top: 10;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 const CardPicker = styled.View`
   width: 85%;
-  height: 400;
+  height: 400px;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   align-self: center;
@@ -234,23 +260,23 @@ const CardPicker = styled.View`
 const InfoCardPicker = styled.View`
   width: 95%;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;
-  padding-vertical: 15;
-  padding-horizontal: 15;
+  padding-vertical: 15px;
+  padding-horizontal: 15px;
 `
 
 const Heading = styled(Text)`
   font-family: Roboto-Black;
   font-size: 18;
-  margin-bottom: 10;
+  margin-bottom: 10px;
   color: #a2c72d;
 `
 
 const TextContent = styled(Text)`
   font-family: Roboto-Regular;
   font-size: 16;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `

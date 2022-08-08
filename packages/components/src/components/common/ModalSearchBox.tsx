@@ -21,8 +21,9 @@ export const ModalSearchBox = ({
   location = null,
   isCountrySelector = true,
   searchInputPlaceholder = '',
+  accessibilityLabel = '',
   filterCountry = null,
-  onSelection = val => null,
+  onSelection = (val) => null,
   isValid,
 }) => {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -40,7 +41,7 @@ export const ModalSearchBox = ({
   const items = React.useMemo(() => {
     if (isCountrySelector) {
       return _.uniq(
-        countries.map(country => serializeLocation({ item: country[lang], code: country.code })),
+        countries.map((country) => serializeLocation({ item: country[lang], code: country.code })),
       )
     }
     // -------------- Provinces -----------------------
@@ -50,14 +51,14 @@ export const ModalSearchBox = ({
       )
 
       return _.uniq(
-        filteredProvinces.map(province =>
+        filteredProvinces.map((province) =>
           serializeLocation({ item: province[lang], code: province.uid.toString() }),
         ),
       )
     }
 
     return _.uniq(
-      provinces.map(province => serializeLocation({ item: province[lang], code: province.code })),
+      provinces.map((province) => serializeLocation({ item: province[lang], code: province.code })),
     )
   }, [filteredCountryCode])
 
@@ -70,6 +71,7 @@ export const ModalSearchBox = ({
     <>
       <FormControl style={{ height, ...containerStyle }}>
         <Row
+          accessibilityLabel={accessibilityLabel}
           onPress={() => setIsVisible(true)}
           style={{ height, alignItems: 'center', justifyContent: 'center' }}
         >
@@ -185,7 +187,7 @@ const FlatListText = styled(TextWithoutTranslation)<{ isSelected: boolean }>`
   text-align: center;
   text-transform: capitalize;
   font-size: 14;
-  color: ${props => (props.isSelected ? '#fff' : '#000')};
+  color: ${(props) => (props.isSelected ? '#fff' : '#000')};
 `
 const SelectedItem = styled(TextWithoutTranslation)`
   justify-content: center;
@@ -204,20 +206,20 @@ const ResultNotFoundText = styled(TextWithoutTranslation)`
 const CardPicker = styled.View`
   width: 95%;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;
-  padding-top: 15;
-  padding-horizontal: 15;
+  padding-top: 15px;
+  padding-horizontal: 15px;
 `
 const Container = styled.View`
   width: 100%;
-  height: 350;
+  height: 350px;
 `
 
 const ItemButton = styled.TouchableOpacity<{ isSelected: boolean }>`
-  height: 50;
+  height: 50px;
   width: 90%;
   align-self: center;
   align-items: center;
@@ -225,7 +227,7 @@ const ItemButton = styled.TouchableOpacity<{ isSelected: boolean }>`
   margin-top: 4px;
   margin-bottom: 4px;
   padding: 10px;
-  background-color: ${props => (props.isSelected ? props.theme.mediumGreen : '#fff')};
-  border-radius: 5;
+  background-color: ${(props) => (props.isSelected ? props.theme.mediumGreen : '#fff')};
+  border-radius: 5px;
   elevation: 5;
 `

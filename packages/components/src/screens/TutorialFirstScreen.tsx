@@ -18,6 +18,11 @@ import { assets } from '../assets'
 import { ColourButtonsDemo } from './tutorial/ColourButtonsDemo'
 import { SpinLoader } from '../components/common/SpinLoader'
 import DeviceInfo from 'react-native-device-info'
+import { useSelector } from '../hooks/useSelector'
+import * as selectors from '../redux/selectors'
+import moment from 'moment'
+import Tts from 'react-native-tts'
+import { translate } from '../i18n'
 
 const screenHeight = Dimensions.get('screen').height
 const screenWidth = Dimensions.get('screen').width
@@ -35,11 +40,21 @@ export function TutorialFirstScreen() {
   const [positionDemoY] = React.useState(new Animated.Value(0.2 * screenHeight))
   const flag = React.useRef(false)
   const dispatch = useDispatch()
+  const [completedStep, setCompletedStep] = React.useState(0)
+
+  const hasTtsActive = useSelector(selectors.isTtsActiveSelector)
 
   const normalizePosition = (percentage, dimension) => {
     return percentage * dimension - arrowSize / 2
   }
+  const renamedUseSelector = useSelector
 
+  const getCardAnswersValues = (inputDay) => {
+    const cardData = renamedUseSelector((state) =>
+      selectors.verifyPeriodDaySelectorWithDate(state, moment(inputDay.date)),
+    )
+    return cardData
+  }
   const stepInfo = {
     '0': {
       text: `tutorial_0`,
@@ -173,6 +188,16 @@ export function TutorialFirstScreen() {
   }
 
   React.useEffect(() => {
+    if (hasTtsActive) {
+      if (completedStep === step) {
+        setCompletedStep(step + 1)
+        Tts.speak(translate(stepInfo[step].heading))
+        Tts.speak(translate(stepInfo[step].text))
+      }
+    }
+  }, [completedStep, stepInfo, step, hasTtsActive])
+
+  React.useEffect(() => {
     if (step === 9) {
       flag.current = true
     }
@@ -260,7 +285,15 @@ export function TutorialFirstScreen() {
           </AvatarSection>
           <WheelSection {...{ step }} style={{ width: Platform.OS === 'ios' ? '68%' : '65%' }}>
             <CircularSelection
-              {...{ data, index, isActive, currentIndex, absoluteIndex, disableInteraction: true }}
+              {...{
+                data,
+                index,
+                isActive,
+                currentIndex,
+                absoluteIndex,
+                disableInteraction: true,
+              }}
+              fetchCardValues={getCardAnswersValues}
             />
             <CenterCard
               style={step === 2 ? { elevation: 20, zIndex: 999 } : { elevation: -20, zIndex: 0 }}
@@ -279,6 +312,7 @@ export function TutorialFirstScreen() {
           width: 60,
           height: 60,
           zIndex: 200,
+          elevation: 200,
           transform: [{ translateX: positionX }, { translateY: positionY }],
         }}
       >
@@ -302,6 +336,7 @@ export function TutorialFirstScreen() {
       <Animated.View
         style={{
           zIndex: 200,
+          elevation: 200,
           transform: [{ translateX: positionDemoX }, { translateY: positionDemoY }],
         }}
       >
@@ -313,7 +348,7 @@ export function TutorialFirstScreen() {
         activeOpacity={1}
         onPress={() => {
           if (!flag.current) {
-            setStep(val => val + 1)
+            setStep((val) => val + 1)
           }
         }}
       >
@@ -342,7 +377,7 @@ const Container = styled.View`
   position: absolute;
 `
 const Empty = styled.View`
-  height: 56;
+  height: 56px;
   bottom: 0;
   right: 0;
   left: 0;
@@ -372,9 +407,9 @@ const WheelSection = styled.View<{ step: number }>`
   width: 65%;
   align-items: center;
   elevation: 0;
-  z-index: ${props => (props.step === 1 || props.step === 3 ? 15 : 0)}
+  z-index: ${(props) => (props.step === 1 || props.step === 3 ? 15 : 0)}
   justify-content: center;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.step === 1 || props.step === 3 ? 'rgba(0, 0, 0, 0.8) ' : 'transparent'};
   flex-direction: row;
 `
@@ -407,7 +442,7 @@ const TutorialInformation = styled.View`
   position: absolute;
   bottom: 25;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;

@@ -7,5 +7,5 @@ export const RAPIDPRO_TOKEN = env.RAPIDPRO_TOKEN
 export const RAPIDPRO_TRIGGER_WORDS = {
   id: 'tentangmkm',
   mn: 'genkimhm',
-  en: 'helloperiodtrackerapp',
+  en: 'hellooky',
 }

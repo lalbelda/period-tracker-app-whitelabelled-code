@@ -10,7 +10,7 @@ import _ from 'lodash'
 
 export function Login() {
   const dispatch = useDispatch()
-  const { error: loginError, isLoggingIn } = useSelector(state => state.auth)
+  const { error: loginError, isLoggingIn } = useSelector((state) => state.auth)
 
   const [loading, setLoading] = React.useState(false)
   const [name, setName] = React.useState('')
@@ -34,14 +34,14 @@ export function Login() {
         }}
       >
         <TextInput
-          onChange={text => setName(text)}
+          onChange={(text) => setName(text)}
           label="name"
           value={name}
           errorHeading="login_name_error_heading"
           errorContent="login_name_error_content"
         />
         <TextInput
-          onChange={text => setPassword(text)}
+          onChange={(text) => setPassword(text)}
           label="password"
           secureTextEntry={true}
           value={password}
@@ -69,14 +69,14 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   width: 100%;
-  shadow-color: #efefef;
+  shadow-color: #d2d2d2;
   shadow-offset: 0px 2px;
-  shadow-opacity: 1;
+  shadow-opacity: 2;
   shadow-radius: 2;
 `
 
 const Touchable = styled.TouchableOpacity`
-  height: 80;
+  height: 80px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,7 @@ const HeaderText = styled(Text)<{ expanded: boolean }>`
   font-size: 16;
   text-align: center;
   align-self: center;
-  color: ${props => (props.expanded ? `#fff` : `#000`)};
+  color: ${(props) => (props.expanded ? `#fff` : `#000`)};
   font-family: Roboto-Black;
 `
 const Overlay = styled.View`
@@ -100,8 +100,8 @@ const Overlay = styled.View`
 
 const ErrorMessage = styled(Text)`
   font-size: 14;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   color: red;
 `

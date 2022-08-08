@@ -22,7 +22,6 @@
               <th style="width: 10%"><%= __('Username') %></th>
               <th id="col1TableHeading"  style="width: 10%"><%= __('Password') %></th>
               <th style="width: 10%"><%= __('Role') %></th>
-              <th style="width: 10%"><%= __('Language') %></th>
             </tr>
           </thead>
           <tbody style="overflow-y: scroll">
@@ -41,17 +40,6 @@
                 <option value="contentManager">Content Manager</option>
                 <% } else if(currentUser.type === 'admin') { %>
                 <option value="contentManager">Content Manager</option>
-                <% } %>
-              </select>
-            </td>
-            <td>
-              <select class="custom-select" id="col3TableModal">
-                <% if(currentUser.type === 'superAdmin') {%>
-                <option value="en">English</option>
-                <option value="id">Indonesia</option>
-                <option value="mn">Mongolia</option>
-                <% } else { %>
-                <option value="<%=currentUser.lang%>"><%=currentUser.lang%></option>
                 <% } %>
               </select>
             </td>

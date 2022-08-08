@@ -58,7 +58,7 @@ export const SelectBox = ({
             return i + 1
           })
       isStateOne ? onValueChange(items[j]) : onValueChange(items[i])
-      setIsStateOne(val => !val)
+      setIsStateOne((val) => !val)
     })
   }
 
@@ -132,7 +132,7 @@ const Underline = styled.View`
 `
 
 const SelectedItem = styled(Text)`
-  height: 25;
+  height: 25px;
   width: 100%;
   font-size: 18;
   color: #555;

@@ -16,7 +16,9 @@ export function AskNewPassword({ step }) {
     if (!passwordIsValid) {
       return
     }
-
+    if (!repeatPassword) {
+      return
+    }
     try {
       await httpClient.resetPassword({
         name: state.name,
@@ -38,7 +40,7 @@ export function AskNewPassword({ step }) {
     <ForgotPasswordFormLayout onSubmit={onSubmit}>
       <TextInput
         style={{ marginBottom: 5, marginTop: 20 }}
-        onChange={password => dispatch({ type: 'change-password', password })}
+        onChange={(password) => dispatch({ type: 'change-password', password })}
         label="password"
         secureTextEntry={true}
         isValid={passwordIsValid}

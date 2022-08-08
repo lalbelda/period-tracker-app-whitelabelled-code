@@ -31,6 +31,7 @@ export function Carousel({
   const isTutorialTwoOn = useSelector(selectors.isTutorialTwoActiveSelector)
   const [isVisible, setIsVisible] = React.useState(false)
   const { setDisplayTextStatic } = useDisplayText()
+
   return (
     <>
       <View style={{ height: '100%', width: '100%' }}>
@@ -61,6 +62,7 @@ export function Carousel({
               // @ts-ignore
               style={[
                 StyleSheet.absoluteFillObject,
+                // @ts-ignore
                 { transform: [{ translateX }] },
                 { left: -cardWith / 1.8 },
               ]}
@@ -79,6 +81,7 @@ export function Carousel({
           <PanGesture isX={true} ratio={width} {...{ isActive, absoluteIndex }}>
             <TouchableOpacity
               onPress={() => {
+                // alert('hey 1-=------- ')
                 if (isTutorialTwoOn) {
                   setIsVisible(true)
                   requestAnimationFrame(() => {

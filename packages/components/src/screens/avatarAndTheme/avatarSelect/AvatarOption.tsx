@@ -34,9 +34,10 @@ export function AvatarOption({
 }
 
 const Option = styled(TouchableOpacity)<{ isSelected: boolean }>`
-  flex: 1;
   align-items: center;
+  margin-bottom: 5px;
 `
+
 const Tick = styled.View`
   position: absolute;
   top: 10;
@@ -49,6 +50,6 @@ const AvatarName = styled(Text)`
   color: #f49200;
   font-size: 12;
   font-family: Roboto-Black;
-  top: 2;
+  top: 2px;
   position: absolute;
 `

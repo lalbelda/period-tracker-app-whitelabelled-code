@@ -20,7 +20,7 @@ export const CircleProgress = ({
   const sliceColor = [fillColor, emptyFill]
   return (
     <TouchableContainer disabled={disabled} onPress={onPress} size={size} style={style}>
-      <PieChart chart_wh={size} series={series} sliceColor={sliceColor} />
+      <PieChart widthAndHeight={size} series={series} sliceColor={sliceColor} />
       <Icon
         source={assets.static.icons.roundedMask}
         style={{ width: size, height: size, position: 'absolute', top: 0 }}
@@ -37,26 +37,27 @@ export const CircleProgress = ({
 }
 
 const TouchableContainer = styled.TouchableOpacity<{ size: number }>`
-  height: ${props => props.size};
-  width: ${props => props.size};
-  border-radius: ${props => props.size / 2};
+  height: ${(props) => props.size};
+  width: ${(props) => props.size};
+  border-radius: ${(props) => props.size / 2};
   align-items: center;
 `
 
 const NumberText = styled.Text`
-  height: 17;
+  height: 17px;
   font-size: 14;
   text-align: center;
   font-family: Roboto-Black;
 `
 
 const DayText = styled(Text)`
-  height: 14;
+  height: 14px;
   font-size: 11;
   text-align: center;
+  color: #000;
 `
 const TextContainer = styled.View<{ size: number }>`
-  height: ${props => props.size};
+  height: ${(props) => props.size};
   position: absolute;
   justify-content: center;
   align-items: center;

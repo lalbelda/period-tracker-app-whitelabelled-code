@@ -7,6 +7,8 @@ import { Text, TextWithoutTranslation } from './Text'
 import { ThemedModal } from './ThemedModal'
 import { translate } from '../../i18n'
 import { Platform } from 'react-native'
+import { Picker } from '@react-native-picker/picker'
+
 const now = moment()
 const currentYear = now.year()
 const currentMonth = now.month()
@@ -20,6 +22,7 @@ export function DateOfBirthInput({ style, textStyle = null, label, onChange, val
   const [isVisible, setIsVisible] = React.useState(false)
   const [monthSelected, setMonthSelected] = React.useState('')
   const [yearSelected, setYearSelected] = React.useState('')
+
   return (
     <>
       <FormControl style={style}>
@@ -33,22 +36,51 @@ export function DateOfBirthInput({ style, textStyle = null, label, onChange, val
       </FormControl>
       <ThemedModal {...{ isVisible, setIsVisible }}>
         <CardPicker>
-          <Column>
-            <WheelPicker
-              style={{ width: '50%', height: 200 }}
-              itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
-              selectedItem={selectedMonth}
-              data={monthRange.map(item => `${translate(item)}`)}
-              onItemSelected={option => setMonthSelected(monthRange[option])}
-            />
-            <WheelPicker
-              style={{ width: '50%', height: 200 }}
-              itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
-              selectedItem={selectedYear}
-              data={yearRange}
-              onItemSelected={option => setYearSelected(yearRange[option])}
-            />
-          </Column>
+          {Platform.OS === 'ios' ? (
+            <Column>
+              <Picker
+                style={{ width: '50%', height: 200, marginBottom: 20 }}
+                selectedValue={monthSelected || monthRange[selectedMonth]}
+                onValueChange={(itemValue, itemIndex) => setMonthSelected(monthRange[itemIndex])}
+              >
+                {monthRange.map((item, index) => (
+                  <Picker.Item
+                    label={`${translate(item)}`}
+                    value={`${translate(item)}`}
+                    key={index}
+                  />
+                ))}
+              </Picker>
+              <Picker
+                style={{ width: '50%', height: 200, marginBottom: 20 }}
+                selectedValue={yearSelected || yearRange[selectedYear]}
+                onValueChange={(itemValue, itemIndex) => setYearSelected(yearRange[itemIndex])}
+              >
+                {yearRange.map((item, index) => (
+                  <Picker.Item label={item} value={item} key={index} />
+                ))}
+              </Picker>
+            </Column>
+          ) : (
+            <Column>
+              <WheelPicker
+                style={{ width: '50%', height: 200 }}
+                // @ts-ignore
+                itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
+                selectedItem={selectedMonth}
+                data={monthRange.map((item) => `${translate(item)}`)}
+                onItemSelected={(option) => setMonthSelected(monthRange[option])}
+              />
+              <WheelPicker
+                style={{ width: '50%', height: 200 }}
+                // @ts-ignore
+                itemStyle={{ height: Platform.OS === 'ios' ? 132 : 44 }}
+                selectedItem={selectedYear}
+                data={yearRange}
+                onItemSelected={(option) => setYearSelected(yearRange[option])}
+              />
+            </Column>
+          )}
           <Confirm
             onPress={() => {
               onChange(moment(monthSelected + ' ' + yearSelected, 'MMMM YYYY').toISOString())
@@ -81,7 +113,7 @@ const Label = styled(Text)`
 
 const Input = styled.TouchableOpacity`
   width: 100%;
-  height: 25;
+  height: 25px;
 `
 
 const InputValue = styled(TextWithoutTranslation)`
@@ -95,21 +127,21 @@ const Underline = styled.View`
 `
 
 const Confirm = styled.TouchableOpacity`
-  width: 200;
-  height: 45;
-  border-radius: 22.5;
+  width: 200px;
+  height: 45px;
+  border-radius: 22.5px;
   background-color: #a2c72d;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10;
-  margin-top: 10;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 const CardPicker = styled.View`
   width: 85%;
-  height: 400;
+  height: 400px;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   align-self: center;

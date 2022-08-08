@@ -5,8 +5,14 @@ import { ThemedModal } from './ThemedModal'
 import { assets } from '../../assets'
 import { Text } from './Text'
 
+import { useTextToSpeechHook } from '../../hooks/useTextToSpeechHook'
+import { spinLoaderSpeech } from '../../config'
 export const SpinLoader = ({ isVisible, setIsVisible, text = 'empty', backdropOpacity = 0.8 }) => {
   const [animatedValue] = React.useState(new Animated.Value(0))
+  // useTextToSpeechHook({
+  //   navigation,
+  //   text: spinLoaderSpeech(),
+  // })
 
   const onModalWillShow = () => {
     Spin()
@@ -53,19 +59,19 @@ export const SpinLoader = ({ isVisible, setIsVisible, text = 'empty', backdropOp
 }
 
 const Face = styled.Image`
-  height: 120;
-  width: 120;
+  height: 120px;
+  width: 120px;
 
   align-self: center;
 `
 const Spinner = styled.Image`
-  height: 123;
-  width: 123;
+  height: 123px;
+  width: 123px;
 `
 
 const Container = styled(Animated.View)`
-  height: 123;
-  width: 123;
+  height: 123px;
+  width: 123px;
   position: absolute;
   align-self: center;
 `

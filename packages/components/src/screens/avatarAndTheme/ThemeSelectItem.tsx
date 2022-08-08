@@ -28,5 +28,5 @@ export function ThemeSelectItem({ theme = null, ...props }) {
 const ImageFast = styled(FastImage)`
   width: 100%;
   height: 100%;
-  border-radius: 10;
+  border-radius: 10px;
 `

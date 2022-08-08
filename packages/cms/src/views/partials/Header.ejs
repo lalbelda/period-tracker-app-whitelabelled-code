@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Oky, your body, your mind, your oky</title>
+    <title>Period Tracker App, your body, your mind, your Period Tracker App</title>
     <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16" />
     <link
@@ -34,7 +34,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -53,13 +53,7 @@
           <% }%>
           <li class="nav-item">
             <button 
-              <% if(!currentUser){ %>
               disabled
-              <% }%> 
-              <% if(currentUser){ %>
-              <% if(currentUser.type!=="superAdmin" ){ %> 
-                disabled 
-              <% }}%> 
               style="border: none;"
               type="button" data-toggle="collapse" data-target="#collapseExample"
               aria-expanded="false" aria-controls="collapseExample" >
@@ -68,23 +62,6 @@
                 src="<%= currentUser ? `/assets/images/`+currentUser.lang+`-flag.png` : `/assets/images/en-flag.png` %>"
               />
             </button>
-            <div class="collapse" id="collapseExample">
-              <div class="card card-body">
-                <button type="button" class="languageChange" data-value="en">
-                  <img class="flag-logo" src=" /assets/images/en-flag.png" />
-                </button>
-                <button type="button" class="languageChange" data-value="id">
-                  <img
-                    style="margin-top: 10px; margin-bottom: 10px;"
-                    class="flag-logo"
-                    src=" /assets/images/id-flag.png"
-                  />
-                </button>
-                <button type="button" class="languageChange" data-value="mn">
-                  <img class="flag-logo" src=" /assets/images/mn-flag.png" />
-                </button>
-              </div>
-            </div>
           </li>
         </ul>
       </div>

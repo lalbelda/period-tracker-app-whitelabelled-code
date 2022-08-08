@@ -20,16 +20,16 @@ export const ListItem = ({
 }
 const Container = styled.View`
   flex: 1;
-  padding-horizontal: 2;
+  padding-horizontal: 2px;
 `
 
 const Row = styled.View`
   height: 100%;
   flex-direction: row;
-  padding-horizontal: 10;
+  padding-horizontal: 10px;
   align-items: center;
   justify-content: center;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: #ddd;
 `
 const Title = styled(Text)`
@@ -38,13 +38,15 @@ const Title = styled(Text)`
   text-align: left;
   font-family: Roboto-Black;
   text-transform: capitalize;
-  padding-right: 10;
-  padding-left: 10;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #000;
 `
 
 const Description = styled(Text)`
   flex: 1;
   font-size: 12;
+  color: #000;
 `
 
 const Selectors = styled.View`

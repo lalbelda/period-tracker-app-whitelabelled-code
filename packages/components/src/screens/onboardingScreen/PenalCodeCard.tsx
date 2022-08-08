@@ -8,7 +8,7 @@ import { Dimensions } from 'react-native'
 const locales = ['lang_select', 'id', 'mn', 'en']
 const width = Dimensions.get('window').width
 
-export const PenalCodeCard = ({ onConfirm = args => null }) => {
+export const PenalCodeCard = ({ onConfirm = (args) => null }) => {
   const [intermediateLocale, setIntermediateLocale] = React.useState('lang_select')
   return (
     <Container>
@@ -24,7 +24,7 @@ export const PenalCodeCard = ({ onConfirm = args => null }) => {
             <HeadingText>penal_code_heading</HeadingText>
             <InformationText>penal_code_text1</InformationText>
             <VerticalSelectBox
-              onValueChange={item => setIntermediateLocale(item)}
+              onValueChange={(item) => setIntermediateLocale(item)}
               items={locales}
               containerStyle={{
                 height: 45,
@@ -74,10 +74,10 @@ const WhiteContainer = styled.View`
   flex: 1;
   width: 100%;
   background-color: #fff;
-  padding-vertical: 25;
-  padding-horizontal: 30;
-  border-top-left-radius: 10;
-  border-top-right-radius: 10;
+  padding-vertical: 25px;
+  padding-horizontal: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   align-items: center;
   justify-content: flex-start;
   elevation: 4;
@@ -98,18 +98,18 @@ const WelcomeText = styled(Text)`
   color: #e3629b;
 `
 const InformationText = styled(Text)`
-  margin-vertical: 30;
+  margin-vertical: 30px;
   font-size: 12;
   font-family: Roboto-Regular;
   text-align: center;
 `
 
 const Card = styled.View`
-  height: 420;
+  height: 420px;
   width: ${width * 0.95};
   elevation: 4;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
 `
@@ -123,9 +123,9 @@ const ButtonContainer = styled.View`
 
 const Button = styled.TouchableOpacity`
   flex: 1;
-  height: 70;
+  height: 70px;
   justify-content: center;
-  padding-horizontal: 30;
+  padding-horizontal: 30px;
 `
 const ButtonTitle = styled(Text)`
   text-align: center;
@@ -139,7 +139,7 @@ const LaunchContainer = styled.View`
   aspect-ratio: 1;
   background-color: #fff;
   elevation: 5;
-  border-radius: 200;
+  border-radius: 200px;
   margin-right: 5%;
   justify-content: center;
   align-items: center;

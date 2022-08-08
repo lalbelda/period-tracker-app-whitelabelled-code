@@ -19,6 +19,12 @@ export class CategoryController {
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
+    const category = await this.categoryRepository.query(
+      'SELECT * FROM oky_en.category WHERE title = $1 or primary_emoji = $2',
+      [request.body.title, request.body.primary_emoji],
+    )
+    if (category && category.length)
+      return { duplicate: true, category: category[0], body: request.body }
     await this.categoryRepository.save({
       id: uuid(),
       title: request.body.title,
@@ -30,6 +36,12 @@ export class CategoryController {
   }
 
   async update(request: Request, response: Response, next: NextFunction) {
+    const category = await this.categoryRepository.query(
+      'SELECT * FROM oky_en.category WHERE title = $1 or primary_emoji = $2',
+      [request.body.title, request.body.primary_emoji],
+    )
+    if (category && category.length && category[0].id !== request.params.id)
+      return { duplicate: true, category: category[0], body: request.body }
     const categoryToUpdate = await this.categoryRepository.findOne(request.params.id)
     categoryToUpdate.title = request.body.title
     categoryToUpdate.primary_emoji = request.body.primary_emoji

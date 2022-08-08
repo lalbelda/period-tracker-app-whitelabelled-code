@@ -1,6 +1,6 @@
 import { useDisplayText } from '../components/context/DisplayTextContext'
 import { useTodayPrediction } from '../components/context/PredictionProvider'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 
 export const useCheckDayWarning = () => {
   const { setDisplayTextStatic } = useDisplayText()
@@ -8,6 +8,10 @@ export const useCheckDayWarning = () => {
 
   return (inputDay: Moment) => {
     const diffFromStart = inputDay.diff(currentCycleInfo.date, 'days')
+    if (moment(inputDay).isAfter(moment())) {
+      setDisplayTextStatic('too_far_ahead')
+      return true
+    }
     if (diffFromStart < -14 && currentCycleInfo.cycleDay !== 0) {
       setDisplayTextStatic('too_far_behind')
       return true

@@ -30,7 +30,7 @@ export const ListItem = ({
 }
 
 const Container = styled.View`
-  padding-horizontal: 2;
+  padding-horizontal: 2px;
 `
 
 const titleBlockWidth = Math.round(Dimensions.get('window').width * 0.625)
@@ -46,9 +46,11 @@ const Row = styled.View`
 const Title = styled(Text)`
   font-size: 26;
   font-family: Roboto-Black;
+  color: #000;
 `
 const Description = styled(Text)`
   font-size: 16;
+  color: #000;
 `
 
 const Col = styled.View`

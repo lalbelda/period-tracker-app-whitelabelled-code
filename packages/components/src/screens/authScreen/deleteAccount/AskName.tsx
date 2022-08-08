@@ -40,7 +40,7 @@ export function AskName({ step }) {
     <DeleteFormLayout onSubmit={onSubmit}>
       <TextInput
         style={{ marginTop: 20 }}
-        onChange={name => dispatch({ type: 'change-name', name })}
+        onChange={(name) => dispatch({ type: 'change-name', name })}
         label="name"
         value={state.name}
       />
@@ -54,8 +54,8 @@ export function AskName({ step }) {
 
 const ErrorMessage = styled(Text)`
   font-size: 14;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: red;
 `
 

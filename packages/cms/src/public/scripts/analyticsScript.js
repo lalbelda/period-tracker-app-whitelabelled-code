@@ -3,20 +3,18 @@ var dashChart
 var barChart
 var lineChart
 
-const usersLocations = JSON.parse($('#userLocationsJSON').text())
-const usersGenders = JSON.parse($('#userGendersJSON').text())
-const usersAgeGroups = JSON.parse($('#usersAgeGroupsJSON').text())
-const usersCountries = JSON.parse($('#usersCountriesJSON').text())
-const usersProvinces = JSON.parse($('#usersProvincesJSON').text())
-const userShares = JSON.parse($('#usersSharesJSON').text())
-const directDownloads = JSON.parse($('#directDownloadsJSON').text())
+var usersLocations = JSON.parse($('#userLocationsJSON').text())
+var usersGenders = JSON.parse($('#userGendersJSON').text())
+var usersAgeGroups = JSON.parse($('#usersAgeGroupsJSON').text())
+var usersCountries = JSON.parse($('#usersCountriesJSON').text())
+var usersProvinces = JSON.parse($('#usersProvincesJSON').text())
+var userShares = JSON.parse($('#usersSharesJSON').text())
+var directDownloads = JSON.parse($('#directDownloadsJSON').text())
 
 $('#currentCountry').change(() => {
   dashBarChart(usersProvinces[$('#currentCountry').val()], 'usersProvincesGraph')
 })
-
-$(document).ready(() => {
-  console.log(usersProvinces)
+const loadInitialChart = ({usersGenders, usersLocations,usersAgeGroups, usersCountries, usersProvinces, userShares, directDownloads}) => {
   dashPieChart(
     {
       Male: usersGenders[0].total_male,
@@ -31,19 +29,24 @@ $(document).ready(() => {
   )
   dashBarChart(
     {
-      'Under 5': usersAgeGroups[0].under_5,
-      '5 to 10': usersAgeGroups[0].between_5_10,
-      '11 - 13': usersAgeGroups[0].between_11_13,
+      'Under 10': usersAgeGroups[0].under_10,
+      '10 to 11': usersAgeGroups[0].between_10_11,
+      '12 - 13': usersAgeGroups[0].between_12_13,
       '14 - 15': usersAgeGroups[0].between_14_15,
-      '16 - 18': usersAgeGroups[0].between_16_18,
-      '19 - 20': usersAgeGroups[0].between_19_20,
-      'Over 21': usersAgeGroups[0].greater_than_20,
+      '16 - 17': usersAgeGroups[0].between_16_17,
+      '18 - 19': usersAgeGroups[0].between_18_19,
+      '20 - 21': usersAgeGroups[0].between_20_21,
+      'Over 22': usersAgeGroups[0].greater_than_22,
     },
     'userAgeGroupsGraph',
   )
   dashBarChart(usersCountries, 'userCountriesGraph')
   dashBarChart(usersProvinces[$('#currentCountry').val()], 'usersProvincesGraph')
+}
 
+$(document).ready(() => {
+  console.log(usersProvinces)
+  loadInitialChart({usersGenders, usersLocations,usersAgeGroups, usersCountries, usersProvinces, userShares, directDownloads});
   dashLineChart(userShares, 'userShareGraph')
   dashLineChart(directDownloads, 'directDownloadsGraph')
 })
@@ -71,15 +74,16 @@ $('#downloadCSV').on('click', () => {
     ['Male', 'Female', 'Prefer not to say'],
     [usersGenders[0].total_male, usersGenders[0].total_female, usersGenders[0].total_other],
     ['User Ages'],
-    ['Under 5', '5 to 10', '11 - 13', '14 - 15', '16 - 18', '19 - 20', 'Over 21'],
+    ['Under 10', '10 to 11', '12 - 13', '14 - 15', '16 - 17', '18 - 19', '20 - 21', 'Over 22'],
     [
-      usersAgeGroups[0].under_5,
-      usersAgeGroups[0].between_5_10,
-      usersAgeGroups[0].between_11_13,
+      usersAgeGroups[0].under_10,
+      usersAgeGroups[0].between_10_11,
+      usersAgeGroups[0].between_12_13,
       usersAgeGroups[0].between_14_15,
-      usersAgeGroups[0].between_16_18,
-      usersAgeGroups[0].between_19_20,
-      usersAgeGroups[0].greater_than_20,
+      usersAgeGroups[0].between_16_17,
+      usersAgeGroups[0].between_18_19,
+      usersAgeGroups[0].between_20_21,
+      usersAgeGroups[0].greater_than_22,
     ],
     ['User Locations'],
     ['Urban', 'Rural'],
@@ -95,7 +99,7 @@ $('#downloadCSV').on('click', () => {
     ['User Downloads'],
     [totalDownloads],
   ]
-  exportToCsv('User Analytics', rows)
+  exportToCsv(`User Analytics_${new Date().toLocaleDateString()}`, rows)
 })
 
 exportToCsv = (filename, rows) => {
@@ -159,13 +163,14 @@ switchActions = input => {
     case 'usersAgeGroups':
       return {
         chartDataFormat: {
-          'Under 5': usersAgeGroups[0].under_5,
-          '5 to 10': usersAgeGroups[0].between_5_10,
-          '11 - 13': usersAgeGroups[0].between_11_13,
-          '14 - 15': usersAgeGroups[0].between_14_15,
-          '16 - 18': usersAgeGroups[0].between_16_18,
-          '19 - 20': usersAgeGroups[0].between_19_20,
-          'Over 21': usersAgeGroups[0].greater_than_20,
+            'Under 10': usersAgeGroups[0].under_10,
+            '10 to 11': usersAgeGroups[0].between_10_11,
+            '12 - 13': usersAgeGroups[0].between_12_13,
+            '14 - 15': usersAgeGroups[0].between_14_15,
+            '16 - 17': usersAgeGroups[0].between_16_17,
+            '18 - 19': usersAgeGroups[0].between_18_19,
+            '20 - 21': usersAgeGroups[0].between_20_21,
+            'Over 22': usersAgeGroups[0].greater_than_22,
         },
       }
     case 'usersCountries':
@@ -232,6 +237,7 @@ renderPieChart = (data, location) => {
   pieSeries.legendSettings.valueText = '{value.value} '
   pieSeries.slices.template.states.getKey('hover').properties.shiftRadius = 0
   pieSeries.slices.template.states.getKey('hover').properties.scale = 1.1
+  chart.legend.scrollable = true;
 }
 
 dashPieChart = (data, location) => {
@@ -310,8 +316,25 @@ dashBarChart = (data, location) => {
   var categoryAxis = barChart.xAxes.push(new am4charts.CategoryAxis())
   categoryAxis.dataFields.category = 'answer'
   categoryAxis.renderer.grid.template.location = 0
-  categoryAxis.renderer.minGridDistance = 30
-
+  categoryAxis.renderer.minGridDistance = 50
+  categoryAxis.events.on("sizechanged", function(ev) {
+    var axis = ev.target;
+      var cellWidth = axis.pixelWidth / (axis.endIndex - axis.startIndex);
+      if (cellWidth < axis.renderer.labels.template.maxWidth) {
+        axis.renderer.labels.template.rotation = -20;
+        axis.renderer.labels.template.horizontalCenter = "right";
+        axis.renderer.labels.template.verticalCenter = "middle";
+      }
+      else {
+        axis.renderer.labels.template.rotation = 0;
+        axis.renderer.labels.template.horizontalCenter = "middle";
+        axis.renderer.labels.template.verticalCenter = "top";
+      }
+    });
+  var label = categoryAxis.renderer.labels.template;
+  label.wrap = true;
+  label.truncate = true;
+  label.maxWidth = 200;
   categoryAxis.renderer.labels.template.adapter.add('dy', function(dy, target) {
     if (target.dataItem && target.dataItem.index & (2 == 2)) {
       return dy + 25
@@ -326,7 +349,7 @@ dashBarChart = (data, location) => {
   series.dataFields.valueY = 'amount'
   series.dataFields.categoryX = 'answer'
   series.name = 'User Age Groups'
-  series.columns.template.tooltipText = '{categoryX}: [bold]{valueY}[/]'
+  // series.columns.template.tooltipText = '{categoryX}: [bold]{valueY}[/]'
   series.columns.template.fillOpacity = 0.8
 
   var columnTemplate = series.columns.template
@@ -360,3 +383,32 @@ dashLineChart = (data, location) => {
   //chart.scrollbarY = new am4core.Scrollbar();
   lineChart.scrollbarX = new am4core.Scrollbar()
 }
+//global filter for analytics page
+const filterAnalyticsPage = ({gender, location}) => {
+  $.ajax({
+    url: `/analytics-management?gender=${gender}&location=${location}`,
+    type: 'get',
+    headers: { Accept: 'application/json'},
+    success: result => {
+       usersLocations = result.usersLocations;
+        usersGenders = result.usersGenders;
+        usersAgeGroups = result.usersAgeGroups;
+        usersCountries = result.usersCountries;
+        usersProvinces = result.usersProvinces;
+        userShares = result.usersShares;
+        directDownloads = result.directDownloads
+      loadInitialChart({...result});
+    },
+    error: error => {
+      console.log(error)
+    },
+  })
+}
+$('#currentGender').on('change', e => {
+  let location = $('#currentLoc').val();
+  filterAnalyticsPage({location, gender: e.target.value})
+})
+$('#currentLoc').on('change',e => {
+  let gender = $('#currentGender').val();
+  filterAnalyticsPage({gender, location: e.target.value});
+})

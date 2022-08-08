@@ -15,7 +15,7 @@
     "listFiles": false,
     "typeRoots": ["../../node_modules/@types", "./@types"]
   },
-  "include": ["src/**/*", "@types/*.d.ts", "ormconfig.ts"],
+  "include": ["src/**/*", "@types/*.d.ts", "ormconfig.ts", "src/migrations/.ts"],
   "exclude": ["node_modules"],
   "compileOnSave": false
 }

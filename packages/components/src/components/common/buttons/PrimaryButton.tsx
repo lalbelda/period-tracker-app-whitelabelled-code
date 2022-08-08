@@ -25,8 +25,8 @@ export function PrimaryButton({ children, ...props }) {
 }
 
 const Button = styled.TouchableOpacity`
-  margin-horizontal: 2;
-  margin-vertical: 2;
+  margin-horizontal: 2px;
+  margin-vertical: 2px;
   align-items: center;
   justify-content: center;
   height: 50px;
@@ -39,4 +39,5 @@ const Text = styled(BaseText)`
   font-family: Roboto-Black;
   font-size: 16;
   text-align: center;
+  color: #000;
 `

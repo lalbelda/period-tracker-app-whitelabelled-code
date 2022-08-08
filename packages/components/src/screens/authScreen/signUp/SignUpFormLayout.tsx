@@ -14,7 +14,7 @@ export function SignUpFormLayout({ children, onSubmit, isButtonDisabled = false 
 }
 
 const Touchable = styled.TouchableOpacity`
-  height: 80;
+  height: 80px;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ const HeaderText = styled(Text)<{ isDisabled: boolean }>`
   font-size: 16;
   text-align: center;
   align-self: center;
-  color: ${props => (props.isDisabled ? `#efefef` : `#000`)};
+  color: ${(props) => (props.isDisabled ? `#efefef` : `#000`)};
   font-family: Roboto-Black;
 `
 

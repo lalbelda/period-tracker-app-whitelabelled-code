@@ -65,6 +65,7 @@ const Container = styled.TouchableOpacity`
 const Emoji = styled.Text`
   font-size: 18;
   text-align: center;
+  color: #ffffff;
 `
 
 const EmojiText = styled(TextWithoutTranslation)`
@@ -72,12 +73,13 @@ const EmojiText = styled(TextWithoutTranslation)`
   width: 120%;
   align-self: center;
   text-align: center;
+  color: #000;
 `
 const Mask = styled.ImageBackground<{ isActive: boolean; color: string; size: number }>`
-  width: ${props => (props.size ? props.size : 10)};
-  height: ${props => (props.size ? props.size : 10)};
-  border-radius: ${props => (props.size ? props.size / 2 : 10)};
+  width: ${(props) => (props.size ? props.size : 10)};
+  height: ${(props) => (props.size ? props.size : 10)};
+  border-radius: ${(props) => (props.size ? props.size / 2 : 10)};
   align-items: center;
   justify-content: center;
-  background-color: ${props => (props.isActive ? props.color : '#EAEAEA')};
+  background-color: ${(props) => (props.isActive ? props.color : '#EAEAEA')};
 `

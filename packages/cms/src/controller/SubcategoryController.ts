@@ -17,6 +17,11 @@ export class SubcategoryController {
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
+    const sub_category = await this.subCategoryRepository.findOne({
+      title: request.body.title,
+      parent_category: request.body.parent_category,
+    })
+    if (sub_category) return { duplicate: true }
     await this.subCategoryRepository.save({
       id: uuid(),
       title: request.body.title,
@@ -27,6 +32,11 @@ export class SubcategoryController {
   }
 
   async update(request: Request, response: Response, next: NextFunction) {
+    const sub_category = await this.subCategoryRepository.findOne({
+      title: request.body.title,
+      parent_category: request.body.parent_category,
+    })
+    if (sub_category && sub_category.id !== request.params.id) return { duplicate: true }
     const subCategoryToUpdate = await this.subCategoryRepository.findOne(request.params.id)
     subCategoryToUpdate.title = request.body.title
     subCategoryToUpdate.parent_category = request.body.parent_category

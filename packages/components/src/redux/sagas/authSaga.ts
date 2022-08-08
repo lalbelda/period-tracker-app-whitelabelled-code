@@ -137,7 +137,6 @@ function* onCreateAccountRequest(action: ExtractActionFromActionType<'CREATE_ACC
     secretAnswer,
     secretQuestion,
   } = action.payload
-
   try {
     const { appToken, user }: Await<ReturnType<typeof httpClient.signup>> = yield httpClient.signup(
       {
@@ -153,7 +152,6 @@ function* onCreateAccountRequest(action: ExtractActionFromActionType<'CREATE_ACC
         preferredId: id || null,
       },
     )
-
     if (!appToken || !user || !user.id) {
       throw new Error(`Invalid data`)
     }
@@ -229,7 +227,13 @@ function* onDeleteAccountRequest(action: ExtractActionFromActionType<'DELETE_ACC
       name,
       password,
     })
-
+    yield put(actions.updateAllSurveyContent([]))
+    yield put(actions.updateCompletedSurveys([]))
+    yield put(
+      actions.fetchSurveyContentSuccess({
+        surveys: null,
+      }),
+    )
     yield call(navigateAndReset, 'LoginStack', null)
 
     if (user) {
@@ -246,7 +250,15 @@ function* onLogoutRequest() {
   if (isTtsActive) {
     yield call(closeOutTTs)
     yield put(actions.setTtsActive(false))
+    yield put(actions.verifyPeriodDayByUser([]))
   }
+  yield put(actions.updateAllSurveyContent([]))
+  yield put(
+    actions.fetchSurveyContentSuccess({
+      surveys: null,
+    }),
+  )
+  yield put(actions.updateCompletedSurveys([]))
   yield call(navigateAndReset, 'LoginStack', null)
   yield put(actions.logout())
 }
@@ -266,8 +278,8 @@ function* onJourneyCompletion(action: ExtractActionFromActionType<'JOURNEY_COMPL
   yield put(actions.setPredictionEngineState(stateToSet))
   yield put(actions.setTutorialOneActive(true))
   yield put(actions.setTutorialTwoActive(true))
-  yield delay(5000) // !!! THis is here for a bug on slower devices that cause the app to crash on sign up. Did no debug further. Note only occurs on much older phones
-  yield call(navigateAndReset, 'MainStack', null)
+  yield delay(5000)
+  yield navigateAndReset('MainStack', null)
 }
 
 export function* authSaga() {

@@ -266,7 +266,7 @@ const categories=
          { id: 'a0359649-d027-421b-a969-5c942aba102d',
            title: 'Apa itu siklus menstruasi?',
            content:
-            'Siklus menstruasi dimulai saat hari pertama kamu menstruasi dan selesai saat kamu menstruasi dibulan selanjutnya. Dinamakan siklus karena ini selalu berulang setiap bulan.\n\nPada masa siklus, hormon (zat kimia dalam tubuh) naik turun dan mengubah bagian tubuh lainnya.\n\nSiklus menstruasi biasanya antara 21-38 hari untuk kebanyakan orang, tapi durasinya berubah dari waktu ke waktu.\n\nSetiap orang berbeda dan memiliki siklus menstruasi yang berbeda-beda itu normal. Di tahun-tahun pertama remaja perempuan mendapatkan menstruasi, siklus mereka cenderung tidak rutin. Bahkan, kadang kamu bisa mens bulan ini tapi tidak bulan depannya.\n\nMungkin butuh waktu beberapa tahun agar siklus menstruasi-mu menjadi rutin. Membandingkan siklus-mu dengan orang lain atau mencari tahu apa yang disebut \'siklus normal\' bisa membuatmu merasa ada yang salah. Berbeda itu biasa!\n\nOky bisa membantu melacak menstruasimu untuk melihat mana yang normal BAGIMU. Sehingga, jika ada hal yang tidak biasa kamu bisa bertanya ke orang tua, guru, dokter, bidan atau perawat.',
+            'Siklus menstruasi dimulai saat hari pertama kamu menstruasi dan selesai saat kamu menstruasi dibulan selanjutnya. Dinamakan siklus karena ini selalu berulang setiap bulan.\n\nPada masa siklus, hormon (zat kimia dalam tubuh) naik turun dan mengubah bagian tubuh lainnya.\n\nSiklus menstruasi biasanya antara 21-38 hari untuk kebanyakan orang, tapi durasinya berubah dari waktu ke waktu.\n\nSetiap orang berbeda dan memiliki siklus menstruasi yang berbeda-beda itu normal. Di tahun-tahun pertama remaja perempuan mendapatkan menstruasi, siklus mereka cenderung tidak rutin. Bahkan, kadang kamu bisa mens bulan ini tapi tidak bulan depannya.\n\nMungkin butuh waktu beberapa tahun agar siklus menstruasi-mu menjadi rutin. Membandingkan siklus-mu dengan orang lain atau mencari tahu apa yang disebut \'siklus normal\' bisa membuatmu merasa ada yang salah. Berbeda itu biasa!\n\nPeriod Tracker App bisa membantu melacak menstruasimu untuk melihat mana yang normal BAGIMU. Sehingga, jika ada hal yang tidak biasa kamu bisa bertanya ke orang tua, guru, dokter, bidan atau perawat.',
            category: 'Menstruasi dan siklusnya',
            subCategory: 'Menstruasi' },
         'c3fd5590-36f1-4fbd-868b-02de1d5b7f84':
@@ -314,9 +314,9 @@ const categories=
            subCategory: 'Menstruasi' },
         'e1d32dfe-a43d-4843-acd6-7a4464de61a6':
          { id: 'e1d32dfe-a43d-4843-acd6-7a4464de61a6',
-           title: 'Bagaimana Oky memperkirakan masa subur?',
+           title: 'Bagaimana Period Tracker App memperkirakan masa subur?',
            content:
-            'Jika kamu punya siklus reguler (kamu selalu menstruasi setiap 26 - 32 hari), Oky menggunakan panjang siklusmu untuk memprediksi masa subur. \n\nKamu sebaiknya TIDAK menggunakan prediksi masa subur Oky untuk mencegah kehamilan karena waktu telur matang mungkin berganti tiap bulannya.',
+            'Jika kamu punya siklus reguler (kamu selalu menstruasi setiap 26 - 32 hari), Period Tracker App menggunakan panjang siklusmu untuk memprediksi masa subur. \n\nKamu sebaiknya TIDAK menggunakan prediksi masa subur Period Tracker App untuk mencegah kehamilan karena waktu telur matang mungkin berganti tiap bulannya.',
            category: 'Menstruasi dan siklusnya',
            subCategory: 'Menstruasi' },
         '7e6a00ec-ce46-49b2-abf5-ae867a180071':
@@ -330,7 +330,7 @@ const categories=
          { id: 'c84dbc62-ca1a-4c4d-ac6d-f68f75fdadd7',
            title: 'Siklus menstruasi saya tidak rutin, apakah itu masalah?',
            content:
-            'Siklus yang tidak rutin itu sangat normal, terutama pada tahun-tahun awal menstruasi. Ini adalah suatu hal yang sehat dan normal.\n\nMenggunakan Oky bisa membantumu untuk tahu kapan siklusmu yang normal.',
+            'Siklus yang tidak rutin itu sangat normal, terutama pada tahun-tahun awal menstruasi. Ini adalah suatu hal yang sehat dan normal.\n\nMenggunakan Period Tracker App bisa membantumu untuk tahu kapan siklusmu yang normal.',
            category: 'Menstruasi dan siklusnya',
            subCategory: 'Mens yang tidak teratur' },
         'b84e3a90-7926-4094-9965-9c3810910344':
@@ -358,7 +358,7 @@ const categories=
          { id: '74d1b188-cb21-4cc3-90f2-c9dfcdd04989',
            title: 'Darah menstruasi saya keluar sedikit, apa itu normal?',
            content:
-            'Darah menstruasi yang keluar itu berbeda-beda antara tiap perempuan dan menstruasi tiap bulan. Jadi penting untuk tahu apa yang disebut normal untukmu. Darah menstruasi yang keluar sedikit mungkin saja normal buatmu.\n\nMenggunakan Oky bisa melacak perubahan menstruasi yang terjadi. Jika darah menstruasimu lebih sedikit dari biasanya, mungkin saja itu disebabkan oleh kehamilan, stres, penyakit, naik atau turunnya berat badan, umur, atau alat kontrasepsi yang mengandung hormon.',
+            'Darah menstruasi yang keluar itu berbeda-beda antara tiap perempuan dan menstruasi tiap bulan. Jadi penting untuk tahu apa yang disebut normal untukmu. Darah menstruasi yang keluar sedikit mungkin saja normal buatmu.\n\nMenggunakan Period Tracker App bisa melacak perubahan menstruasi yang terjadi. Jika darah menstruasimu lebih sedikit dari biasanya, mungkin saja itu disebabkan oleh kehamilan, stres, penyakit, naik atau turunnya berat badan, umur, atau alat kontrasepsi yang mengandung hormon.',
            category: 'Menstruasi dan siklusnya',
            subCategory: 'Darah mens dan keputihan' },
         '5a1c815e-5686-478b-9fd6-78982e8bda8e':
@@ -693,7 +693,7 @@ const categories=
            title:
             'Saya malu bertanya atau diskusi tentang menstruasi dengan orang lain',
            content:
-            'Merasa malu itu wajar dialami setiap orang dan menstruasi bisa jadi topik yang memalukan. \n\nOky mau bilang kalau menstruasi adalah hal yang normal dan kamu tidak perlu malu tentang ini. Semakin sering bicara tentang menstruasi, kamu akan semakin merasa tidak malu.\n\nNamun, jika kamu tidak terlalu ingin bicara tentang menstruasi, kamu tidak harus!',
+            'Merasa malu itu wajar dialami setiap orang dan menstruasi bisa jadi topik yang memalukan. \n\nPeriod Tracker App mau bilang kalau menstruasi adalah hal yang normal dan kamu tidak perlu malu tentang ini. Semakin sering bicara tentang menstruasi, kamu akan semakin merasa tidak malu.\n\nNamun, jika kamu tidak terlalu ingin bicara tentang menstruasi, kamu tidak harus!',
            category: 'Mitos dan perasaan',
            subCategory: 'Malu' },
         '68f2537d-e2ba-4ed5-9e24-d3016be4e481':

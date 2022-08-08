@@ -10,23 +10,31 @@ import { PageContainer } from '../components/layout/PageContainer'
 import { useSelector } from '../hooks/useSelector'
 import * as selectors from '../redux/selectors'
 import { useTextToSpeechHook } from '../hooks/useTextToSpeechHook'
+import firebase from 'react-native-firebase'
+import { fetchNetworkConnectionStatus } from '../services/network'
+
+const analytics = firebase.analytics()
 
 const screenWidth = Dimensions.get('screen').width
 const screenHeight = Dimensions.get('screen').height
 const heightOfCarousel = screenHeight * 0.5
 
 export function FindHelpScreen({ navigation }) {
-  const helpCenters = useSelector(selectors.allHelpCentersForCurrentLocale)
+  const helpCenters: any = useSelector(selectors.allHelpCentersForCurrentLocale)
   const [textToSpeak, setTextToSpeak] = React.useState([])
 
   React.useEffect(() => {
-    const text = helpCenters.reduce((acc, item) => {
+    if (fetchNetworkConnectionStatus()) {
+      analytics.setCurrentScreen('HelpCenter', 'FindHelpScreen')
+    }
+    const text = helpCenters.reduce((acc, item, index) => {
       let heading = ''
       let caption = ''
       let phoneOne = ''
       let phoneTwo = ''
       let address = ''
       let website = ''
+      const pageNumber = `page number ${index + 1}`
 
       heading = item.title && item.title
       caption = item.caption && item.caption
@@ -41,6 +49,7 @@ export function FindHelpScreen({ navigation }) {
         ...(phoneTwo !== '' ? [phoneTwo] : []),
         ...(address !== '' ? [address] : []),
         ...(website !== '' ? [website] : []),
+        pageNumber,
       ])
     }, [])
     setTextToSpeak(text)
@@ -137,13 +146,13 @@ const CardTitle = styled(TextWithoutTranslation)`
   font-size: 20;
   font-family: Roboto-Black;
   color: #e3629b;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `
 
 const CardRow = styled.View`
   flex-direction: row;
   width: 95%;
-  margin-bottom: 5;
+  margin-bottom: 5px;
   overflow-hidden;
 `
 
@@ -154,7 +163,8 @@ const Col = styled.View`
 
 const InfoItemTitle = styled(Text)`
   font-size: 16;
-  margin-bottom: 2;
+  margin-bottom: 2px;
+  color: #000;
 `
 
 const InfoItemDescription = styled(TextWithoutTranslation)`
@@ -166,12 +176,12 @@ const InfoItemDescription = styled(TextWithoutTranslation)`
 `
 const CarouselItem = styled.View`
   width: 95%;
-  padding-horizontal: 15;
-  padding-top: 10;
-  padding-bottom: 10;
+  padding-horizontal: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #fff;
-  border-radius: 10;
-  margin-horizontal: 10;
+  border-radius: 10px;
+  margin-horizontal: 10px;
   margin-top: auto;
   margin-bottom: auto;
   elevation: 4;

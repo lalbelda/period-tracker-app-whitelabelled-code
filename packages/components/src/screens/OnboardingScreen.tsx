@@ -9,8 +9,8 @@ import { PrimaryButton } from '../components/common/buttons/PrimaryButton'
 import { navigateAndReset } from '../services/navigationService'
 import { useSelector } from '../hooks/useSelector'
 import * as selectors from '../redux/selectors'
-import * as actions from '../redux/actions'
 import { PenalCodeCard } from './onboardingScreen/PenalCodeCard'
+import * as actions from '../redux/actions'
 import { useDispatch } from 'react-redux'
 import { Animated } from 'react-native'
 import { Text } from '../components/common/Text'
@@ -20,7 +20,8 @@ export function OnboardingScreen() {
   const dispatch = useDispatch()
   const [index, setIndex] = React.useState(0)
   const [isButtonVisible, setIsButtonVisible] = React.useState(false)
-  const region = useSelector(selectors.currentChosenRegionSelector)
+  // @TODO: LANGUAGES This is commented in case the client wants multiple languages
+  // const region = useSelector(selectors.currentChosenRegionSelector)
 
   React.useEffect(() => {
     if (index === 2) {
@@ -28,22 +29,24 @@ export function OnboardingScreen() {
     }
   }, [index])
 
-  const onPenalCodeComplete = lang => {
-    dispatch(actions.setChosenRegion(lang))
-    dispatch(actions.setLocale(lang))
-  }
+  // @TODO: LANGUAGES This is commented in case the client wants multiple languages
+  // const onPenalCodeComplete = lang => {
+  //   dispatch(actions.setChosenRegion(lang))
+  //   dispatch(actions.setLocale(lang))
+  // }
 
   return (
     <BackgroundTheme>
       <PageContainer style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Container>
           <SwiperContainer
-            scrollEnabled={region !== ''}
+            scrollEnabled={true} // @TODO: LANGUAGES This is commented in case the client wants multiple languages scrollEnabled={region !== ''}
             setIndex={setIndex}
             pagingEnabled={true}
             ref={ref}
           >
-            {region === '' && <PenalCodeCard onConfirm={onPenalCodeComplete} />}
+            {/* // @TODO: LANGUAGES This is commented in case the client wants multiple languages */}
+            {/* {region === '' && <PenalCodeCard onConfirm={onPenalCodeComplete} />} */}
             <OnboardingCard
               image={assets.static.icons.calendar}
               heading="calendar"
@@ -143,7 +146,7 @@ const WelcomeContainer = styled.View`
 `
 
 const LaunchLogo = styled.Image`
-  height: 100;
+  height: 100px;
   aspect-ratio: 1;
 `
 const WelcomeText = styled(Text)`

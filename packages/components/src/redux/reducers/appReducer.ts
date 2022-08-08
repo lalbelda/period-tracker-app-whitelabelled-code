@@ -6,6 +6,7 @@ import { currentLocale } from '../../i18n'
 import DeviceInfo from 'react-native-device-info'
 
 export interface AppState {
+  appLocale: string
   locale: string
   chosenRegion: string
   appVersionName: string
@@ -18,14 +19,16 @@ export interface AppState {
   isTtsActive: boolean
   theme: ThemeName
   avatar: AvatarName
+  verifiedDates: any
 }
 
 const initialState: AppState = {
-  locale: currentLocale(),
   appVersionName: DeviceInfo.getVersion(),
   appVersionCode: DeviceInfo.getBuildNumber(),
   firebaseToken: null,
-  chosenRegion: '', // @TODO: PENAL CODE change to currentLocale() if no penal code
+  appLocale: 'en',
+  locale: 'en',
+  chosenRegion: 'en', // @TODO: PENAL CODE change to currentLocale() if no penal code   // @TODO: LANGUAGES This is commented in case the client wants multiple languages
   hasOpened: false,
   isTutorialOneActive: true,
   isTutorialTwoActive: true,
@@ -33,6 +36,7 @@ const initialState: AppState = {
   isTtsActive: false,
   theme: defaultTheme,
   avatar: defaultAvatar,
+  verifiedDates: [],
 }
 
 export function appReducer(state = initialState, action: Actions): AppState {
@@ -92,6 +96,11 @@ export function appReducer(state = initialState, action: Actions): AppState {
       return {
         ...state,
         isTtsActive: action.payload.isTtsActive,
+      }
+    case 'VERIFY_PERIOD_DAY':
+      return {
+        ...state,
+        verifiedDates: action.payload.date,
       }
 
     default:

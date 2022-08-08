@@ -520,3 +520,19 @@ a.fill-div {
   right: 105px;
   top: 8px;
 }
+#currentCountry option {
+  color: #000;
+}
+.filter-select {
+  width: 150px;
+  margin-right: 10px;
+}
+.pointer-none {
+  pointer-events: none;
+}
+.submitted-form textarea.textarea__input:invalid, .submitted-form input:invalid, .invalid__field {
+  border: 1px solid red
+}
+.highlightRow {
+  border: 2px solid red !important;
+}

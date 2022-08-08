@@ -18,7 +18,8 @@ export function AskUserInformation({ step, heightInner }) {
   const [nameNotAvailable, setNameNotAvailable] = React.useState(false)
   const minPasswordLength = 1
   const minNameLength = 3
-
+  const [usernameError, setUsernameError] = React.useState(false)
+  const [passcodeMatchError, setPasscodeMatchError] = React.useState(false)
   const { name, password, passwordConfirm, gender } = state
   const [debouncedName] = useDebounce(name, 500) // to stop fast typing calls
 
@@ -42,6 +43,12 @@ export function AskUserInformation({ step, heightInner }) {
 
   // @TODO: change this logic and hasError Logic to be neater, its in a terrible state
   function checkValidity() {
+    if (!(name.length >= minNameLength)) {
+      setUsernameError(true)
+    }
+    if (passwordConfirm !== password) {
+      setPasscodeMatchError(true)
+    }
     return (
       password.length >= minPasswordLength &&
       passwordConfirm === password &&
@@ -80,15 +87,18 @@ export function AskUserInformation({ step, heightInner }) {
         }}
       >
         {nameNotAvailable && <ErrorMessage>{translate('name_taken_error')}</ErrorMessage>}
+        {usernameError && <ErrorMessage>{translate('username_too_short')}</ErrorMessage>}
         <TextInput
           inputStyle={{ color: '#555' }}
-          onChange={value => {
+          onChange={(value) => {
+            setUsernameError(false)
             dispatch({ type: 'change-form-data', inputName: 'name', value })
           }}
           label="enter_name"
           isValid={name.length >= minNameLength}
           hasError={notValid && !(name.length >= minNameLength)}
           showInfoButton={true}
+          infoAccessibilityLabel={translate('name_info_label')}
           value={name}
           errorHeading="name_error_heading"
           errorContent="name_error_content"
@@ -96,7 +106,7 @@ export function AskUserInformation({ step, heightInner }) {
 
         <GenderText>your_gender</GenderText>
         <Row>
-          {['Male', 'Female', 'Other'].map(value => {
+          {['Male', 'Female', 'Other'].map((value) => {
             return (
               <GenderSelectItem
                 key={value}
@@ -108,10 +118,11 @@ export function AskUserInformation({ step, heightInner }) {
           })}
         </Row>
         <TextInput
-          onChange={value => dispatch({ type: 'change-form-data', inputName: 'password', value })}
+          onChange={(value) => dispatch({ type: 'change-form-data', inputName: 'password', value })}
           label="password"
           secureTextEntry={true}
           showInfoButton={true}
+          infoAccessibilityLabel={translate('password_info_label')}
           isValid={password.length >= minPasswordLength}
           hasError={notValid && !(password.length >= minPasswordLength)}
           value={password}
@@ -119,9 +130,10 @@ export function AskUserInformation({ step, heightInner }) {
           errorContent="password_error_content"
         />
         <TextInput
-          onChange={value =>
+          onChange={(value) => {
+            setPasscodeMatchError(false)
             dispatch({ type: 'change-form-data', inputName: 'passwordConfirm', value })
-          }
+          }}
           label="confirm_password"
           secureTextEntry={true}
           showInfoButton={false}
@@ -132,6 +144,7 @@ export function AskUserInformation({ step, heightInner }) {
           }
           value={passwordConfirm}
         />
+        {passcodeMatchError && <ErrorMessage>{translate('passcodes_mismatch')}</ErrorMessage>}
       </Container>
     </SignUpFormLayout>
   )
@@ -142,7 +155,7 @@ const Row = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `
 
 const Container = styled.View`
@@ -154,19 +167,19 @@ const Container = styled.View`
 const GenderText = styled(Text)`
   font-family: Roboto-Regular;
   font-size: 14;
-  margin-bottom: 5;
+  margin-bottom: 5px;
   color: #28b9cb;
 `
 
 const ErrorMessage = styled(TextWithoutTranslation)`
   font-size: 12
-  margin-top: 10;
+  margin-top: 10px;
   color: red;
 `
 const PasswordDescription = styled(Text)`
   width: 95%;
   text-align: justify;
   font-size: 12;
-  margin-bottom: 10;
+  margin-bottom: 10px;
   color: #28b9cb;
 `

@@ -21,7 +21,7 @@ export class NotificationController {
   async mobilePermanentNotifications(request: Request, response: Response, next: NextFunction) {
     // LIKE checks if versions string contains the request param version
     const entry = await this.permanentNotificationRepository.query(
-      `SELECT * from permanent_notification WHERE versions LIKE '%%' || $1 || '%%' AND live = TRUE AND lang = $2`,
+      `SELECT * from oky_en.permanent_notification WHERE versions LIKE '%%' || $1 || '%%' AND live = TRUE AND lang = $2`,
       [request.params.ver, request.params.lang],
     )
 
@@ -98,11 +98,11 @@ export class NotificationController {
     admin
       .messaging()
       .send(message)
-      .then(response => {
+      .then((response) => {
         // Response is a message ID string.
         console.log('Successfully sent message:', response)
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Error sending message:', error)
       })
   }

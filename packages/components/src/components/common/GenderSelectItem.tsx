@@ -28,8 +28,8 @@ const Block = styled.View`
 const Touchable = styled.TouchableOpacity``
 
 const GenderIcon = styled.ImageBackground`
-  height: 40;
-  width: 40;
+  height: 40px;
+  width: 40px;
   justify-content: center;
   align-items: center;
 `

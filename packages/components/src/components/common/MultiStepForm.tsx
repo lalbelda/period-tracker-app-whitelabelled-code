@@ -12,7 +12,7 @@ const MultiStepFormContext = React.createContext(undefined)
 export const GO_TO_STEP = 'GO_TO_STEP'
 
 export const formActions = {
-  goToStep: stepName => ({ type: GO_TO_STEP, stepName }),
+  goToStep: (stepName) => ({ type: GO_TO_STEP, stepName }),
 }
 
 const formInitialState: FormState = {
@@ -56,7 +56,7 @@ export function MultiStepForm<S extends object, A extends AnyAction>({
 
   return (
     <MultiStepFormContext.Provider value={store}>
-      {React.Children.toArray(children).reduce((elements, child) => {
+      {React.Children.toArray(children).reduce((elements: any, child: any) => {
         if (child.props.step !== formState.form.currentStep) {
           return elements
         }

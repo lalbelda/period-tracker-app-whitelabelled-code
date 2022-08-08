@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { NextFunction, Request, Response } from 'express'
-import { getRepository, getManager } from 'typeorm'
+import { getRepository, getManager, createQueryBuilder } from 'typeorm'
 import { Article } from '../entity/Article'
 import { Quiz } from '../entity/Quiz'
 import { User } from '../entity/User'
@@ -21,6 +21,7 @@ import { provinces } from '../services/provinces'
 import { TermsAndConditions } from '../entity/TermsAndConditions'
 import { PrivacyPolicy } from '../entity/PrivacyPolicy'
 import { AboutBanner } from '../entity/AboutBanner'
+import { Question } from '../entity/Question'
 
 export class RenderController {
   private articleRepository = getRepository(Article)
@@ -46,11 +47,26 @@ export class RenderController {
 
   async renderAnalytics(request: Request, response: Response, next: NextFunction) {
     const entityManager = await getManager()
-    const usersGenders = await entityManager.query(analyticsQueries.usersGender)
-    const usersLocations = await entityManager.query(analyticsQueries.usersLocations)
-    const usersAgeGroups = await entityManager.query(analyticsQueries.usersAgeGroups)
-    const preProcessedProvinceList = await entityManager.query(analyticsQueries.usersProvince)
-    const preProcessedCountryList = await entityManager.query(analyticsQueries.usersCountries)
+    const usersGenders = await entityManager.query(analyticsQueries.usersGender, [
+      request.query.gender || null,
+      request.query.location || null,
+    ])
+    const usersLocations = await entityManager.query(analyticsQueries.usersLocations, [
+      request.query.gender || null,
+      request.query.location || null,
+    ])
+    const usersAgeGroups = await entityManager.query(analyticsQueries.usersAgeGroups, [
+      request.query.gender || null,
+      request.query.location || null,
+    ])
+    const preProcessedProvinceList = await entityManager.query(analyticsQueries.usersProvince, [
+      request.query.gender || null,
+      request.query.location || null,
+    ])
+    const preProcessedCountryList = await entityManager.query(analyticsQueries.usersCountries, [
+      request.query.gender || null,
+      request.query.location || null,
+    ])
     const usersShares = await entityManager.query(analyticsQueries.usersShares)
     const directDownloads = await entityManager.query(analyticsQueries.directDownloads)
 
@@ -84,8 +100,21 @@ export class RenderController {
         [countryName]: { ...acc[countryName], [provinceName]: item.value },
       }
     }, {})
+    if ('application/json' === request.get('accept')) {
+      return {
+        query: request.query,
+        usersLocations,
+        usersGenders,
+        usersAgeGroups,
+        usersCountries,
+        usersProvinces,
+        usersShares,
+        directDownloads,
+      }
+    }
 
-    response.render('AnalyticsDash', {
+    return response.render('AnalyticsDash', {
+      query: request.query,
       usersLocations,
       usersGenders,
       usersAgeGroups,
@@ -145,13 +174,32 @@ export class RenderController {
   async renderSurvey(request: Request, response: Response, next: NextFunction) {
     const entityManager = await getManager()
     const answeredSurveys = await entityManager.query(analyticsQueries.answeredSurveysByID)
-    const surveys = await this.surveyRepository.find({
-      where: { lang: request.user.lang },
-      order: {
-        question: 'ASC',
-      },
+    const surveys = await createQueryBuilder('survey')
+      .from(Survey, 'survey')
+      .where({ lang: request.user.lang })
+      .orderBy('survey.date_created')
+      .leftJoinAndMapMany('survey.questions', Question, 'question', 'question.surveyId = survey.id')
+      .addOrderBy('question.sort_number ', 'ASC')
+      .select(['survey', 'question'])
+      .getMany()
+    response.render('Survey', {
+      surveys,
+      answeredSurveys,
+      query: { ...request.query, age: `${request.query.start_age}_${request.query.end_age}` },
     })
-    response.render('Survey', { surveys, answeredSurveys })
+  }
+
+  async renderAnsweredSurvey(request: Request, response: Response, next: NextFunction) {
+    const entityManager = await getManager()
+    const answeredSurveys = await entityManager.query(analyticsQueries.filterSurvey, [
+      request.query.gender || null,
+      request.query.location || null,
+      request.query.start_age || null,
+      request.query.end_age || null,
+    ])
+    return {
+      answeredSurveys,
+    }
   }
 
   async renderDidYouKnow(request: Request, response: Response, next: NextFunction) {
@@ -167,10 +215,10 @@ export class RenderController {
   async renderEncyclopedia(request: Request, response: Response, next: NextFunction) {
     const articles = await this.articleRepository.query(
       `SELECT ar.id, ca.title as category_title, ca.id as category_id, sc.title as subcategory_title, sc.id as subcategory_id, ar.article_heading, ar.article_text, ar.live as live, ca.primary_emoji, ar.lang, ar.date_created 
-      FROM article ar 
-      INNER JOIN category ca 
+      FROM oky_en.article ar 
+      INNER JOIN oky_en.category ca 
       ON ar.category = CAST(ca.id as CHAR(50))
-      INNER JOIN subcategory sc  
+      INNER JOIN oky_en.subcategory sc  
       ON ar.subcategory = CAST(sc.id as CHAR(50))
       WHERE ar.lang = $1`,
       [request.user.lang],
@@ -186,8 +234,8 @@ export class RenderController {
     const categories = await this.categoryRepository.find({ where: { lang: request.user.lang } })
     const subcategories = await this.subcategoryRepository.query(
       `SELECT sc.id, sc.title, ca.title as parent_category, ca.id as parent_category_id
-      FROM subcategory sc
-      INNER JOIN category ca
+      FROM oky_en.subcategory sc
+      INNER JOIN oky_en.category ca
       ON sc.parent_category = CAST(ca.id as CHAR(50))
       WHERE sc.lang = $1`,
       [request.user.lang],
@@ -235,7 +283,7 @@ export class RenderController {
     if (request.query.reason) {
       where.reason = request.query.reason
     }
-    const orderKey = request.query.order_key || null
+    const orderKey: any = request.query.order_key || null
     const orderSequence = request.query.order_sequence || null
     const suggestions = await this.suggestionRepository.find({
       where,

@@ -35,7 +35,7 @@ const Container = styled.View`
 `
 
 const HeadingText = styled(TextWithoutTranslation)`
-  margin-vertical: 30;
+  margin-vertical: 30px;
   font-size: 22;
   font-family: Roboto-Black;
   text-align: center;
@@ -44,23 +44,24 @@ const HeadingText = styled(TextWithoutTranslation)`
 const ContentText = styled(Text)`
   font-size: 16;
   text-align: center;
+  color: #000000;
 `
 
 const Card = styled.View`
-  height: 420;
+  height: 420px;
   width: ${width * 0.95};
   elevation: 4;
   background-color: #fff;
-  padding-horizontal: 20;
-  border-radius: 10;
-  padding-vertical: 25;
+  padding-horizontal: 20px;
+  border-radius: 10px;
+  padding-vertical: 25px;
   align-items: center;
   justify-content: center;
 `
 
 const ImageBox = styled.Image`
-  height: 100;
-  width: 100;
+  height: 100px;
+  width: 100px;
 `
 
 const WelcomeContainer = styled.View`
@@ -89,7 +90,7 @@ const LaunchContainer = styled.View`
   aspect-ratio: 1;
   background-color: #fff;
   elevation: 5;
-  border-radius: 200;
+  border-radius: 200px;
   margin-right: 5%;
   justify-content: center;
   align-items: center;

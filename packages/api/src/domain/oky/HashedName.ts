@@ -19,11 +19,7 @@ export class HashedName {
       throw new Error(`This name is too short`)
     }
 
-    const hash = crypto
-      .createHash('sha256')
-      .update(name, 'utf8')
-      .update(process.env.APPLICATION_SECRET) // Makes the rainbow table different based on deployment secrets
-      .digest('hex')
+    const hash = crypto.createHash('sha256').update(name).digest('hex')
 
     return new HashedName(hash)
   }

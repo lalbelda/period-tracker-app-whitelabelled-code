@@ -12,7 +12,7 @@ export function AskSecretAnswer({ step }) {
   return (
     <ForgotPasswordFormLayout onSubmit={onSubmit}>
       <TextInput
-        onChange={secretAnswer => dispatch({ type: 'change-secret-answer', secretAnswer })}
+        onChange={(secretAnswer) => dispatch({ type: 'change-secret-answer', secretAnswer })}
         label="secret_answer"
         value={state.secretAnswer}
       />
@@ -23,13 +23,13 @@ export function AskSecretAnswer({ step }) {
 
 const QuestionText = styled(Text)`
   font-size: 16;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 const ErrorMessage = styled(Text)`
   font-size: 14;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: red;
 `

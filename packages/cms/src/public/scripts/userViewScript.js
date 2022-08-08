@@ -23,7 +23,6 @@ $('#dynamicModal').on('show.bs.modal', event => {
   $('#col1TableEntry').hide()
   $('#col1TableHeading').hide()
   $('#col2TableModal').val(userInfo.type)
-  $('#col3TableModal').val(userInfo.lang)
   $('#itemID').text(userId)
 })
 
@@ -34,7 +33,7 @@ $('#btnEditConfirm').on('click', () => {
     username: $('#col0TableModal').val(),
     password: $('#col1TableModal').val(),
     type: $('#col2TableModal').val(),
-    lang: $('#col3TableModal').val(),
+    lang: 'en',
   }
   // if the article ID is 0 we are creating a new entry
   $.ajax({

@@ -4,6 +4,7 @@ $('#categoryModal').on('show.bs.modal', event => {
   $('#errorCat1').hide()
   $('#errorCat2').hide()
   $('#errorCat3').hide()
+  $('#errorCatuniq1, #errorCatuniq2, #errorCatuniq3').hide()
   if (categoryId === 0) {
     $('.modal-title').text('Insert New Category')
     $('#colCategory0TableModal').val('')
@@ -29,6 +30,7 @@ $('#subcategoryModal').on('show.bs.modal', event => {
   var subcategoryId = button.data('value') // Extract info from data-* attributes
   $('#errorSubcat1').hide()
   $('#errorSubcat2').hide()
+  $('#errorSubcatUniq1').hide();
   if (subcategoryId === 0) {
     $('.modal-title').text('Insert New Sub Category')
     $('#colSubcategory0TableModal').val('')
@@ -59,7 +61,7 @@ $('#btnCategoryConfirm').on('click', () => {
     data.title.length > 35 ||
     data.primary_emoji === '' ||
     data.primary_emoji_name === '' ||
-    data.primary_emoji_name.length > 8
+    data.primary_emoji_name.length > 25
   ) {
     $('#errorCat1').show()
     $('#errorCat2').show()
@@ -72,6 +74,12 @@ $('#btnCategoryConfirm').on('click', () => {
     type: categoryId === '0' ? 'POST' : 'PUT',
     data: data,
     success: result => {
+      if (result.duplicate){
+        if (result.category.title == result.body.title) $('#errorCatuniq1').css('display', 'block');
+        if (result.category.primary_emoji_name == result.body.primary_emoji_name) $('#errorCatuniq2').css('display', 'block');
+        if (result.category.primary_emoji == result.body.primary_emoji) $('#errorCatuniq3').css('display', 'block');
+        return false
+      }
       location.reload()
     },
     error: error => {
@@ -97,6 +105,10 @@ $('#btnSubcategoryConfirm').on('click', () => {
     type: subcategoryId === '0' ? 'POST' : 'PUT',
     data: data,
     success: result => {
+      if (result.duplicate){
+        $('#errorSubcatUniq1').css('display', 'block');
+        return false
+      }
       location.reload()
     },
     error: error => {
@@ -163,7 +175,7 @@ makeUpdateCountdown({
 makeUpdateCountdown({
   countdownElement: $('#countdown2'),
   tableElement: $('#colCategory1TableModal'),
-  maxLength: 8,
+  maxLength: 25,
 })
 
 makeUpdateCountdown({

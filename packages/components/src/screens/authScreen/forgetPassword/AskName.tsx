@@ -36,20 +36,29 @@ export function AskName({ step }) {
 
   return (
     <ForgotPasswordFormLayout onSubmit={onSubmit}>
-      <TextInput
-        style={{ marginTop: 20 }}
-        onChange={name => dispatch({ type: 'change-name', name })}
-        label="name"
-        value={state.name}
-      />
+      <Row>
+        <TextInput
+          style={{ marginTop: 20 }}
+          onChange={(name) => dispatch({ type: 'change-name', name })}
+          label="name"
+          value={state.name}
+        />
+      </Row>
       {state.errorMessage && <ErrorMessage>{state.errorMessage}</ErrorMessage>}
     </ForgotPasswordFormLayout>
   )
 }
 
+const Row = styled.View`
+  width: 80%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+`
 const ErrorMessage = styled(Text)`
   font-size: 14;
-  margin-top: 20;
-  margin-bottom: 20;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: red;
 `

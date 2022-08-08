@@ -17,6 +17,8 @@ import { SpinLoader } from '../components/common/SpinLoader'
 import { settingsScreenText } from '../config'
 import { useTextToSpeechHook } from '../hooks/useTextToSpeechHook'
 import { closeOutTTs } from '../services/textToSpeech'
+import firebase from 'react-native-firebase'
+import { fetchNetworkConnectionStatus } from '../services/network'
 
 export function SettingsScreen({ navigation }) {
   const dispatch = useDispatch()
@@ -26,7 +28,10 @@ export function SettingsScreen({ navigation }) {
   const hasPasswordRequestOn = useSelector(selectors.isLoginPasswordActiveSelector)
   const hasTtsActive = useSelector(selectors.isTtsActiveSelector)
 
-  useTextToSpeechHook({ navigation, text: settingsScreenText() })
+  useTextToSpeechHook({
+    navigation,
+    text: settingsScreenText({ hasPasswordRequestOn, hasTtsActive }),
+  })
 
   return (
     <BackgroundTheme>
@@ -51,7 +56,12 @@ export function SettingsScreen({ navigation }) {
             renderControls={() => (
               <Switcher
                 value={hasTtsActive}
-                onSwitch={val => {
+                onSwitch={(val) => {
+                  if (val) {
+                    if (fetchNetworkConnectionStatus()) {
+                      firebase.analytics().logEvent('enable_text_to_speech', { user: currentUser })
+                    }
+                  }
                   closeOutTTs()
                   dispatch(actions.setTtsActive(val))
                 }}
@@ -63,7 +73,7 @@ export function SettingsScreen({ navigation }) {
             renderControls={() => (
               <Switcher
                 value={hasPasswordRequestOn}
-                onSwitch={val => {
+                onSwitch={(val) => {
                   dispatch(actions.setLoginPassword(val))
                 }}
               />
@@ -99,6 +109,9 @@ export function SettingsScreen({ navigation }) {
                 translate('delete_account_description'),
                 () => {
                   setTimeout(() => {
+                    if (fetchNetworkConnectionStatus()) {
+                      firebase.analytics().logEvent('delete_account', { user: currentUser })
+                    }
                     dispatch(
                       actions.deleteAccountRequest({
                         name: currentUser.name,
@@ -130,15 +143,15 @@ export function SettingsScreen({ navigation }) {
 const ScrollContainer = styled.View`
   height: 100%;
   width: 100%;
-  padding-horizontal: 10;
+  padding-horizontal: 10px;
 `
 
 const Container = styled.View`
   height: 75%;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 3;
   background: #fff;
-  margin-horizontal: 2;
+  margin-horizontal: 2px;
 `
 
 const Row = styled.View`

@@ -17,7 +17,7 @@ export class PredictionEngine {
   }
 
   // +=+=+=+=+=+=+=+=+=+=+=+=+=+ Main Engine +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-  public predictDay(inputDay: Moment) {
+  public predictDay(inputDay: Moment, isVerified: boolean = false, selectedDayInfo: any = {}) {
     let onPeriod = false
     let onFertile = false
     let daysLeftOnPeriod = 0
@@ -36,13 +36,13 @@ export class PredictionEngine {
         daysUntilNextPeriod: 0,
         cycleLength: 100,
         periodLength: 0,
+        isVerified: true,
       }
     }
     // ------------------------- Basic Calcs --------------------------------
     let cycleStart = this.state.currentCycle.startDate
     const diffDays = inputDay.diff(cycleStart, 'days')
     let cycleDay = diffDays + 1 // because days start from 1 and not 0
-
     // --------------- Future and History Handling -----------------------------
 
     if (diffDays >= cycleLength && diffDays > 0) {
@@ -67,6 +67,18 @@ export class PredictionEngine {
       // History Predictions
       const relevantCycleHistoryEntry = this._getClosetCycleHistoryInfo(inputDay).closetCycle
       if (_.isEmpty(relevantCycleHistoryEntry)) {
+        const log = {
+          onPeriod,
+          onFertile,
+          date: moment(inputDay).startOf('day'),
+          cycleDay: 0,
+          daysLeftOnPeriod: 0,
+          cycleStart: moment(0),
+          daysUntilNextPeriod: 0,
+          cycleLength: 100,
+          periodLength: 0,
+        }
+
         return {
           onPeriod,
           onFertile,
@@ -77,6 +89,7 @@ export class PredictionEngine {
           daysUntilNextPeriod: 0,
           cycleLength: 100,
           periodLength: 0,
+          isVerified,
         }
       }
       cycleStart = relevantCycleHistoryEntry.cycleStartDate
@@ -101,7 +114,7 @@ export class PredictionEngine {
 
     // if cycle day is within the period days (ie if the person is on their period)
     if (cycleDay <= periodLength) {
-      onPeriod = true
+      onPeriod = true // -------->>>>>>>>>>> commented
       daysLeftOnPeriod = periodLength - cycleDay
     }
     if (fertileDayStart <= cycleDay && cycleDay <= fertileDayEnd) {
@@ -119,16 +132,20 @@ export class PredictionEngine {
       daysUntilNextPeriod,
       cycleLength,
       periodLength,
+      isVerified,
     }
   }
 
   // +=+=+=+=+=+=+=+=+=+ Range Population +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
-  public calculateStatusForDateRange(startDate: Moment, endDate: Moment) {
+  public calculateStatusForDateRange(startDate: Moment, endDate: Moment, verifiedPeriodsData: any) {
     const loop = moment(startDate)
     let markedDates = {}
+    // console.log('step  3 prediction engine ---------- ', verifiedPeriodsData);
+
     while (loop <= endDate) {
       const newDate = moment(loop.date(loop.date() + 1)).startOf('day')
+
       const {
         onPeriod,
         onFertile,
@@ -136,28 +153,85 @@ export class PredictionEngine {
         date,
         daysLeftOnPeriod,
         cycleLength,
+        // isVerified,
       } = this.predictDay(newDate)
+
       if (onPeriod || onFertile) {
+        const tempArr = Object.keys(verifiedPeriodsData)
+        const tempValuesArr = Object.values(verifiedPeriodsData)
+        let dateExists = false
+        tempArr.forEach((element, index) => {
+          if (moment(element).isSame(moment(date).format('YYYY-MM-DD'))) {
+            let periodDayValue: any = {}
+            periodDayValue = tempValuesArr[index]
+            if (Object.keys(periodDayValue).includes('periodDay')) {
+              if (periodDayValue?.periodDay) {
+                dateExists = true
+              }
+            }
+          }
+        })
+
         // feed back relevant styling information for Calendar shape {'2019-05-12': { styles...}}
+        const newEntry = date.format('YYYY-MM-DD')
+
+        let color = '#57BBCA'
+        let borderColor = '#e3629b'
+        if (onPeriod && dateExists) {
+          color = '#e3629b'
+          borderColor = '#e3629b'
+        } else if (onPeriod && !dateExists) {
+          color = 'white'
+          borderColor = '#e3629b'
+          // console.log('new entry --- ', newEntry, moment(newEntry))
+        } else if (onFertile) {
+          color = '#3ea4dd'
+          borderColor = '#3ea4dd'
+        } else {
+          color = '#CF386D'
+          borderColor = '#E3629B'
+        }
+        markedDates = {
+          ...markedDates,
+          [newEntry]: {
+            customStyles: {
+              container: {
+                borderColor,
+                borderWidth: 2,
+                backgroundColor: color,
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              text: {
+                color: onPeriod ? (dateExists ? 'white' : '#CF386D') : 'white',
+                fontWeight: '600',
+                fontSize: 14,
+              },
+              selected: true,
+              marked: true,
+            },
+          },
+        }
+      } else {
         const newEntry = date.format('YYYY-MM-DD')
         markedDates = {
           ...markedDates,
           [newEntry]: {
-            color: onPeriod ? '#E3629B' : '#3ea4dd',
-            startingDay:
-              cycleDay === 1 ||
-              (cycleDay ===
-                Math.floor(cycleLength / 2) - Math.floor(this._fertileLength(cycleLength) / 2) &&
-                !onPeriod)
-                ? true
-                : false,
-            endingDay:
-              (daysLeftOnPeriod === 0 && onPeriod) ||
-              (cycleDay ===
-                Math.floor(cycleLength / 2) + Math.floor(this._fertileLength(cycleLength) / 2) &&
-                !onPeriod)
-                ? true
-                : false,
+            customStyles: {
+              container: {
+                borderColor: '#91d9e2',
+                borderWidth: 2,
+                backgroundColor: '#91d9e2',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
+              text: {
+                color: 'white',
+                fontWeight: '600',
+              },
+              selected: true,
+              marked: true,
+            },
           },
         }
       }
@@ -219,6 +293,7 @@ export class PredictionEngine {
       case 'adjust-future-mens-end':
         this._adjustFutureMenstruatingHandler(inputDay, errorCallBack)
         break
+
       default:
         break
     }
@@ -276,7 +351,6 @@ export class PredictionEngine {
       errorCallBack('period_too_long')
       return
     }
-
     if (
       daysFromStart >= 0 &&
       daysFromStart < maxPeriodLength // cant have 11 days of bleeding
@@ -434,7 +508,6 @@ export class PredictionEngine {
       this.state.history[this.state.history.length - 1].cycleStartDate = inputDay
       this.state.history[this.state.history.length - 1].periodLength = periodLengthToBe
       this.state.history[this.state.history.length - 1].cycleLength = cycleLengthToBe
-
       return
     }
     const cycleDay = inputDay.diff(closetCycle.cycleStartDate, 'days')

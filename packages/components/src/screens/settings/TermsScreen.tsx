@@ -13,7 +13,7 @@ const width = Dimensions.get('window').width
 export function TermsScreen({ navigation }) {
   const [page, setPage] = React.useState(0)
   const termsAndConditions = useSelector(selectors.termsAndConditionsContent)
-  const speechText = termsAndConditions.map(item => item.content)
+  const speechText = termsAndConditions.map((item) => item.content)
   const content = termsAndConditions.map((item, ind) => {
     if (item.type === 'HEADING') {
       return <HeadingText>{item.content}</HeadingText>
@@ -38,7 +38,7 @@ export function TermsScreen({ navigation }) {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ width: numPages * width }}
         horizontal
-        onMomentumScrollEnd={event => {
+        onMomentumScrollEnd={(event) => {
           setPage(Math.round(event.nativeEvent.contentOffset.x / width))
         }}
         style={{ flex: 1 }}
@@ -91,31 +91,31 @@ const Buttons = styled.View`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  bottom: 20;
+  bottom: 20px;
   align-self: center;
   flex-direction: row;
 `
 
 const Circle = styled.View<{ isHighlighted: boolean }>`
-  height: 15;
-  width: 15;
-  margin-horizontal: 2.5;
-  margin-bottom: 2.5;
-  border-radius: 10;
-  elevation: ${props => (props.isHighlighted ? 5 : 2)};
-  background-color: ${props => (props.isHighlighted ? '#f9c7c1' : `#efefef`)};
+  height: 15px;
+  width: 15px;
+  margin-horizontal: 2.5px;
+  margin-bottom: 2.5px;
+  border-radius: 10px;
+  elevation: ${(props) => (props.isHighlighted ? 5 : 2)};
+  background-color: ${(props) => (props.isHighlighted ? '#f9c7c1' : `#efefef`)};
 `
 
 const ViewContainer = styled.View`
   width: ${width * 0.95};
-  border-radius: 10;
-  padding-left: 42;
-  padding-right: 42;
+  border-radius: 10px;
+  padding-left: 42px;
+  padding-right: 42px;
   background-color: #fff;
-  padding-top: 40;
-  padding-bottom: 40;
+  padding-top: 40px;
+  padding-bottom: 40px;
   elevation: 2;
-  margin-bottom: 30;
+  margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
 `
@@ -123,7 +123,7 @@ const ViewContainer = styled.View`
 const ContentText = styled(TextWithoutTranslation)`
   font-size: 14;
   color: #4d4d4d;
-  margin-bottom: 10;
+  margin-bottom: 10px;
   width: 100%;
   text-align: left;
 `
@@ -133,5 +133,5 @@ const HeadingText = styled(TextWithoutTranslation)`
   text-align: left;
   color: #4d4d4d;
   width: 100%;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `

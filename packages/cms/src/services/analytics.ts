@@ -3,30 +3,31 @@ export const analyticsQueries = {
     SELECT 
     COUNT(CASE location WHEN 'Urban' then 1 else null end) as total_urban,
     COUNT(CASE location WHEN 'Rural' then 1 else null end) as total_rural
-    FROM oky_user
+    FROM oky_en.oky_user WHERE (gender = $1 OR $1 IS NULL) AND (location= $2 OR $2 IS NULL)
     `,
   usersGender: `
     SELECT 
     COUNT(CASE gender WHEN 'Female' then 1 else null end) as total_female, 
     COUNT(CASE gender WHEN 'Male' then 1 else null end) as total_male,
     COUNT(CASE gender WHEN 'Other' then 1 else null end) as total_other
-    FROM oky_user
+    FROM oky_en.oky_user WHERE (gender = $1 OR $1 IS NULL) AND (location= $2 OR $2 IS NULL)
     `,
   usersAgeGroups: `
-    SELECT SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) < 5 THEN 1 ELSE 0 END) AS under_5,
-    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 5 AND 10 THEN 1 ELSE 0 END) AS between_5_10,
-    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 11 AND 13 THEN 1 ELSE 0 END) AS between_11_13,
+    SELECT SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) < 10 THEN 1 ELSE 0 END) AS under_10,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 10 AND 11 THEN 1 ELSE 0 END) AS between_10_11,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 12 AND 13 THEN 1 ELSE 0 END) AS between_12_13,
     SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 14 AND 15 THEN 1 ELSE 0 END) AS between_14_15,
-    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 16 AND 18 THEN 1 ELSE 0 END) AS between_16_18,
-    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 19 AND 20 THEN 1 ELSE 0 END) AS between_19_20,
-    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) > 20 THEN 1 ELSE 0 END) AS greater_than_20
-    FROM oky_user
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 16 AND 17 THEN 1 ELSE 0 END) AS between_16_17,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 18 AND 19 THEN 1 ELSE 0 END) AS between_18_19,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 20 AND 21 THEN 1 ELSE 0 END) AS between_20_21,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) > 22 THEN 1 ELSE 0 END) AS greater_than_22
+    FROM oky_en.oky_user WHERE (gender = $1 OR $1 IS NULL) AND (location= $2 OR $2 IS NULL)
     `,
   usersCountries: `
     SELECT
     country,
     COUNT(*) as value
-    FROM oky_user
+    FROM oky_en.oky_user WHERE (gender = $1 OR $1 IS NULL) AND (location= $2 OR $2 IS NULL)
     GROUP BY country
   `,
   usersProvince: `
@@ -34,7 +35,7 @@ export const analyticsQueries = {
     country,
     province,
     COUNT(*) as value
-    FROM oky_user
+    FROM oky_en.oky_user WHERE (gender = $1 OR $1 IS NULL) AND (location= $2 OR $2 IS NULL)
     GROUP BY province, country
   `,
   answeredQuizzesByID: `
@@ -45,25 +46,20 @@ export const analyticsQueries = {
     COUNT(CASE answerID WHEN '1' then 1 else null end) as total_option1,
     COUNT(CASE answerID WHEN '2' then 1 else null end) as total_option2,
     COUNT(CASE answerID WHEN '3' then 1 else null end) as total_option3
-    FROM answered_quizzes
+    FROM oky_en.answered_quizzes
     GROUP BY id
     `,
 
   answeredSurveysByID: `
-    SELECT id, 
-    COUNT(CASE answerID WHEN '1' then 1 else null end) as total_option1,
-    COUNT(CASE answerID WHEN '2' then 1 else null end) as total_option2,
-    COUNT(CASE answerID WHEN '3' then 1 else null end) as total_option3,
-    COUNT(CASE answerID WHEN '4' then 1 else null end) as total_option4,
-    COUNT(CASE answerID WHEN '5' then 1 else null end) as total_option5
-    FROM answered_surveys
-    GROUP BY id
+    SELECT answered_surveys.id,answered_surveys.questions, answered_surveys.user_id
+    FROM oky_en.answered_surveys
+    GROUP BY answered_surveys.id, answered_surveys.questions, answered_surveys.user_id
   `,
   usersShares: `
     SELECT
     DATE_TRUNC('day', created_at) AS date,
     COUNT(*) as value
-    FROM app_event
+    FROM oky_en.app_event
     WHERE type = 'SHARE_APP'
     GROUP BY DATE_TRUNC('day', created_at)
     ORDER BY date
@@ -72,9 +68,30 @@ export const analyticsQueries = {
     SELECT
     DATE_TRUNC('day', date_created) AS date,
     COUNT(*) as value
-    FROM analytics
+    FROM oky_en.analytics
     WHERE type = 'DIRECT_DOWNLOAD'
     GROUP BY DATE_TRUNC('day', date_created)
     ORDER BY date
+  `,
+
+  filterSurvey: `
+    SELECT answered_surveys.id,questions, location, date_of_birth, gender, answered_surveys.user_id,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) < 10 THEN 1 ELSE 0 END) AS under_10,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 10 AND 11 THEN 1 ELSE 0 END) AS between_10_11,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 12 AND 13 THEN 1 ELSE 0 END) AS between_12_13,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 14 AND 15 THEN 1 ELSE 0 END) AS between_14_15,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 16 AND 17 THEN 1 ELSE 0 END) AS between_16_17,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 18 AND 19 THEN 1 ELSE 0 END) AS between_18_19,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) BETWEEN 20 AND 21 THEN 1 ELSE 0 END) AS between_20_21,
+    SUM(CASE WHEN (DATE_PART('year', now()::date) - DATE_PART('year', date_of_birth)) > 22 THEN 1 ELSE 0 END) AS greater_than_22,
+    STRING_AGG(questions, ' ,')
+    FROM oky_en.answered_surveys
+    full outer join oky_en.oky_user 
+    ON oky_user.id = answered_surveys.user_id::uuid 
+    WHERE 
+      (oky_user.gender = $1 OR $1 IS NULL) 
+      AND (oky_user.location= $2 OR $2 IS NULL)
+      AND ((DATE_PART('year', now()::date) - DATE_PART('year', oky_user.date_of_birth)) BETWEEN $3 AND $4 OR $3 IS NULL)
+    GROUP BY answered_surveys.id, answered_surveys.user_id, answered_surveys.questions, oky_user.location, oky_user.date_of_birth, oky_user.gender
   `,
 }

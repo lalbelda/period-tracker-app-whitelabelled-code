@@ -86,10 +86,10 @@ export function EditProfileScreen() {
   const [isVisible, setIsVisible] = React.useState(false)
   const [secretIsVisible, setSecretIsVisible] = React.useState(false)
 
-  const remainingGenders = ['Female', 'Male', 'Other'].filter(item => {
+  const remainingGenders = ['Female', 'Male', 'Other'].filter((item) => {
     return item !== currentUser.gender
   })
-  const remainingLocations = ['Urban', 'Rural'].filter(item => {
+  const remainingLocations = ['Urban', 'Rural'].filter((item) => {
     return item !== currentUser.location
   })
   remainingLocations.unshift(currentUser.location)
@@ -241,7 +241,7 @@ export function EditProfileScreen() {
                 style={{ marginRight: 38, height: 57, width: 57 }}
               />
               <TextInputSettings
-                onChange={text => setName(text)}
+                onChange={(text) => setName(text)}
                 label="name"
                 isValid={false}
                 hasError={false}
@@ -270,7 +270,7 @@ export function EditProfileScreen() {
                 buttonStyle={{ right: -10, bottom: 5 }}
                 title="gender"
                 items={[currentUser.gender, ...remainingGenders]}
-                onValueChange={value => setGender(value)}
+                onValueChange={(value) => setGender(value)}
               />
             </Row>
             <Row>
@@ -310,7 +310,7 @@ export function EditProfileScreen() {
                   width: inputWidth,
                 }}
                 buttonStyle={{ right: -10, bottom: 5 }}
-                onValueChange={value => setLocation(value)}
+                onValueChange={(value) => setLocation(value)}
                 isValid={false}
                 hasError={false}
               />
@@ -321,7 +321,7 @@ export function EditProfileScreen() {
                 style={{ marginRight: 38, height: 57, width: 57 }}
               />
               <TextInputSettings
-                onChange={text => setPassword(text)}
+                onChange={(text) => setPassword(text)}
                 style={{ height: '100%', justifyContent: 'space-between', marginBottom: 0 }}
                 label="password"
                 isValid={password.length >= minPasswordLength}
@@ -361,9 +361,9 @@ export function EditProfileScreen() {
       {/* --------------------------------- modals --------------------------------- */}
       <ThemedModal {...{ isVisible, setIsVisible, onBackdropPress: () => null }}>
         <CardModal>
-          <QuestionText>reset_secret_question</QuestionText>
+          <QuestionText>reset_password_question</QuestionText>
           <TextInput
-            onChange={value => setSecretAnswer(value)}
+            onChange={(value) => setSecretAnswer(value)}
             label="secret_answer"
             value={secretAnswer}
           />
@@ -375,31 +375,35 @@ export function EditProfileScreen() {
       <ThemedModal {...{ isVisible: secretIsVisible, setIsVisible: setSecretIsVisible }}>
         <CardModal>
           <QuestionText>reset_secret_question</QuestionText>
-          <TextInput
-            onChange={value => setOldSecretAnswer(value)}
-            label="old_secret_answer"
-            value={oldSecretAnswer}
-          />
-          <VerticalSelectBox
-            items={secretQuestions.map(questions => (questions ? questions : ''))}
-            containerStyle={{
-              height: 45,
-              borderRadius: 22.5,
-            }}
-            height={45}
-            maxLength={20}
-            buttonStyle={{ right: 5, bottom: 7 }}
-            onValueChange={value => setSecretQuestion(value)}
-            errorHeading="secret_q_error_heading"
-            errorContent="secret_que_info"
-          />
-          <TextInput
-            onChange={value => setSecretAnswer(value)}
-            label="secret_answer"
-            isValid={secretAnswer.length >= minPasswordLength}
-            hasError={notValid && !(secretAnswer.length >= minPasswordLength)}
-            value={secretAnswer}
-          />
+
+          <TextContainer>
+            <TextInput
+              onChange={(value) => setOldSecretAnswer(value)}
+              label="old_secret_answer"
+              value={oldSecretAnswer}
+            />
+            <VerticalSelectBox
+              items={secretQuestions.map((questions) => (questions ? questions : ''))}
+              containerStyle={{
+                height: 45,
+                borderRadius: 22.5,
+              }}
+              height={45}
+              maxLength={20}
+              buttonStyle={{ right: 5, bottom: 7 }}
+              onValueChange={(value) => setSecretQuestion(value)}
+              errorHeading="secret_q_error_heading"
+              errorContent="secret_que_info"
+            />
+            <TextInput
+              onChange={(value) => setSecretAnswer(value)}
+              label="secret_answer"
+              isValid={secretAnswer.length >= minPasswordLength}
+              hasError={notValid && !(secretAnswer.length >= minPasswordLength)}
+              value={secretAnswer}
+              multiline={true}
+            />
+          </TextContainer>
           <Confirm
             onPress={() => {
               if (secretAnswer.length < minPasswordLength) {
@@ -417,63 +421,78 @@ export function EditProfileScreen() {
   )
 }
 
+const TextContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  shadow-color: #efefef;
+  shadow-offset: 0px 2px;
+  shadow-opacity: 1;
+  shadow-radius: 2px;
+`
 const Container = styled.View`
   background-color: #fff;
   elevation: 4;
-  margin-horizontal: 3;
-  margin-vertical: 3;
-  margin-bottom: 5;
-  border-radius: 10;
-  padding-horizontal: 30;
-  padding-vertical: 22;
+  margin-horizontal: 3px;
+  margin-vertical: 3px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding-horizontal: 30px;
+  padding-vertical: 22px;
 `
-
+const TextRow = styled.View`
+  width: 100%
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background-color: red;
+`
 const Row = styled.View`
   flex-direction: row;
-  height: 57;
+  height: 57px;
   align-items: flex-end;
-  margin-bottom: 4;
+  margin-bottom: 4px;
 `
-
 const Confirm = styled.TouchableOpacity`
   width: 100%;
-  height: 45;
-  border-radius: 22.5;
+  height: 45px;
+  border-radius: 22.5px;
   background-color: #a2c72d;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10;
-  margin-top: 10;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 
 const ChangeSecretButton = styled.TouchableOpacity`
   width: ${inputWidth};
-  height: 50;
-  border-radius: 25;
+  height: 50px;
+  border-radius: 25px;
   background-color: #a2c72d;
   align-items: center;
   justify-content: center;
 `
 const ConfirmButton = styled.TouchableOpacity`
   width: 100%;
-  height: 60;
-  border-radius: 10;
+  height: 60px;
+  border-radius: 10px;
   background-color: #fff;
   align-items: center;
   justify-content: center;
   align-self: center;
-  margin-top: 5;
-  margin-horizontal: 3;
+  margin-top: 5px;
+  margin-horizontal: 3px;
   elevation: 4;
 `
 
 const CardModal = styled.View`
   width: 90%;
-  height: 400;
+  height: 400px;
   background-color: #fff;
-  border-radius: 10;
-  padding-horizontal: 20;
-  padding-vertical: 20;
+  border-radius: 10px;
+  padding-horizontal: 20px;
+  padding-vertical: 20px;
   align-items: center;
   justify-content: space-around;
   align-self: center;

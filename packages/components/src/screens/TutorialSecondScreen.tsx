@@ -19,6 +19,11 @@ import { DayAssetDemo } from './tutorial/DayAssetDemo'
 import { CalendarAssetDemo } from './tutorial/CalendarAssetDemo'
 import { SpinLoader } from '../components/common/SpinLoader'
 import { NoteAssetDemo } from './tutorial/NoteAssetDemo'
+import { useSelector } from '../hooks/useSelector'
+import * as selectors from '../redux/selectors'
+import moment from 'moment'
+import Tts from 'react-native-tts'
+import { translate } from '../i18n'
 
 const screenHeight = Dimensions.get('screen').height
 const screenWidth = Dimensions.get('screen').width
@@ -26,7 +31,7 @@ const arrowSize = 55
 
 // I apologize to anyone who gets to this level of error checking on the sequencing of this component.
 // Deadline pressure had mounted beyond compare and it was working stably, It definitely can be simplified and made more declarative
-export function TutorialSecondScreen() {
+export function TutorialSecondScreen({ navigation }) {
   const { data, isActive, index, currentIndex, absoluteIndex } = useInfiniteScroll()
   const [step, setStep] = React.useState(0)
   const [loading, setLoading] = React.useState(false)
@@ -38,8 +43,11 @@ export function TutorialSecondScreen() {
   const [positionZ] = React.useState(new Animated.Value(0))
   const [positionDemoX] = React.useState(new Animated.Value(-screenWidth))
   const [positionDemoY] = React.useState(new Animated.Value(0.15 * screenHeight))
+  const [completedStep, setCompletedStep] = React.useState(0)
   const flag = React.useRef(false)
   const dispatch = useDispatch()
+  const renamedUseSelector = useSelector
+  const hasTtsActive = useSelector(selectors.isTtsActiveSelector)
 
   const normalizePosition = (percentage, dimension) => {
     return percentage * dimension - arrowSize / 2
@@ -134,6 +142,15 @@ export function TutorialSecondScreen() {
       },
     },
   }
+  React.useEffect(() => {
+    if (hasTtsActive) {
+      if (completedStep === step) {
+        setCompletedStep(step + 1)
+        Tts.speak(translate(stepInfo[step].heading))
+        Tts.speak(translate(stepInfo[step].text))
+      }
+    }
+  }, [completedStep, stepInfo, step, hasTtsActive])
 
   React.useEffect(() => {
     if (step === 6) {
@@ -236,6 +253,12 @@ export function TutorialSecondScreen() {
     ]).start()
   }
 
+  const getCardAnswersValues = (inputDay) => {
+    const cardData = renamedUseSelector((state) =>
+      selectors.verifyPeriodDaySelectorWithDate(state, moment(inputDay.date)),
+    )
+    return cardData
+  }
   return (
     <BackgroundTheme>
       <Container>
@@ -259,7 +282,15 @@ export function TutorialSecondScreen() {
           </AvatarSection>
           <WheelSection {...{ step }} style={{ width: Platform.OS === 'ios' ? '70%' : '65%' }}>
             <CircularSelection
-              {...{ data, index, isActive, currentIndex, absoluteIndex, disableInteraction: true }}
+              {...{
+                data,
+                index,
+                isActive,
+                currentIndex,
+                absoluteIndex,
+                disableInteraction: true,
+              }}
+              fetchCardValues={getCardAnswersValues}
             />
             <CenterCard style={{ elevation: 0 }} />
             <Overlay />
@@ -267,7 +298,14 @@ export function TutorialSecondScreen() {
         </MiddleSection>
         <CarouselSection {...{ step }}>
           <Carousel
-            {...{ index, data, isActive, currentIndex, absoluteIndex, disableInteraction: true }}
+            {...{
+              index,
+              data,
+              isActive,
+              currentIndex,
+              absoluteIndex,
+              disableInteraction: true,
+            }}
           />
 
           {step !== 0 && step !== 1 && step !== 2 && <Overlay style={{ height: '100%' }} />}
@@ -307,8 +345,8 @@ export function TutorialSecondScreen() {
         }}
       >
         <DemonstratedComponent>
-          {showDayAsset && <DayAssetDemo />}
-          {showNoteAsset && <NoteAssetDemo />}
+          {showDayAsset && <DayAssetDemo step={step} />}
+          {showNoteAsset && <NoteAssetDemo step={step} />}
           {showCalendarAsset && <CalendarAssetDemo />}
         </DemonstratedComponent>
       </Animated.View>
@@ -316,7 +354,7 @@ export function TutorialSecondScreen() {
         activeOpacity={1}
         onPress={() => {
           if (!flag.current) {
-            setStep(val => val + 1)
+            setStep((val) => val + 1)
           }
         }}
       >
@@ -345,7 +383,7 @@ const Container = styled.View`
   position: absolute;
 `
 const Empty = styled.View`
-  height: 56;
+  height: 56px;
   bottom: 0;
   right: 0;
   left: 0;
@@ -384,7 +422,7 @@ const CarouselSection = styled.View<{ step: number }>`
   width: 100%;
   flex-direction: row;
   elevation: 0;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.step === 0 || props.step === 1 || props.step === 2
       ? 'rgba(0, 0, 0, 0.8)'
       : 'transparent'};
@@ -411,10 +449,10 @@ const TutorialInformation = styled.View<{ step: number }>`
   width: 85%;
   position: absolute;
 
-  ${props =>
+  ${(props) =>
     props.step !== 3 && props.step !== 4 && props.step !== 5 ? 'top: 25;' : 'bottom: 25;'}
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;

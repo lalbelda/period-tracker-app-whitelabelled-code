@@ -1,4 +1,4 @@
-<% include partials/Header %> 
+<%- include('partials/Header') %> 
 <%- include('modals/NotificationModal', {headings: [__('Title'),__('Content')]}) %>
 <%- include('modals/PermanentNotificationModal') %>
 <div class="homePageContainer">
@@ -6,7 +6,7 @@
     <% if(currentUser.type !== 'contentManager') {%>
       <a href="/user-management" class="special"><h6><%= __('Add a new user')%></h6></a>
     <% } %>
-    <% include partials/SideTab %> 
+    <%- include('partials/SideTab') %> 
   </div>
   <div class="mainContentContainer">
     <div class="homeTopTextContainer">
@@ -193,4 +193,4 @@
   <script type="application/javascript" src="/scripts/notificationScript.js"></script>
 
 </div>
-<% include partials/Footer %>
+<%- include('partials/Footer') %>

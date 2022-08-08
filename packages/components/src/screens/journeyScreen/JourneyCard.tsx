@@ -39,7 +39,7 @@ export function JourneyCard({
               resizeMode="contain"
               source={assets.avatars[selectedAvatar].bubbles}
             />
-            <Text style={{ fontSize: 14, textAlign: 'left' }}>{description}</Text>
+            <Text style={{ fontSize: 14, textAlign: 'left', color: '#000' }}>{description}</Text>
             <BigOrangeText>{question}</BigOrangeText>
           </WhiteContainer>
           <ButtonContainer>
@@ -140,12 +140,12 @@ const LeftButton = ({ title, onPress }) => (
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 4;
-  margin-bottom: 60;
-  margin-left: 20;
-  margin-right: 20;
-  margin-top: 10;
+  margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
   align-items: center;
 `
 
@@ -153,10 +153,10 @@ const WhiteContainer = styled.View`
   flex: 1;
   width: 100%;
   background-color: #fff;
-  padding-vertical: 25;
-  padding-horizontal: 30;
-  border-top-left-radius: 10;
-  border-top-right-radius: 10;
+  padding-vertical: 25px;
+  padding-horizontal: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   align-items: center;
   justify-content: space-around;
   elevation: 4;
@@ -171,9 +171,9 @@ const ButtonContainer = styled.View`
 
 const Button = styled.TouchableOpacity`
   flex: 1;
-  height: 70;
+  height: 70px;
   justify-content: center;
-  padding-horizontal: 30;
+  padding-horizontal: 30px;
 `
 
 const ButtonTitle = styled(Text)`
@@ -185,7 +185,7 @@ const ButtonTitle = styled(Text)`
 
 const BubbleAvatarImage = styled.Image`
   width: 90%;
-  height: 100;
+  height: 100px;
 `
 
 const BigOrangeText = styled(Text)`

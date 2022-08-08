@@ -6,7 +6,7 @@ import { SignUpFormLayout } from './SignUpFormLayout'
 import { useMultiStepForm, formActions } from '../../../components/common/MultiStepForm'
 import { navigate } from '../../../services/navigationService'
 import { formHeights } from './FormHeights'
-
+import { translate } from '../../../i18n'
 export function AskUserConfirmation({ step, heightInner }) {
   const [, dispatch] = useMultiStepForm()
   const [loading, setLoading] = React.useState(false)
@@ -40,18 +40,24 @@ export function AskUserConfirmation({ step, heightInner }) {
       >
         <Row style={{ flexWrap: 'wrap', justifyContent: 'center' }}>
           <GenderText>accept_conditions_1</GenderText>
-          <TouchableOpacity onPress={() => navigate('PrivacyScreen', null)}>
+          <TouchableOpacity
+            accessibilityLabel={translate(`privacy_and_policy_link`)}
+            onPress={() => navigate('PrivacyScreen', null)}
+          >
             <GenderText style={{ color: '#28b9cb' }}>accept_conditions_2</GenderText>
           </TouchableOpacity>
           <GenderText>accept_conditions_3</GenderText>
-          <TouchableOpacity onPress={() => navigate('TermsScreen', null)}>
+          <TouchableOpacity
+            accessibilityLabel={translate('t_and_c_link')}
+            onPress={() => navigate('TermsScreen', null)}
+          >
             <GenderText style={{ color: '#28b9cb' }}>accept_conditions_4</GenderText>
           </TouchableOpacity>
           <GenderText>accept_conditions_5</GenderText>
         </Row>
 
-        <Row style={{ marginTop: 20 }}>
-          <RadioButton selected={isAgreed} onPress={val => setIsAgreed(val)} />
+        <Row accessibilityLabel={translate('i_agree')} style={{ marginTop: 20 }}>
+          <RadioButton selected={isAgreed} onPress={(val) => setIsAgreed(val)} />
           <AgreeText style={{ marginLeft: 20 }}>i_agree</AgreeText>
         </Row>
       </Container>
@@ -78,7 +84,7 @@ const RadioCircle = styled.TouchableOpacity`
   aspect-ratio: 1;
   border-radius: 12.5;
   background-color: #efefef;
-  border-width: 1;
+  border-width: 1px;
   border-color: grey;
   elevation: 5;
   align-items: center;
@@ -88,7 +94,7 @@ const RadioCircle = styled.TouchableOpacity`
 const RadioFill = styled.View`
   width: 80%;
   aspect-ratio: 1;
-  border-radius: 100;
+  border-radius: 100px;
   background-color: rgb(143, 175, 5);
 `
 const GenderText = styled(Text)`

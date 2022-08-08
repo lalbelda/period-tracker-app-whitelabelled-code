@@ -16,7 +16,9 @@ import { translate } from '../../i18n'
 const deviceWidth = Dimensions.get('window').width
 
 export function NoteCard({ dataEntry }) {
-  const noteObject = useSelector(state => selectors.notesAnswerSelector(state, dataEntry.date))
+  const noteObject: any = useSelector((state) =>
+    selectors.notesAnswerSelector(state, dataEntry.date),
+  )
   const userID = useSelector(selectors.currentUserSelector).id
   const [title, setTitle] = React.useState(noteObject.title || '')
   const [titlePlaceholder, setTitlePlaceholder] = React.useState('title')
@@ -44,7 +46,7 @@ export function NoteCard({ dataEntry }) {
             <TextInput
               onFocus={() => setTitlePlaceholder('empty')}
               onBlur={() => setTitlePlaceholder('title')}
-              onChange={text => setTitle(text)}
+              onChange={(text) => setTitle(text)}
               onEndEditing={() =>
                 dispatch(
                   actions.answerNotesCard({ title, notes, userID, utcDateTime: dataEntry.date }),
@@ -62,7 +64,7 @@ export function NoteCard({ dataEntry }) {
         </Row>
         <Row style={{ flex: 1, width: '100%' }}>
           <TextInput
-            onChange={text => setNotes(text)}
+            onChange={(text) => setNotes(text)}
             onFocus={() => setNotesPlaceholder('empty')}
             onBlur={() => setNotesPlaceholder('daily_note_description')}
             onEndEditing={() =>
@@ -105,8 +107,8 @@ export function NoteCard({ dataEntry }) {
 const NoteCardContainer = styled.View`
   flex-direction: column;
   background-color: #fff;
-  border-radius: 10;
-  margin-horizontal: 10;
+  border-radius: 10px;
+  margin-horizontal: 10px;
 `
 
 const Row = styled.View`
@@ -134,7 +136,7 @@ const UpperContent = styled.View`
 `
 
 const LowerContent = styled.TouchableOpacity`
-  height: 80
+  height: 80px;
   width: 100%;
   elevation: 4;
   border-bottom-left-radius: 10;

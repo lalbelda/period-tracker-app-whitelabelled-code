@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm'
-
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm'
+import { Question } from './Question'
 @Entity()
 export class Survey {
   @PrimaryColumn('uuid')
@@ -19,6 +19,8 @@ export class Survey {
 
   @Column()
   option4: string
+  @OneToMany((type) => Question, (question) => question.surveyId)
+  questions: Question[]
 
   @Column()
   option5: string
@@ -34,4 +36,10 @@ export class Survey {
 
   @Column()
   lang: string
+
+  @Column()
+  is_multiple: boolean
+
+  @Column()
+  isAgeRestricted: boolean
 }

@@ -10,7 +10,7 @@ import { TextWithoutTranslation } from '../components/common/Text'
 import { useTextToSpeechHook } from '../hooks/useTextToSpeechHook'
 
 const ArticleItem = ({ article, index, articles }) => {
-  const articleObject = useSelector(state => selectors.articleByIDSelector(state, article))
+  const articleObject = useSelector((state) => selectors.articleByIDSelector(state, article))
   return (
     <ArticleContainer
       style={{
@@ -32,7 +32,7 @@ const ArticleItem = ({ article, index, articles }) => {
 
 export function ArticlesScreen({ navigation }) {
   const subCategory = navigation.getParam('subCategory')
-  const subCategoryObject = useSelector(state =>
+  const subCategoryObject = useSelector((state) =>
     selectors.subCategoryByIDSelector(state, subCategory),
   )
   const allArticlesByIDObject = useSelector(selectors.articlesObjectByIDSelector)
@@ -72,8 +72,8 @@ const Row = styled.View`
 `
 
 const ArticleContainer = styled.View`
-  margin-vertical: 5;
-  border-radius: 10;
+  margin-vertical: 5px;
+  border-radius: 10px;
   elevation: 3;
   background-color: #fff;
   padding-top: 20;
@@ -90,4 +90,5 @@ const ArticleTitle = styled(TextWithoutTranslation)`
 
 const ArticleContent = styled(TextWithoutTranslation)`
   text-align: left;
+  color: #1c1c1c;
 `

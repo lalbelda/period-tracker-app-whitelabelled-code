@@ -11,6 +11,8 @@ import {
   PrivacyPolicy,
   TermsAndConditions,
   About,
+  AllSurveys,
+  CompletedSurveys,
 } from '../../types'
 import { Actions } from '../types/index'
 
@@ -27,6 +29,8 @@ export interface ContentState {
   termsAndConditions: TermsAndConditions
   about: About
   aboutBanner: string
+  allSurveys: AllSurveys
+  completedSurveys: CompletedSurveys
 }
 
 const initialState: ContentState = {
@@ -42,10 +46,27 @@ const initialState: ContentState = {
     byId: {},
     allIds: [],
   },
+  // surveys: {
+  //   byId: {},
+  //   allIds: [],
+  // },
   surveys: {
-    byId: {},
-    allIds: [],
+    date_created: '',
+    id: 'string',
+    isAgeRestricted: false,
+    is_multiple: true,
+    lang: 'string',
+    live: true,
+    option1: 'string',
+    option2: 'string',
+    option3: 'string',
+    option4: 'string',
+    option5: 'string',
+    question: 'string',
+    questions: [],
   },
+  allSurveys: [],
+  completedSurveys: [],
   quizzes: {
     byId: {},
     allIds: [],
@@ -67,8 +88,42 @@ export function contentReducer(state = initialState, action: Actions): ContentSt
     case 'INIT_STALE_CONTENT':
       return { ...action.payload }
     case 'FETCH_CONTENT_SUCCESS':
-      return { ...action.payload }
-
+      return {
+        ...state,
+        articles: action.payload.articles,
+        categories: action.payload.categories,
+        subCategories: action.payload.subCategories,
+        // surveys: {
+        //   byId: {},
+        //   allIds: [],
+        // },
+        // surveys:[],
+        quizzes: action.payload.quizzes,
+        didYouKnows: action.payload.didYouKnows,
+        helpCenters: action.payload.helpCenters,
+        avatarMessages: action.payload.avatarMessages,
+        privacyPolicy: action.payload.privacyPolicy,
+        termsAndConditions: action.payload.termsAndConditions,
+        about: action.payload.about,
+        aboutBanner: action.payload.aboutBanner,
+      }
+    // return { ...action.payload }
+    case 'FETCH_SURVEY_CONTENT_SUCCESS':
+      return {
+        ...state,
+        surveys: action.payload.surveys,
+      }
+    case 'UPDATE_ALL_SURVEYS_CONTENT':
+      return {
+        ...state,
+        allSurveys: action.payload.allSurveys,
+      }
+    case 'UPDATE_COMPLETED_SURVEYS':
+      return {
+        ...state,
+        completedSurveys: action.payload.completedSurveys,
+      }
+    // return { ...action.payload }
     default:
       return state
   }

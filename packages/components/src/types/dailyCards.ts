@@ -13,4 +13,10 @@ export interface DailyCard {
   body?: Body
   flow?: Flow
   mood?: Mood
+  periodDay: null | boolean
 }
+
+// export type P
+// export interface VerifyPredictedDate {
+//   date?: moment
+// }

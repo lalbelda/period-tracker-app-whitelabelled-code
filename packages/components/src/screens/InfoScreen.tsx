@@ -8,7 +8,10 @@ import { ListItem } from '../components/common/ListItem'
 import { navigate } from '../services/navigationService'
 import { assets } from '../assets/index'
 import { Text } from '../components/common/Text'
+import firebase from 'react-native-firebase'
+import { fetchNetworkConnectionStatus } from '../services/network'
 
+const analytics = firebase.analytics()
 export function InfoScreen() {
   return (
     <BackgroundTheme>
@@ -25,7 +28,11 @@ export function InfoScreen() {
             <NavigationLink onPress={() => navigate('TermsScreen', null)}>
               <ListItem title="t_and_c" description="t_and_c_info" />
             </NavigationLink>
-            <NavigationLink onPress={() => navigate('PrivacyScreen', null)}>
+            <NavigationLink
+              onPress={() => {
+                navigate('PrivacyScreen', null)
+              }}
+            >
               <ListItem
                 style={{ borderBottomWidth: 0 }}
                 title="privacy_policy"
@@ -34,7 +41,15 @@ export function InfoScreen() {
             </NavigationLink>
           </NavigationContainer>
           <NavigationContainer style={{ marginTop: 12 }}>
-            <Row onPress={() => navigate('Encyclopedia', null)}>
+            <Row
+              onPress={() => {
+                if (fetchNetworkConnectionStatus()) {
+                  analytics.setAnalyticsCollectionEnabled(true)
+                  analytics.setCurrentScreen('InfoScreen', 'EncyclopediaScreen')
+                }
+                navigate('Encyclopedia', null)
+              }}
+            >
               <Title style={{ textTransform: 'capitalize' }}>encyclopedia</Title>
               <NewsIcon source={assets.static.icons.news} />
             </Row>
@@ -55,31 +70,31 @@ const Row = styled.TouchableOpacity`
 `
 
 const NavigationContainer = styled.View`
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 3;
   background: #fff;
-  margin-horizontal: 2;
+  margin-horizontal: 2px;
 `
 const Container = styled.View`
   flex: 1;
-  margin-bottom: 18;
+  margin-bottom: 18px;
 `
 const AvatarSection = styled.View`
   flex: 1;
   justify-content: center;
 `
 const NewsIcon = styled.Image`
-  width: 28;
-  height: 28;
-  margin-right: 13;
-  margin-top: 10;
-  margin-bottom: 10;
+  width: 28px;
+  height: 28px;
+  margin-right: 13px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 const Title = styled(Text)`
   font-size: 16;
   text-align: center;
   font-family: Roboto-Black;
-  padding-left: 30;
-  padding-top: 15;
-  padding-bottom: 15;
+  padding-left: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `

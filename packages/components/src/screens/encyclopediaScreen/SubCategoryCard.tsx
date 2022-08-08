@@ -17,16 +17,16 @@ export const SubCategoryCard = ({ title, onPress }) => {
 }
 
 const SubCategoryContainer = styled.TouchableOpacity`
-  height: 65;
+  height: 65px;
   justify-content: center;
   align-items: flex-start;
   padding-left: 21;
   padding-right: 36;
   background-color: #fff;
   elevation: 3;
-  border-radius: 10;
-  margin-vertical: 5;
-  margin-horizontal: 2;
+  border-radius: 10px;
+  margin-vertical: 5px;
+  margin-horizontal: 2px;
 `
 
 const Title = styled(TextWithoutTranslation)`

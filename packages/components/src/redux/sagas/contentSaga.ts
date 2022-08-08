@@ -16,53 +16,88 @@ import * as actions from '../actions'
 import _ from 'lodash'
 import firebase from 'react-native-firebase'
 import { closeOutTTs } from '../../services/textToSpeech'
+import { useSelector } from '../../hooks/useSelector'
 
 function* onRehydrate(action: RehydrateAction) {
   const locale = yield select(selectors.currentLocaleSelector)
+
   const hasPreviousContentFromStorage = action.payload && action.payload.content
+
   if (!hasPreviousContentFromStorage) {
     yield put(actions.initStaleContent(staleContent[locale]))
   }
   yield put(actions.fetchContentRequest(locale))
 }
 
+function* onFetchSurveyContent(
+  action: ExtractActionFromActionType<'FETCH_SURVEY_CONTENT_REQUEST'>,
+) {
+  const locale = yield select(selectors.currentLocaleSelector)
+  const userID = yield select(selectors.currentUserSelector)
+  try {
+    const surveys = yield httpClient.fetchSurveys({
+      locale,
+      userID,
+    })
+    const previousSurveys = yield select(selectors.allSurveys)
+    const completedSurveys = yield select(selectors.completedSurveys)
+    const newSurveyArr = previousSurveys?.length ? previousSurveys : []
+    surveys.forEach((item) => {
+      const itemExits = _.find(previousSurveys, { id: item.id })
+      if (!itemExits) {
+        newSurveyArr.push(item)
+      }
+    })
+    const finalArr = []
+    newSurveyArr.forEach((item) => {
+      const itemExits = _.find(completedSurveys, { id: item.id })
+      if (!itemExits) {
+        finalArr.push(item)
+      }
+    })
+
+    yield put(actions.updateAllSurveyContent(finalArr))
+  } catch (error) {
+    yield put(actions.fetchSurveyContentFailure())
+  }
+}
+
 function* onFetchContentRequest(action: ExtractActionFromActionType<'FETCH_CONTENT_REQUEST'>) {
   const { locale } = action.payload
+
   function* fetchEncyclopedia() {
     const encyclopediaResponse = yield httpClient.fetchEncyclopedia({ locale })
     return fromEncyclopedia(encyclopediaResponse)
   }
-  function* fetchSurvey() {
-    const surveysResponse = yield httpClient.fetchSurveys({
-      locale,
-    })
 
-    return fromSurveys(surveysResponse)
-  }
   function* fetchPrivacyPolicy() {
     const privacyPolicy = yield httpClient.fetchPrivacyPolicy({
       locale,
     })
     return privacyPolicy
   }
+
   function* fetchTermsAndConditions() {
     const termsAndConditions = yield httpClient.fetchTermsAndConditions({
       locale,
     })
     return termsAndConditions
   }
+
   function* fetchAbout() {
     const about = yield httpClient.fetchAbout({
       locale,
     })
     return about
   }
+
   function* fetchAboutBanner() {
     const aboutBanner = yield httpClient.fetchAboutBanner({
       locale,
     })
     return aboutBanner
   }
+
   function* fetchHelpCenters() {
     const helpCenterResponse = yield httpClient.fetchHelpCenters({
       locale,
@@ -93,7 +128,6 @@ function* onFetchContentRequest(action: ExtractActionFromActionType<'FETCH_CONTE
 
   try {
     const { articles, categories, subCategories } = yield fetchEncyclopedia()
-    const { surveys } = yield fetchSurvey()
     const { quizzes } = yield fetchQuizzes()
     const { didYouKnows } = yield fetchDidYouKnows()
     const { helpCenters } = yield fetchHelpCenters()
@@ -102,6 +136,7 @@ function* onFetchContentRequest(action: ExtractActionFromActionType<'FETCH_CONTE
     const termsAndConditions = yield fetchTermsAndConditions()
     const about = yield fetchAbout()
     const aboutBanner = yield fetchAboutBanner()
+
     yield put(
       actions.fetchContentSuccess({
         articles: _.isEmpty(articles.allIds) ? staleContent[locale].articles : articles,
@@ -110,7 +145,6 @@ function* onFetchContentRequest(action: ExtractActionFromActionType<'FETCH_CONTE
           ? staleContent[locale].subCategories
           : subCategories,
         quizzes: _.isEmpty(quizzes.allIds) ? staleContent[locale].quizzes : quizzes,
-        surveys: _.isEmpty(surveys.allIds) ? staleContent[locale].surveys : surveys,
         didYouKnows: _.isEmpty(didYouKnows.allIds) ? staleContent[locale].didYouKnows : didYouKnows,
         helpCenters: _.isEmpty(helpCenters) ? staleContent[locale].helpCenters : helpCenters,
         avatarMessages: _.isEmpty(avatarMessages)
@@ -149,6 +183,7 @@ function* onSetLocale(action: ExtractActionFromActionType<'SET_LOCALE'>) {
   firebase.messaging().unsubscribeFromTopic('oky_mn_notifications')
   firebase.messaging().subscribeToTopic(`oky_${locale}_notifications`)
   yield put(actions.initStaleContent(staleContent[locale]))
+
   yield put(actions.fetchContentRequest(locale))
 }
 
@@ -157,5 +192,6 @@ export function* contentSaga() {
     takeLatest(REHYDRATE, onRehydrate),
     takeLatest('SET_LOCALE', onSetLocale),
     takeLatest('FETCH_CONTENT_REQUEST', onFetchContentRequest),
+    takeLatest('FETCH_SURVEY_CONTENT_REQUEST', onFetchSurveyContent),
   ])
 }

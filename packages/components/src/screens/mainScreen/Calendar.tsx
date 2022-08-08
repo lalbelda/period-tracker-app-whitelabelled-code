@@ -19,6 +19,10 @@ import { navigateAndReset, navigate } from '../../services/navigationService'
 import { SpinLoader } from '../../components/common/SpinLoader'
 import { assets } from '../../assets'
 import { translate } from '../../i18n'
+import { useTextToSpeechHook } from '../../hooks/useTextToSpeechHook'
+import { calendarScreenSpeech } from '../../config'
+import { useSelector } from 'react-redux'
+import * as selectors from '../../redux/selectors'
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
@@ -26,25 +30,50 @@ const height = Dimensions.get('window').height
 // const calendarHeight = 0.71 * height
 const calendarWidth = 0.95 * width
 
-const startDate = moment()
-  .startOf('day')
-  .subtract(24, 'months')
-const endDate = moment()
-  .startOf('day')
-  .add(12, 'months')
+const startDate = moment().startOf('day').subtract(24, 'months')
+const endDate = moment().startOf('day').add(12, 'months')
 
-export const Calendar = () => {
-  const highlightedDates = useCalculateStatusForDateRange(startDate, endDate)
+export const Calendar = ({ navigation }) => {
+  const verifiedPeriodsData = useSelector((state: any) => selectors.allCardAnswersSelector(state))
+  const highlightedDates = useCalculateStatusForDateRange(startDate, endDate, verifiedPeriodsData)
+  const checkIfWarning = useCheckDayWarning()
   const [isVisible, setIsVisible] = React.useState(false)
   const [opacity, setOpacity] = React.useState(1)
   const [calendarText, setCalendarText] = React.useState(null)
+  const [currentMonth, setMonth] = React.useState(moment().format())
   const [inputDay, setInputDay] = React.useState(moment().startOf('day'))
   const animateControl = new Animated.Value(0)
   const { text: displayedText } = useDisplayText()
   const [loading, setLoading] = React.useState(false)
   const currentDayInfo = usePredictDay(inputDay)
   const currentCycleInfo = useTodayPrediction()
+  const { setDisplayTextStatic } = useDisplayText()
 
+  const currentDate: any = moment(currentMonth)
+  const currentMonthStartDate: any = currentDate.startOf('month')
+  const monthDaysInfo: any[] = [
+    currentMonthStartDate.format('DD MMMM'),
+    ...Array(365)
+      .fill(1)
+      .map((i: number) => currentMonthStartDate.add(i, 'days').format('DD MMMM')),
+  ]
+  const weekStartDay: any = currentMonthStartDate.startOf('week')
+  const weekDays: any = [
+    weekStartDay.format('dddd'),
+    ...Array(6)
+      .fill(1)
+      .map((i: number) => weekStartDay.add(i, 'day').format('dddd')),
+  ]
+  useTextToSpeechHook({
+    navigation,
+    text: calendarScreenSpeech({
+      opacity,
+      isVisible,
+      weekDays,
+      monthDaysInfo,
+      currentDay: moment(currentMonth),
+    }),
+  })
   const navigateToTutorial = () => {
     setLoading(true)
     requestAnimationFrame(() => {
@@ -119,14 +148,26 @@ export const Calendar = () => {
     outputRange: [width, 0],
   })
 
+  const handleMonthChange = (type: string) => {
+    if (type === 'sub') setMonth(moment(currentMonth).subtract(1, 'month').format())
+    else setMonth(moment(currentMonth).add(1, 'month').format())
+  }
+
   return (
     <BackgroundTheme>
       <Header screenTitle="calendar" />
       <Container>
         <CalendarContainer>
           <CalendarList
+            handleMonthChange={handleMonthChange}
+            currentMonth={currentMonth}
             highlightedDates={highlightedDates}
-            setInputDay={day => {
+            setInputDay={(day) => {
+              // if (moment(inputDay).isAfter(moment())) {
+              //   setDisplayTextStatic('too_far_ahead')
+              //   return true
+              // }
+              // if (checkIfWarning(day)) return
               setInputDay(day)
               setIsVisible(true)
             }}
@@ -157,6 +198,7 @@ export const Calendar = () => {
             </Mask>
           </LongButton>
         </Animated.View>
+
         <Animated.View
           style={{
             position: 'absolute',
@@ -170,9 +212,13 @@ export const Calendar = () => {
             navigateToTutorial={navigateToTutorial}
             inputDay={inputDay}
             hide={() => setIsVisible(false)}
+            isCalendar={true}
+            selectedDayInfo={currentDayInfo}
+            cardValues={null}
           />
         </Animated.View>
       </ThemedModal>
+
       <SpinLoader isVisible={loading} setIsVisible={setLoading} text="please_wait_tutorial" />
     </BackgroundTheme>
   )
@@ -193,22 +239,22 @@ const CalendarText = styled.View`
   top: 20;
 `
 const CalendarContainer = styled.View`
-  height: 400;
+  height: 400px;
   width: ${calendarWidth};
   align-self: center;
   align-items: center;
   justify-content: center;
   background-color: #ffff;
-  border-radius: 10;
+  border-radius: 10px;
   elevation: 5;
   border-width: 0;
   overflow: hidden;
 `
 
 const Dialog = styled.View`
-  padding-horizontal: 16;
-  padding-vertical: 10;
-  border-radius: 14;
+  padding-horizontal: 16px;
+  padding-vertical: 10px;
+  border-radius: 14px;
   background: #ffffff;
   elevation: 3;
   position: relative;
@@ -220,8 +266,8 @@ const Triangle = styled.View`
   height: 0;
   background-color: transparent;
   border-style: solid;
-  border-top-width: 22;
-  border-right-width: 13;
+  border-top-width: 22px;
+  border-right-width: 13px;
   border-bottom-width: 0;
   border-left-width: 0;
   border-top-color: white;
@@ -229,13 +275,13 @@ const Triangle = styled.View`
   border-bottom-color: transparent;
   border-left-color: transparent;
   position: relative;
-  left: 20;
+  left: 20px;
   z-index: 100;
 `
 const LongButton = styled.TouchableOpacity`
-  height: 70;
-  width: 270;
-  margin-top: 20;
+  height: 70px;
+  width: 270px;
+  margin-top: 20px;
   align-items: center;
   align-self: center;
   justify-content: center;

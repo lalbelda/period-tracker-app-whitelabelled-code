@@ -124,7 +124,6 @@ export const id = {
   ari: 'ari',
   nur: 'nur',
   julia: 'anu',
-  default: 'default',
 
   // ------------------------- Onboard ----------------------------
   calendar_onboard: `Ayo kenali DIRIMU dengan melacak apa yang terjadi pada tubuh dan mood-mu setiap bulan! `,
@@ -208,7 +207,7 @@ export const id = {
   accept_conditions_5: `sebelum kamu melanjutkan!`,
   to_daily_card: 'Ke kartu harian',
   change_period: 'Tambahkan data mens',
-  // ------------------------------------------------------------------
+  // -------------------------------Other-----------------------------------
   day_card_mood: `suasana hati`,
   day_card_body: 'tubuh',
   day_card_activity: 'Aktivitas',
@@ -460,7 +459,7 @@ Dijelaskan di bawah ini adalah tujuan kami mengumpulkan dan memproses informasi 
   privacy_content_10: `Kami juga menggunakan Google Analytics untuk melacak interaksi pengguna dengan website. Dengan cara ini, kami bisa mengakses halaman apa yang paling sering dilihat, durasi kunjungan, dll. Informasi personal yang kami kumpulkan secara otomatis dari penggunaanmu pada aplikasi dan situs web.\n\n`,
   privacy_content_11: `Di situs web kami, kami menggunakan cookie, yang merupakan file teks kecil yang mengidentifikasi komputer, telepon, dan perangkat lainmu ke server kami. Dengan menggunakan situs web, kamu menyetujui penempatan cookie dan teknologi serupa di browser kamu sesuai dengan Kebijakan Privasi ini. Informasi ini dikumpulkan melalui situs web termasuk alamat IP kamu, lokasi jaringan, browser apa yang kamu gunakan, ID perangkat dan karakteristik, versi sistem operasi, preferensi bahasa, URL rujukan, dan informasi tentang penggunaan situs web kami.\n`,
   privacy_content_12: `Kami juga bekerja dengan Google Analytics, yang menggunakan cookie atau teknologi serupa untuk mengumpulkan dan menganalisa informasi tentang penggunaan situs web dan laporan pada aktivitas dan tren. Kamu bisa belajar lebih banyak tentang praktik Google dengan membuka https://www.google.com/policies/privacy/partners/. \n`,
-  privacy_content_13: `Jika kamu tidak mau informasi dikumpulkan melalui penggunaan cookie, sebagian besar browser memungkinkan kamu untuk secara otomatis menolak cookie atau memberikan pilihan untuk menolak atau menerima transfer cookie atau beberapa jenis cookie dari situs web tertentu ke komputermu. Kamu mungkin ingin membaca lebih jauh di http://www.allaboutcookies.org/manage-cookies/index.html untuk mengetahui lebih lanjut tentang cookie.
+  privacy_content_13: `Jika kamu tidak mau informasi dikumpulkan melalui penggunaan cookie, sebagian besar browser memungkinkan kamu untuk secara otomatis menolak cookie atau memberikan pilihan untuk menolak atau menerima transfer cookie atau beberapa jenis cookie dari situs web tertentu ke komputermu. Kamu mungkin ingin membaca lebih jauh di http://www.allaboutcookies.org/manage-cookies/index.html untuk mengetahui lebih lanjut tentang cookie. 
  Jika kamu tidak menerima layanan cookie kami, kamu mungkin akan mengalami beberapa ketidaknyamanan dalam menggunakan situs web kami.\n\n`,
   privacy_content_14: `Informasi yang kami lacak menggunakan Period Tracker App tentang kesehatan dan aktivitasmu tergolong data personal yang sensitif. Untuk aplikasi Period Tracker App, kebanyakan data dikumpulkan, menggunakan interaksi pengguna dengan mesin prediksi. Nama, bahasa, tema dan jawaban pada kartu harian dan kuis pengguna akan disimpan, dan ini direkam jika pengguna memodifikasi prediksi menstruasi, membuatnya lebih pendek, memodifikasi prediksi saat ini, dll.\n`,
   privacy_content_15: `Jika pengguna menghapus akun mereka, semua data akan dihapus dari server.\n\n`,
@@ -481,7 +480,7 @@ Dijelaskan di bawah ini adalah tujuan kami mengumpulkan dan memproses informasi 
   privacy_content_26: `Untuk Android, unduh atau atur Find My Device (sebelumnya Android Device Manager) dari Google play Store dan jika dibutuhkan, hubungkan dengan situs web untuk mengunci atau menghapus data ponselmu dari jarak jauh.\n\n`,
   privacy_content_27: ` Aplikasi kami atau situs web kami mungkin berisi tautan ke situs web lain yang tidak dilindungi oleh Kebijakan Privasi ini. Kebijakan Privasi ini hanya berlaku untuk proses Informasi Personal oleh Period Tracker App. Itu tidak membahas, dan kami tidak bertanggung jawab untuk, privasi, informasi atau praktik pihak ketiga manapun, yang mengoperasikan situs atau layanan apapun yang ditautkan oleh situs web atau aplikasi tersebut.\n\n,
   Dimasukkannya sebuah tautan pada situs web atau aplikasi tidak berarti dukungan kepada layanan atau situs yang ditautkan oleh Organization. Mohon diketahui bahwa ketentuan Kebijakan Privasi ini tidak berlaku untuk situs web atau konten luar, atau untuk mengumpulkan data setelah kamu mengklik situs tautan tersebut.\n\n`,
-  privacy_content_28: `  Kami meninjau langkah-langkah keamanan dan Kebijakan Privasi kami dan kami mungkin mengubah kebijakan kami karena kami anggap sesuai. Jika kami membuat perubahan terhadap praktik privasi, kami akan memberitahu melalui website atau aplikasi yang memberitahukan bahwa Kebijakan Privasi sudah diperbarui. Perubahan tersebut akan langsung efektif segera setelah kami memasukkannya ke aplikasi atau situs web kami. Untuk alasan ini, kami mendorong kamu untuk mengecek Kebijakan Privasi kami secara rutin.
+  privacy_content_28: `  Kami meninjau langkah-langkah keamanan dan Kebijakan Privasi kami dan kami mungkin mengubah kebijakan kami karena kami anggap sesuai. Jika kami membuat perubahan terhadap praktik privasi, kami akan memberitahu melalui website atau aplikasi yang memberitahukan bahwa Kebijakan Privasi sudah diperbarui. Perubahan tersebut akan langsung efektif segera setelah kami memasukkannya ke aplikasi atau situs web kami. Untuk alasan ini, kami mendorong kamu untuk mengecek Kebijakan Privasi kami secara rutin. 
  Tanggal “Terakhir Diperbarui” terdapat di akhir halaman ini menunjukkan kapan Kebijakan Privasi ini terakhir diperbarui. Jika kamu terus menggunakan aplikasi atau website setelah adanya perubahan ini, berarti kamu menyetujui revisi Kebijakan Privasi.\n`,
   privacy_content_29: ` Silahkan menghubungi kami jika kamu memerlukan lebih banyak informasi tentang Kebijakan Privasi. Ini adalah formulir kontak Period Tracker App pada situs web: [insert URL].\n
 Terakhir diperbarui: 17 Juli 2019`,
@@ -505,7 +504,7 @@ Terakhir diperbarui: 17 Juli 2019`,
 
   t_and_c_content_1: `Period Tracker App adalah cara untuk memonitor dan belajar tentang siklus menstruasi juga memberikan informasi tentang menstruasimu serta kesehatan perempuan. Layanan ini diberikan secara gratis.JIKA ADA MASALAH KESEHATAN PRIBADI, BERKONSULTASILAH DENGAN SEORANG AHLI KESEHATAN.\n\n`,
   t_and_c_content_2: `Period Tracker App tidak dibuat untuk menggantikan metode kontrasepsi dan/atau memberikan saran medis: ini hanya ditujukan untuk memberikan informasi. Dengan menggunakan Period Tracker App, kamu setuju untuk menggunakannya untuk tujuan yang telah ditentukan dan terutama tidak menggunakannya sebagai alat kontrasepsi dan/atau tujuan medis.\n\n`,
-  t_and_c_content_3: `Period Tracker App memberikan informasi umum tentang kesehatan perempuan, menstruasi, kesuburan dan topik relevan lainnya. Period Tracker App mengumpulkan data yang dimasukkan oleh pengguna terkait dengan siklus menstruasi, aktivitas fisik, tubuh dan kesehatan.
+  t_and_c_content_3: `Period Tracker App memberikan informasi umum tentang kesehatan perempuan, menstruasi, kesuburan dan topik relevan lainnya. Period Tracker App mengumpulkan data yang dimasukkan oleh pengguna terkait dengan siklus menstruasi, aktivitas fisik, tubuh dan kesehatan. 
   Period Tracker App memproses data-data yang berkaitan dengan informasi medis tentang siklus menstruasi (cth. panjangnya siklus menstruasi) dan informasi kesehatan perempuan lainnya. Kombinasi data ini membiarkan aplikasi untuk membuat asosiasi dan mengidentifikasi pola-pola antara kejadian yang terkait dengan siklus menstruasi dan kesehatan perempuan dengan menggunakan rumus matematika/statistik dan perhitungan berdasarkan algoritma.\n\n`,
   t_and_c_content_4: `Untuk informasi tentang data yang kami kumpulkan dan gunakan, silahkan baca Kebijakan Privasi kami.\n\n`,
   t_and_c_content_5: `Meskipun Organization membuat upaya-upaya yang wajar untuk memperbarui informasi di aplikasi kami, kami tidak membuat pernyataan, jaminan atau garansi, baik tersurat ataupun tersirat bahwa konten di aplikasi kami itu akurat, lengkap atau terbaru.\n\n`,

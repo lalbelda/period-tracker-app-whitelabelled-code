@@ -38,15 +38,16 @@
             <td style="width: 10%">
               <select class="custom-select" id="col1TableModal">
                 <% subcategories.forEach((item, index) =>{ %>
-                <option value="<%-item.id%>"><%= item.title %></option>
-                <% }) %>
+                  <option value="<%-item.id%>" data-id="<%-item.parent_category%>"><%= item.title %></option>
+                  <% }) %>
               </select>
               <p id="error2" style="display: none;">required field</p>
             </td>
             <td style="width: 10%">
               <textarea class="form-control" rows="8" id="col2TableModal"></textarea>
               <p id="countdown2">remaining</p>
-              <p id="error3" style="display: none;">max 60 characters</p>
+              <p id="errorTitle2" style="display: none;">title is already exist</p>
+              <p id="error3" style="display: none;">max 70 characters</p>
             </td>
             <td style="width: 10%">
               <textarea class="form-control" id="col3TableModal" cols="45" rows="15"></textarea>

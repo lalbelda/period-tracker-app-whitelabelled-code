@@ -50,7 +50,7 @@
     "field1": "1.1.4",
     "field2": "",
     "field3": "What is a menstrual cycle?",
-    "field4": "The menstrual cycle starts with the first day of your period and ends with the start of your next period. It's called a cycle because it repeats regularly. \n\nDuring the cycle, hormones (chemicals in your body) go up and down, causing other body changes.\n \nAn entire menstrual cycle can last between 21 and 38 days, but for most girls and women, the length often changes from cycle to cycle, and it changes over the years.\n\nEverybody is different, and variations in your cycle are normal. When girls first start to get periods, their menstrual cycle is often not regular. Periods can come one month and not the next, or come only a couple of weeks apart. \n\nIt may take a few years before a girl’s cycle is more regular. Comparing your cycle to others, or what's 'normal' can make you feel there's something wrong, although everything is probably OK. \n\nUsing Oky to track your period will help you see what is normal for YOU. If you notice something unusual for you personally, then it probably is a good idea to talk to a grown up you trust, and a doctor.",
+    "field4": "The menstrual cycle starts with the first day of your period and ends with the start of your next period. It's called a cycle because it repeats regularly. \n\nDuring the cycle, hormones (chemicals in your body) go up and down, causing other body changes.\n \nAn entire menstrual cycle can last between 21 and 38 days, but for most girls and women, the length often changes from cycle to cycle, and it changes over the years.\n\nEverybody is different, and variations in your cycle are normal. When girls first start to get periods, their menstrual cycle is often not regular. Periods can come one month and not the next, or come only a couple of weeks apart. \n\nIt may take a few years before a girl’s cycle is more regular. Comparing your cycle to others, or what's 'normal' can make you feel there's something wrong, although everything is probably OK. \n\nUsing Period Tracker App to track your period will help you see what is normal for YOU. If you notice something unusual for you personally, then it probably is a good idea to talk to a grown up you trust, and a doctor.",
     "field5": "Menstruation and menstrual cycle",
     "field6": "Menstruation and periods",
     "field7": "Periods"
@@ -122,7 +122,7 @@
     "field1": "1.2.2",
     "field2": "",
     "field3": "My cycle is irregular, is this a problem?",
-    "field4": "An irregular cycle is normal, especially during the first few years of menstruation. Small variations in your cycle are normal and healthy.\n\nBy using Oky, you will be able to find out what your personal normal cycle is!",
+    "field4": "An irregular cycle is normal, especially during the first few years of menstruation. Small variations in your cycle are normal and healthy.\n\nBy using Period Tracker App, you will be able to find out what your personal normal cycle is!",
     "field5": "Menstruation and menstrual cycle",
     "field6": "Irregularity and missed periods",
     "field7": "Irregularity"
@@ -167,7 +167,7 @@
     "field1": "1.3.4",
     "field2": "",
     "field3": "My menstrual flow is light, is this normal?",
-    "field4": "Periods vary between women and often from month to month. So it’s important to know what’s 'normal' for you in terms of flow. Having a light flow may be normal for you. \n\nUsing Oky can help you notice when something about your period changes. If your period is lighter than normal for you, it could be caused by pregnancy, stress, illness, weight gain or loss, your age, or using contraception that has hormones in it.",
+    "field4": "Periods vary between women and often from month to month. So it’s important to know what’s 'normal' for you in terms of flow. Having a light flow may be normal for you. \n\nUsing Period Tracker App can help you notice when something about your period changes. If your period is lighter than normal for you, it could be caused by pregnancy, stress, illness, weight gain or loss, your age, or using contraception that has hormones in it.",
     "field5": "Menstruation and menstrual cycle",
     "field6": "Blood, flow and discharge",
     "field7": "Flow"
@@ -634,7 +634,7 @@
     "field1": "5.1.2",
     "field2": "",
     "field3": "What are 'safe days' when I can have unprotected sex without getting pregnant?",
-    "field4": "It is true that there are some days during the menstrual cycle which are 'safer' than others, meaning your chances of getting pregnant are lower than on other days. \n\nThe problem is that it is very hard to predict when they will be because our cycles go sometimes change from month to month. And remember that there are no days that are safe when it comes to Sexually Transmitted Infections (STIs) or HIV - if you have sex without using a condom, you may get pregnant or get an STI, even during your period or just after it ends. \n\nYou can even get pregnant if you have never had a period before, during your first period, or the first time you have sex. If you do not want to become pregnant, do not take any risks - always use contraception when you have sex. \n\nRemember, do not rely on Oky to avoid pregnancy - it is not designed to help you do that successfully!",
+    "field4": "It is true that there are some days during the menstrual cycle which are 'safer' than others, meaning your chances of getting pregnant are lower than on other days. \n\nThe problem is that it is very hard to predict when they will be because our cycles go sometimes change from month to month. And remember that there are no days that are safe when it comes to Sexually Transmitted Infections (STIs) or HIV - if you have sex without using a condom, you may get pregnant or get an STI, even during your period or just after it ends. \n\nYou can even get pregnant if you have never had a period before, during your first period, or the first time you have sex. If you do not want to become pregnant, do not take any risks - always use contraception when you have sex. \n\nRemember, do not rely on Period Tracker App to avoid pregnancy - it is not designed to help you do that successfully!",
     "field5": "Family planning",
     "field6": "Sex",
     "field7": "Sex"
@@ -660,8 +660,8 @@
   {
     "field1": "5.2.3",
     "field2": "",
-    "field3": "How does Oky estimate fertile days?",
-    "field4": "If you have a very regular cycle (meaning you always get your period every 26-32 days), Oky can use your cycle length to predict when your fertile days are.\n\nBut you should NOT use Oky fertile day predictions to prevent pregnancy, because ovulation can shift from month to month. If you have vaginal sex, always use protection (like condoms) to prevent pregnancy!",
+    "field3": "How does Period Tracker App estimate fertile days?",
+    "field4": "If you have a very regular cycle (meaning you always get your period every 26-32 days), Period Tracker App can use your cycle length to predict when your fertile days are.\n\nBut you should NOT use Period Tracker App fertile day predictions to prevent pregnancy, because ovulation can shift from month to month. If you have vaginal sex, always use protection (like condoms) to prevent pregnancy!",
     "field5": "Family planning",
     "field6": "Fertility",
     "field7": "Fertility"
@@ -800,7 +800,7 @@
     "field1": "7.2.2",
     "field2": "",
     "field3": "I feel embarrassed to talk about my period to others.",
-    "field4": "This is very understandable, as girls and women are often made to feel that periods are an embarassing subject. \n\nOky is here to tell you that periods are totally normal, and nothing to be embarrassed about. The more you talk about periods, first with someone you really trust, then to more people, the less embarrassing it will feel. \n\nHowever, if you really don't want to talk about periods, you don't have to!",
+    "field4": "This is very understandable, as girls and women are often made to feel that periods are an embarassing subject. \n\nPeriod Tracker App is here to tell you that periods are totally normal, and nothing to be embarrassed about. The more you talk about periods, first with someone you really trust, then to more people, the less embarrassing it will feel. \n\nHowever, if you really don't want to talk about periods, you don't have to!",
     "field5": "Myths and feelings",
     "field6": "Shame",
     "field7": "Embarassment"

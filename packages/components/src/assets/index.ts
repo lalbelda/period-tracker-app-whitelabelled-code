@@ -56,10 +56,11 @@ export const assets = {
     },
   },
   static: {
-    launch_icon: require('./images/static/icn_app.png'),
-    spin_load_face: require('./images/static/icn_app_spin-1.png'),
-    spin_load_circle: require('./images/static/icn_app_spin-2.png'),
+    launch_icon: require('./images/static/icn_oky.png'),
+    spin_load_face: require('./images/static/icn_oky_spin-1.png'),
+    spin_load_circle: require('./images/static/icn_oky_spin-2.png'),
     icons: {
+      settingsIcon: require('./images/static/icn_settings.png'),
       arrow: require('./images/static/btn-arrow.png'),
       cloudsIcn: require('./images/static/icn_clouds.png'),
       close: require('./images/static/btn-close.png'),
@@ -100,6 +101,7 @@ export const assets = {
       switch: require('./images/static/btn-switch.png'),
       send: require('./images/static/btn-send.png'),
       circleDefaultL: require('./images/static/icn_circle_default_L.png'),
+      periodFuture: require('./images/static/icn-period-future.png'),
       starPink: {
         empty: require('./images/static/icn-star-line.png'),
         half: require('./images/static/icn-star-half.png'),
@@ -133,18 +135,22 @@ export const assets = {
         nonPeriod: require('./images/static/icn_cloud_np_f.png'),
         fertile: require('./images/static/icn_cloud_f_f.png'),
         period: require('./images/static/icn_cloud_p_f.png'),
+        notVerifiedDay: require('./images/static/icn_cloud_nv_f.png'),
       },
       stars: {
+        notVerifiedDay: require('./images/static/icn_star_nv_f.png'),
         nonPeriod: require('./images/static/icn_star_np_f.png'),
         fertile: require('./images/static/icn_star_f_f.png'),
         period: require('./images/static/icn_star_p_f.png'),
       },
       circles: {
+        notVerifiedDay: require('./images/static/icn_circle_selected_nv_L.png'), // change image
         nonPeriod: require('./images/static/icn_circle_selected_np_M.png'),
         fertile: require('./images/static/icn_circle_selected_f_M.png'),
         period: require('./images/static/icn_circle_selected_p_M.png'),
       },
       segment: {
+        notVerifiedDay: require('./images/static/icn_period_unvierified_segment.png'), // change image
         nonPeriod: require('./images/static/icn_no_period_segment.png'),
         fertile: require('./images/static/icn_fertile_segment.png'),
         period: require('./images/static/icn_period_segment.png'),
@@ -156,6 +162,7 @@ export const assets = {
       },
     },
     dayBadge: {
+      notVerifiedDay: require('./images/static/icn_oval_nv_f.png'), // change image
       onPeriod: require('./images/static/icn_oval_p_f.png'),
       onFertile: require('./images/static/icn_oval_f_f.png'),
       default: require('./images/static/icn_oval_np_f.png'),
@@ -163,33 +170,39 @@ export const assets = {
     dateBadge: {
       desert: {
         onPeriod: require('./images/static/icn_star_p_f.png'),
+        notVerifiedDay: require('./images/static/icn_star_nv_f.png'),
         default: require('./images/static/icn_star_np_f.png'),
       },
       hills: {
         onPeriod: require('./images/static/icn_cloud_p_f.png'),
+        notVerifiedDay: require('./images/static/icn_cloud_nv_f.png'),
         default: require('./images/static/icn_cloud_np_f.png'),
       },
       mosaic: {
         onPeriod: require('./images/static/icn_star_p_f.png'),
+        notVerifiedDay: require('./images/static/icn_star_nv_f.png'),
         default: require('./images/static/icn_star_np_f.png'),
       },
       village: {
         onPeriod: require('./images/static/icn_cloud_p_f.png'),
+        notVerifiedDay: require('./images/static/icn_cloud_nv_f.png'),
         default: require('./images/static/icn_cloud_np_f.png'),
       },
     },
   },
   general: {
+    // brandLogo: require('./images/general/icn_oky_brand_full.png'),
+    // unicefLogo: require('./images/general/unicef_logo.png'),
     calendarStatic: require('./images/general/calendar-static.png'),
     calendarStaticID: require('./images/general/calendar-static-id.png'),
     calendarStaticMN: require('./images/general/calendar-static-mn.png'),
   },
   lottie: {
     avatars: {
-      ari: require('./lottie/avatar1_lottie.json'),
-      julia: require('./lottie/avatar2_lottie.json'),
-      nur: require('./lottie/avatar3_lottie.json'),
-      default: require('./lottie/avatar4_lottie.json'),
+      ari: require('./lottie/ari_lottie.json'),
+      julia: require('./lottie/julia_lottie.json'),
+      nur: require('./lottie/nur_lottie.json'),
+      default: require('./lottie/ari_lottie.json'),
     },
   },
 }

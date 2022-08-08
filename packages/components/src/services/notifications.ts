@@ -36,12 +36,12 @@ const buildNotification = ({ title, body }) => {
 }
 
 export const notificationListener = () => {
-  return firebase.notifications().onNotification(notification => {
+  return firebase.notifications().onNotification((notification) => {
     const { title, body } = notification
     firebase
       .notifications()
       .displayNotification(buildNotification({ title, body }))
-      .catch(err => {
+      .catch((err) => {
         throw new Error('Display notificaiton error')
       })
   })
@@ -51,7 +51,7 @@ export const requestUserPermission = () => {
   const authStatus = firebase
     .messaging()
     .requestPermission()
-    .catch(err => {
+    .catch((err) => {
       throw new Error('Notification Authorization status Error')
     })
 }

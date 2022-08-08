@@ -19,10 +19,10 @@ export class ArticleController {
       ca.primary_emoji,
       ca.primary_emoji_name,
       ar.lang 
-      FROM article ar 
-      INNER JOIN category ca 
+      FROM oky_en.article ar 
+      INNER JOIN oky_en.category ca 
       ON ar.category = CAST(ca.id as CHAR(50))
-      INNER JOIN subcategory sc  
+      INNER JOIN oky_en.subcategory sc  
       ON ar.subcategory = CAST(sc.id as CHAR(50))
       WHERE ar.lang = $1
       AND ar.live = true
@@ -37,6 +37,12 @@ export class ArticleController {
   }
 
   async save(request: Request, response: Response, next: NextFunction) {
+    const article = await this.articleRepository.findOne({
+      article_heading: request.body.article_heading,
+    })
+    if (article) {
+      return { article, isExist: true }
+    }
     const articleToSave = request.body
     articleToSave.lang = request.user.lang
     articleToSave.id = uuid()
@@ -45,6 +51,12 @@ export class ArticleController {
   }
 
   async update(request: Request, response: Response, next: NextFunction) {
+    const article = await this.articleRepository.findOne({
+      article_heading: request.body.article_heading,
+    })
+    if (article && request.params.id !== article.id) {
+      return { article, isExist: true }
+    }
     const booleanFromString = request.body.live === 'true'
     const articleToUpdate = await this.articleRepository.findOne(request.params.id)
     articleToUpdate.category = request.body.category

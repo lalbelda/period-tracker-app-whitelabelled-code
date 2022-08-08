@@ -11,6 +11,8 @@ import {
   PrivacyPolicy,
   TermsAndConditions,
   About,
+  AllSurveys,
+  CompletedSurveys,
 } from '../../types'
 
 export function initStaleContent({
@@ -26,6 +28,8 @@ export function initStaleContent({
   termsAndConditions,
   about,
   aboutBanner,
+  allSurveys,
+  completedSurveys,
 }: {
   articles: Articles
   avatarMessages: AvatarMessages
@@ -39,6 +43,8 @@ export function initStaleContent({
   termsAndConditions: TermsAndConditions
   about: About
   aboutBanner: string
+  allSurveys: AllSurveys
+  completedSurveys: CompletedSurveys
 }) {
   return createAction('INIT_STALE_CONTENT', {
     articles,
@@ -46,6 +52,7 @@ export function initStaleContent({
     categories,
     subCategories,
     surveys,
+    allSurveys,
     quizzes,
     didYouKnows,
     helpCenters,
@@ -53,7 +60,32 @@ export function initStaleContent({
     termsAndConditions,
     about,
     aboutBanner,
+    completedSurveys,
   })
+}
+
+export function fetchSurveyContentRequest(userID: string) {
+  return createAction('FETCH_SURVEY_CONTENT_REQUEST', { userID })
+}
+
+export function fetchSurveyContentSuccess({ surveys }: { surveys: Surveys }) {
+  return createAction('FETCH_SURVEY_CONTENT_SUCCESS', {
+    surveys,
+  })
+}
+export function updateAllSurveyContent(allSurveys: AllSurveys) {
+  return createAction('UPDATE_ALL_SURVEYS_CONTENT', {
+    allSurveys,
+  })
+}
+export function updateCompletedSurveys(completedSurveys: CompletedSurveys) {
+  return createAction('UPDATE_COMPLETED_SURVEYS', {
+    completedSurveys,
+  })
+}
+
+export function fetchSurveyContentFailure() {
+  return createAction('FETCH_SURVEY_CONTENT_FAILURE')
 }
 
 export function fetchContentRequest(locale: string) {
@@ -65,7 +97,7 @@ export function fetchContentSuccess({
   avatarMessages,
   categories,
   subCategories,
-  surveys,
+  // surveys,
   quizzes,
   didYouKnows,
   helpCenters,
@@ -78,7 +110,7 @@ export function fetchContentSuccess({
   avatarMessages: AvatarMessages
   categories: Categories
   subCategories: SubCategories
-  surveys: Surveys
+  // surveys: Surveys
   quizzes: Quizzes
   didYouKnows: DidYouKnows
   helpCenters: HelpCenters
@@ -92,7 +124,7 @@ export function fetchContentSuccess({
     avatarMessages,
     categories,
     subCategories,
-    surveys,
+    // surveys,
     quizzes,
     didYouKnows,
     helpCenters,

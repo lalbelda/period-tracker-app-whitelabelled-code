@@ -1722,18 +1722,21 @@ export const id = {
     },
   ],
   privacyPolicy: [
-    { type: 'HEADING', content: 'KEBIJAKAN PRIVASI OKY' },
+    { type: 'HEADING', content: 'KEBIJAKAN PRIVASI Period Tracker App' },
     {
       type: 'CONTENT',
       content:
-        'Menjaga informasimu adalah hal penting untuk Oky. Kami melakukan yang terbaik agar informasi yang kamu masukkan di dalam aplikasi terjaga kerahasiaannya dan sebisa mungkin aman. Informasi yang kamu bagikan tentang siklus menstruasi bersifat pribadi dan kami sangat menghormatinya.\n\nSaat kamu memasukkan informasi di aplikasi, Oky menggunakan teknologi yang mengubah ‘data’ menjadi informasi yang berguna yang dapat membantu kamu untuk belajar lebih banyak tentang pola siklus menstruasimu, untuk membantu kamu mengambil control atas tubuh dan kesehatanmu: contohnya, dengan memberikanmu informasi tentang bagaimana mengatur menstruasi atau rasa sakit.\n\n Kami bertujuan untuk memiliki standar tertinggi terkait privasi dan keamanan dan kami sangat berkomitmen untuk menjadi transparan tentang bagaimana kami memproses dan menggunakan data.',
+        'Menjaga informasimu adalah hal penting untuk Period Tracker App. Kami melakukan yang terbaik agar informasi yang kamu masukkan di dalam aplikasi terjaga kerahasiaannya dan sebisa mungkin aman. Informasi yang kamu bagikan tentang siklus menstruasi bersifat pribadi dan kami sangat menghormatinya.\n\nSaat kamu memasukkan informasi di aplikasi, Period Tracker App menggunakan teknologi yang mengubah ‘data’ menjadi informasi yang berguna yang dapat membantu kamu untuk belajar lebih banyak tentang pola siklus menstruasimu, untuk membantu kamu mengambil control atas tubuh dan kesehatanmu: contohnya, dengan memberikanmu informasi tentang bagaimana mengatur menstruasi atau rasa sakit.\n\n Kami bertujuan untuk memiliki standar tertinggi terkait privasi dan keamanan dan kami sangat berkomitmen untuk menjadi transparan tentang bagaimana kami memproses dan menggunakan data.',
     },
     {
       type: 'CONTENT',
       content:
-        'Kebijakan Privasi ini menjelaskan tentang apa yang terjadi pada data yang kamu masukkan ketika kamu melacak menstruasimu: bagaimana informasimu dikumpulkan, disimpan dan digunakan, dan langkah-langkah apa saja yang kami ambil untuk memastikan bahwa data kamu tetap aman.\n\nSilahkan baca Kebijakan Privasi kami dengan seksama sebelum menggunakan Oky dan cek kembali secara rutin untuk mengecek pembaruan. Mohon diingat, dengan mengakses dan menggunakan aplikasi atau situs web, kamu setuju dengan Kebijakan Privasi ini. \n\nOky dibuat oleh UNICEF. Mohon jangan ragu untuk menghubungi kami jika kamu memiliki pertanyaan tentang penggunaan data di Oky. Ini adalah formulir kontak di website Oky.',
+        'Kebijakan Privasi ini menjelaskan tentang apa yang terjadi pada data yang kamu masukkan ketika kamu melacak menstruasimu: bagaimana informasimu dikumpulkan, disimpan dan digunakan, dan langkah-langkah apa saja yang kami ambil untuk memastikan bahwa data kamu tetap aman.\n\nSilahkan baca Kebijakan Privasi kami dengan seksama sebelum menggunakan Period Tracker App dan cek kembali secara rutin untuk mengecek pembaruan. Mohon diingat, dengan mengakses dan menggunakan aplikasi atau situs web, kamu setuju dengan Kebijakan Privasi ini. \n\nPeriod Tracker App dibuat oleh Organization. Mohon jangan ragu untuk menghubungi kami jika kamu memiliki pertanyaan tentang penggunaan data di Period Tracker App. Ini adalah formulir kontak di website Period Tracker App.',
     },
-    { type: 'HEADING', content: '1. Informasi apakah yang dikumpulkan oleh Oky tentang kamu?' },
+    {
+      type: 'HEADING',
+      content: '1. Informasi apakah yang dikumpulkan oleh Period Tracker App tentang kamu?',
+    },
     {
       type: 'CONTENT',
       content:
@@ -1753,7 +1756,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Di dalam aplikasi, kami mengumpulkan informasi melalui alat yang kamu gunakan untuk mengakses layanan Oky, seperti model, sistem operasi, bahasa, lokasi, dan durasi sesi.',
+        'Di dalam aplikasi, kami mengumpulkan informasi melalui alat yang kamu gunakan untuk mengakses layanan Period Tracker App, seperti model, sistem operasi, bahasa, lokasi, dan durasi sesi.',
     },
     {
       type: 'CONTENT',
@@ -1773,7 +1776,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Kami juga melakukan ini untuk memungkinkan kami mengirimkan pengingat di ponsel pintar melalui pesan dalam aplikasi dan notifikasi yang ditekan. Kamu bisa mengubah bagaimana kamu menerima notifkasi di aplikasi dan perangkatmu kapanpun dengan cara pergi ke bagian Pengaturan. Kesimpulannya, kami memproses data untuk memberikan kamu layanan yang terbaik yang bisa kamu dapatkan melalui Oky.',
+        'Kami juga melakukan ini untuk memungkinkan kami mengirimkan pengingat di ponsel pintar melalui pesan dalam aplikasi dan notifikasi yang ditekan. Kamu bisa mengubah bagaimana kamu menerima notifkasi di aplikasi dan perangkatmu kapanpun dengan cara pergi ke bagian Pengaturan. Kesimpulannya, kami memproses data untuk memberikan kamu layanan yang terbaik yang bisa kamu dapatkan melalui Period Tracker App.',
     },
     {
       type: 'CONTENT',
@@ -1808,7 +1811,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Informasi yang kami lacak menggunakan Oky tentang kesehatan dan aktivitasmu tergolong data personal yang sensitif. Untuk aplikasi Oky, kebanyakan data dikumpulkan, menggunakan interaksi pengguna dengan mesin prediksi. Nama, bahasa, tema dan jawaban pada kartu harian dan kuis pengguna akan disimpan, dan ini direkam jika pengguna memodifikasi prediksi menstruasi, membuatnya lebih pendek, memodifikasi prediksi saat ini, dll.',
+        'Informasi yang kami lacak menggunakan Period Tracker App tentang kesehatan dan aktivitasmu tergolong data personal yang sensitif. Untuk aplikasi Period Tracker App, kebanyakan data dikumpulkan, menggunakan interaksi pengguna dengan mesin prediksi. Nama, bahasa, tema dan jawaban pada kartu harian dan kuis pengguna akan disimpan, dan ini direkam jika pengguna memodifikasi prediksi menstruasi, membuatnya lebih pendek, memodifikasi prediksi saat ini, dll.',
     },
     {
       type: 'CONTENT',
@@ -1823,7 +1826,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Teknologi yang digunakan untuk memprediksi oleh Oky memproses data ini dan memberikanmu informasi. Namun, jika informasi personalmu tentang ini tidak dibagikan kepada pihak manapun. Oky memberikan pertanyaan-pertanyaan di aplikasi untuk meminta masukkan kamu tentang aplikasi, seperti kinerja aplikasi atau kegunaan dari informasi yang Oky berikan dan pengalamanmu menggunakan aplikasi. Informasi yang kamu berikan melalui jawaban survei dan pertanyaan diproses oleh Oky dengan tujuan yang sudah disebutkan pada Kebijakan Privasi ini.',
+        'Teknologi yang digunakan untuk memprediksi oleh Period Tracker App memproses data ini dan memberikanmu informasi. Namun, jika informasi personalmu tentang ini tidak dibagikan kepada pihak manapun. Period Tracker App memberikan pertanyaan-pertanyaan di aplikasi untuk meminta masukkan kamu tentang aplikasi, seperti kinerja aplikasi atau kegunaan dari informasi yang Period Tracker App berikan dan pengalamanmu menggunakan aplikasi. Informasi yang kamu berikan melalui jawaban survei dan pertanyaan diproses oleh Period Tracker App dengan tujuan yang sudah disebutkan pada Kebijakan Privasi ini.',
     },
     {
       type: 'CONTENT',
@@ -1843,7 +1846,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'i. Kami mungkin menggunakan Data Personal untuk mendorong Ketentuan Penggunaan kami, membela hak-hak hukum kami, dan untuk mematuhi kewajiban hukum dan kebijakan internal kami.\n\n ii. Oky sudah dirancang untuk meminimalkan penggunaan data personal kamu. Kami hanya mengumpulkan dan memproses datamu untuk tujuan yang sudah disebutkan di atas.\n\n iii. Keamanan server kami dicek secara rutin oleh ahli untuk memastikan data kamu dilindungi dari akses yang tidak sah. Kamu bisa menghubungi kami jika memiliki pertanyaan terkait keamanan layanan kami, ini adalah formulir kontak pada situs web Oky [insert URL].\n\n iv. Kami tidak menyimpan data kamu dalam format yang dapat diidentifikasi lebih lama dari yang diperlukan untuk memberikan layanan kami.\n\n  v. Sebagai pengguna Oky, kamu mungkin bisa menggunakan hak pengguna kamu untuk meminta informasi tentang data personal yang diproses oleh Oky. Permintaan kamu akan dikirimkan secara elektronik.',
+        'i. Kami mungkin menggunakan Data Personal untuk mendorong Ketentuan Penggunaan kami, membela hak-hak hukum kami, dan untuk mematuhi kewajiban hukum dan kebijakan internal kami.\n\n ii. Period Tracker App sudah dirancang untuk meminimalkan penggunaan data personal kamu. Kami hanya mengumpulkan dan memproses datamu untuk tujuan yang sudah disebutkan di atas.\n\n iii. Keamanan server kami dicek secara rutin oleh ahli untuk memastikan data kamu dilindungi dari akses yang tidak sah. Kamu bisa menghubungi kami jika memiliki pertanyaan terkait keamanan layanan kami, ini adalah formulir kontak pada situs web Period Tracker App [insert URL].\n\n iv. Kami tidak menyimpan data kamu dalam format yang dapat diidentifikasi lebih lama dari yang diperlukan untuk memberikan layanan kami.\n\n  v. Sebagai pengguna Period Tracker App, kamu mungkin bisa menggunakan hak pengguna kamu untuk meminta informasi tentang data personal yang diproses oleh Period Tracker App. Permintaan kamu akan dikirimkan secara elektronik.',
     },
     { type: 'HEADING', content: '2. Keamanan Data' },
     {
@@ -1855,12 +1858,12 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Kami percaya bahwa ancaman terbesar pada keamanan dan privasi datamu adalah jika seseorang - mungkin orang yang kamu kenal - memiliki akses ke perangkatmu. Data yang kamu masukkan di Oky adalah rahasia dan sebaiknya tetap seperti itu. Kami telah memberikan beberapa cara untuk menjaga keamanan perangkat kamu di bawah ini:',
+        'Kami percaya bahwa ancaman terbesar pada keamanan dan privasi datamu adalah jika seseorang - mungkin orang yang kamu kenal - memiliki akses ke perangkatmu. Data yang kamu masukkan di Period Tracker App adalah rahasia dan sebaiknya tetap seperti itu. Kami telah memberikan beberapa cara untuk menjaga keamanan perangkat kamu di bawah ini:',
     },
     {
       type: 'CONTENT',
       content:
-        'i. Mengaktifkan PIN atau kata kunci yang unik untuk membuat tanda masuk. Buatlah kata kunci yang personal dan tidak mudah bagi orang untuk menebaknya. Contohnya, jangan gunakan tanggal lahir atau namamu. Jika kamu berbagi penggunaan ponsel dengan orang lain, mengaktifkan PIK atau kata kunci yang uni akan membantu memastikan bahwa hanya kamu yang bisa mengakses data di Oky.',
+        'i. Mengaktifkan PIN atau kata kunci yang unik untuk membuat tanda masuk. Buatlah kata kunci yang personal dan tidak mudah bagi orang untuk menebaknya. Contohnya, jangan gunakan tanggal lahir atau namamu. Jika kamu berbagi penggunaan ponsel dengan orang lain, mengaktifkan PIK atau kata kunci yang uni akan membantu memastikan bahwa hanya kamu yang bisa mengakses data di Period Tracker App.',
     },
     {
       type: 'CONTENT',
@@ -1876,7 +1879,7 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Aplikasi kami atau situs web kami mungkin berisi tautan ke situs web lain yang tidak dilindungi oleh Kebijakan Privasi ini. Kebijakan Privasi ini hanya berlaku untuk proses Informasi Personal oleh Oky. Itu tidak membahas, dan kami tidak bertanggung jawab untuk, privasi, informasi atau praktik pihak ketiga manapun, yang mengoperasikan situs atau layanan apapun yang ditautkan oleh situs web atau aplikasi tersebut.\n\n,\n  Dimasukkannya sebuah tautan pada situs web atau aplikasi tidak berarti dukungan kepada layanan atau situs yang ditautkan oleh UNICEF. Mohon diketahui bahwa ketentuan Kebijakan Privasi ini tidak berlaku untuk situs web atau konten luar, atau untuk mengumpulkan data setelah kamu mengklik situs tautan tersebut.',
+        'Aplikasi kami atau situs web kami mungkin berisi tautan ke situs web lain yang tidak dilindungi oleh Kebijakan Privasi ini. Kebijakan Privasi ini hanya berlaku untuk proses Informasi Personal oleh Period Tracker App. Itu tidak membahas, dan kami tidak bertanggung jawab untuk, privasi, informasi atau praktik pihak ketiga manapun, yang mengoperasikan situs atau layanan apapun yang ditautkan oleh situs web atau aplikasi tersebut.\n\n,\n  Dimasukkannya sebuah tautan pada situs web atau aplikasi tidak berarti dukungan kepada layanan atau situs yang ditautkan oleh Organization. Mohon diketahui bahwa ketentuan Kebijakan Privasi ini tidak berlaku untuk situs web atau konten luar, atau untuk mengumpulkan data setelah kamu mengklik situs tautan tersebut.',
     },
     { type: 'HEADING', content: '4. Pemberitahuan perubahan pada Kebijakan Privasi' },
     {
@@ -1887,32 +1890,32 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Silahkan menghubungi kami jika kamu memerlukan lebih banyak informasi tentang Kebijakan Privasi. Ini adalah formulir kontak Oky pada situs web: [insert URL].\n\nTerakhir diperbarui: 17 Juli 2019',
+        'Silahkan menghubungi kami jika kamu memerlukan lebih banyak informasi tentang Kebijakan Privasi. Ini adalah formulir kontak Period Tracker App pada situs web: [insert URL].\n\nTerakhir diperbarui: 17 Juli 2019',
     },
   ],
   termsAndConditions: [
-    { type: 'HEADING', content: 'S & K Oky' },
+    { type: 'HEADING', content: 'S & K Period Tracker App' },
     {
       type: 'HEADING',
       content:
-        'DENGAN MENGGUNAKAN OKY, KAMU SETUJU DENGAN SYARAT-SYARAT INI. Jika kamu tidak setuju dengan persyaratan ini, kamu sebaiknya tidak menggunakan Oky.',
+        'DENGAN MENGGUNAKAN PERIOD TRACKER APP, KAMU SETUJU DENGAN SYARAT-SYARAT INI. Jika kamu tidak setuju dengan persyaratan ini, kamu sebaiknya tidak menggunakan Period Tracker App.',
     },
     { type: 'HEADING', content: 'ISI' },
     {
       type: 'CONTENT',
       content:
-        'Oky adalah cara untuk memonitor dan belajar tentang siklus menstruasi juga memberikan informasi tentang menstruasimu serta kesehatan perempuan. Layanan ini diberikan secara gratis.JIKA ADA MASALAH KESEHATAN PRIBADI, BERKONSULTASILAH DENGAN SEORANG AHLI KESEHATAN.',
+        'Period Tracker App adalah cara untuk memonitor dan belajar tentang siklus menstruasi juga memberikan informasi tentang menstruasimu serta kesehatan perempuan. Layanan ini diberikan secara gratis.JIKA ADA MASALAH KESEHATAN PRIBADI, BERKONSULTASILAH DENGAN SEORANG AHLI KESEHATAN.',
     },
     {
       type: 'CONTENT',
       content:
-        'Oky tidak dibuat untuk menggantikan metode kontrasepsi dan/atau memberikan saran medis: ini hanya ditujukan untuk memberikan informasi. Dengan menggunakan Oky, kamu setuju untuk menggunakannya untuk tujuan yang telah ditentukan dan terutama tidak menggunakannya sebagai alat kontrasepsi dan/atau tujuan medis.',
+        'Period Tracker App tidak dibuat untuk menggantikan metode kontrasepsi dan/atau memberikan saran medis: ini hanya ditujukan untuk memberikan informasi. Dengan menggunakan Period Tracker App, kamu setuju untuk menggunakannya untuk tujuan yang telah ditentukan dan terutama tidak menggunakannya sebagai alat kontrasepsi dan/atau tujuan medis.',
     },
     { type: 'HEADING', content: 'DATA DAN KEGUNAAN' },
     {
       type: 'CONTENT',
       content:
-        'Oky memberikan informasi umum tentang kesehatan perempuan, menstruasi, kesuburan dan topik relevan lainnya. Oky mengumpulkan data yang dimasukkan oleh pengguna terkait dengan siklus menstruasi, aktivitas fisik, tubuh dan kesehatan. \n  Oky memproses data-data yang berkaitan dengan informasi medis tentang siklus menstruasi (cth. panjangnya siklus menstruasi) dan informasi kesehatan perempuan lainnya. Kombinasi data ini membiarkan aplikasi untuk membuat asosiasi dan mengidentifikasi pola-pola antara kejadian yang terkait dengan siklus menstruasi dan kesehatan perempuan dengan menggunakan rumus matematika/statistik dan perhitungan berdasarkan algoritma.',
+        'Period Tracker App memberikan informasi umum tentang kesehatan perempuan, menstruasi, kesuburan dan topik relevan lainnya. Period Tracker App mengumpulkan data yang dimasukkan oleh pengguna terkait dengan siklus menstruasi, aktivitas fisik, tubuh dan kesehatan. \n  Period Tracker App memproses data-data yang berkaitan dengan informasi medis tentang siklus menstruasi (cth. panjangnya siklus menstruasi) dan informasi kesehatan perempuan lainnya. Kombinasi data ini membiarkan aplikasi untuk membuat asosiasi dan mengidentifikasi pola-pola antara kejadian yang terkait dengan siklus menstruasi dan kesehatan perempuan dengan menggunakan rumus matematika/statistik dan perhitungan berdasarkan algoritma.',
     },
     {
       type: 'CONTENT',
@@ -1923,59 +1926,59 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Meskipun UNICEF membuat upaya-upaya yang wajar untuk memperbarui informasi di aplikasi kami, kami tidak membuat pernyataan, jaminan atau garansi, baik tersurat ataupun tersirat bahwa konten di aplikasi kami itu akurat, lengkap atau terbaru.',
+        'Meskipun Organization membuat upaya-upaya yang wajar untuk memperbarui informasi di aplikasi kami, kami tidak membuat pernyataan, jaminan atau garansi, baik tersurat ataupun tersirat bahwa konten di aplikasi kami itu akurat, lengkap atau terbaru.',
     },
     { type: 'HEADING', content: 'PERUBAHAN SYARAT DAN KETENTUAN' },
     {
       type: 'CONTENT',
       content:
-        'UNICEF mengubah ketentuan ini dari waktu ke waktu. Setiap kali kamu ingin menggunakan Oky, silakan periksa ketentuan ini untuk memastikan bahwa kamu memahami persyaratan yang berlaku pada saat itu.',
+        'Organization mengubah ketentuan ini dari waktu ke waktu. Setiap kali kamu ingin menggunakan Period Tracker App, silakan periksa ketentuan ini untuk memastikan bahwa kamu memahami persyaratan yang berlaku pada saat itu.',
     },
     { type: 'HEADING', content: 'PERUBAHAN APLIKASI' },
     {
       type: 'CONTENT',
       content:
-        'UNICEF mungkin memperbaharui dan mengubah Oky dari waktu ke waktu untuk memberikan informasi terbaru, tautan atau memberikan fungsi baru dan mencerminkan perubahan pada kebutuhan pengguna kami.',
+        'Organization mungkin memperbaharui dan mengubah Period Tracker App dari waktu ke waktu untuk memberikan informasi terbaru, tautan atau memberikan fungsi baru dan mencerminkan perubahan pada kebutuhan pengguna kami.',
     },
     { type: 'HEADING', content: 'PENANGGUHAN ATAU PEMBATALAN APLIKASI' },
     {
       type: 'CONTENT',
       content:
-        'Oky tersedia secara gratis. UNICEF tidak menjamin bahwa Oky, atau konten apapun di dalamnya akan selalu tersedia atau tidak terputus. Kami dapat menangguhkan atau menarik atau membatasi ketersediaan dari semua bagian di Aplikasi kami untuk alasan operasional atau alasan lainnya. Kami akan berupaya untuk memberikan pemberitahuan yang wajar tentang segala penangguhan atau penarikan.',
+        'Period Tracker App tersedia secara gratis. Organization tidak menjamin bahwa Period Tracker App, atau konten apapun di dalamnya akan selalu tersedia atau tidak terputus. Kami dapat menangguhkan atau menarik atau membatasi ketersediaan dari semua bagian di Aplikasi kami untuk alasan operasional atau alasan lainnya. Kami akan berupaya untuk memberikan pemberitahuan yang wajar tentang segala penangguhan atau penarikan.',
     },
     { type: 'HEADING', content: 'MEMBUAT PENGGUNA LAIN MENGETAHUI SYARAT DAN KETENTUAN' },
     {
       type: 'CONTENT',
       content:
-        'Jika ada orang lain yang menggunakan Oky melalui perangkat ponselmu, kamu juga bertanggung jawab untuk memastikan bahwa mereka mengetahui ketentuan penggunaan, syarat dan ketentuan lainnya dan mereka akan mematuhinya.',
+        'Jika ada orang lain yang menggunakan Period Tracker App melalui perangkat ponselmu, kamu juga bertanggung jawab untuk memastikan bahwa mereka mengetahui ketentuan penggunaan, syarat dan ketentuan lainnya dan mereka akan mematuhinya.',
     },
     { type: 'HEADING', content: 'MENJAGA DETAIL AKUN AMAN' },
     {
       type: 'CONTENT',
       content:
-        'Jika kamu memilih, atau kamu diberikan kode indentifikasi pengguna, kata kunci atau informasi lainnya sebagai bagian dari prosedur keamanan UNICEF, kamu harus menjaga kerahasiaan informasi tersebut. Kamu sebaiknya tidak memberikan informasi ini kepada pihak ketiga.',
+        'Jika kamu memilih, atau kamu diberikan kode indentifikasi pengguna, kata kunci atau informasi lainnya sebagai bagian dari prosedur keamanan Organization, kamu harus menjaga kerahasiaan informasi tersebut. Kamu sebaiknya tidak memberikan informasi ini kepada pihak ketiga.',
     },
     {
       type: 'CONTENT',
       content:
-        'UNICEF memiliki hak untuk menonaktifkan kode identifikasi atau kata kunci apapun, baik yang dipilih oleh kamu atau dialokasikan oleh kami kapan saja, jika menurut pendapat kami secara wajar bahwa kamu telah gagal untuk mematuhi ketentuan dan syarat penggunaan.',
+        'Organization memiliki hak untuk menonaktifkan kode identifikasi atau kata kunci apapun, baik yang dipilih oleh kamu atau dialokasikan oleh kami kapan saja, jika menurut pendapat kami secara wajar bahwa kamu telah gagal untuk mematuhi ketentuan dan syarat penggunaan.',
     },
     { type: 'HEADING', content: 'LOKASI KAMU' },
     {
       type: 'CONTENT',
       content:
-        'Dengan menggunakan Oky, Anda setuju bahwa lokasi yang Anda berikan saat mendaftar akurat.',
+        'Dengan menggunakan Period Tracker App, Anda setuju bahwa lokasi yang Anda berikan saat mendaftar akurat.',
     },
     { type: 'HEADING', content: 'TAUTAN LUAR DAN SUMBER LAINNYA' },
     {
       type: 'CONTENT',
       content:
-        'Oky mungkin memberikan tautan kepada website dan sumber lain yang diluar control UNICEF. Dimasukkannya tautan sumber lain tidak berarti ini menunjukkan dukungan atau persetujuan UNICEF terhadap website, produk atau layanan apapun di dalamnya.',
+        'Period Tracker App mungkin memberikan tautan kepada website dan sumber lain yang diluar control Organization. Dimasukkannya tautan sumber lain tidak berarti ini menunjukkan dukungan atau persetujuan Organization terhadap website, produk atau layanan apapun di dalamnya.',
     },
     {
       type: 'CONTENT',
       content:
-        'UNICEF tidak bertanggung jawab atau memikul kewajiban apapun terkait dengan website tersebut, termasuk misalnya tanggung jawab atau keakuratan tentang informasi yang diberikan, data, pendapat atau pernyataan yang dibuat di website tersebut.',
+        'Organization tidak bertanggung jawab atau memikul kewajiban apapun terkait dengan website tersebut, termasuk misalnya tanggung jawab atau keakuratan tentang informasi yang diberikan, data, pendapat atau pernyataan yang dibuat di website tersebut.',
     },
     {
       type: 'CONTENT',
@@ -2005,30 +2008,30 @@ export const id = {
       content:
         'Ketentuan pengguna, materi pelajaran dan formasinya diatur oleh hukum Amerika Serikat. Pengadilan Amerika Serikat akan memiliki yurisdiksi eksklusif.',
     },
-    { type: 'HEADING', content: 'UNICEF nama dan logo' },
+    { type: 'HEADING', content: 'Organization nama dan logo' },
     {
       type: 'CONTENT',
       content:
-        'Nama dan logo UNICEF merupakan milik UNICEF secara eksklusif. Mereka dilindungi berdasarkan hukum internasional. Penggunaan tanpa ijin dilarang. Nama dan lambang sebaiknya tidak dicontoh atau direproduksi pada cara apapun tanpa ijin tertulis dari UNICEF. Jika kamu memiliki pertanyaan tentang hal ini, silahkan hubungi UNICEF.',
+        'Nama dan logo Organization merupakan milik Organization secara eksklusif. Mereka dilindungi berdasarkan hukum internasional. Penggunaan tanpa ijin dilarang. Nama dan lambang sebaiknya tidak dicontoh atau direproduksi pada cara apapun tanpa ijin tertulis dari Organization. Jika kamu memiliki pertanyaan tentang hal ini, silahkan hubungi Organization.',
     },
   ],
   about: [
     {
       type: 'CONTENT',
       content:
-        'Oky adalah aplikasi ponsel yang membantu remaja perempuan untuk mengontrol tubuh dan hidup mereka. Merasa lebih percaya diri dengan melacak menstruasimu serta mendapatkan fakta-fakta yang perlu diketahui seputar menstruasi.',
+        'Period Tracker App adalah aplikasi ponsel yang membantu remaja perempuan untuk mengontrol tubuh dan hidup mereka. Merasa lebih percaya diri dengan melacak menstruasimu serta mendapatkan fakta-fakta yang perlu diketahui seputar menstruasi.',
     },
-    { type: 'HEADING', content: 'Apa itu Oky?' },
+    { type: 'HEADING', content: 'Apa itu Period Tracker App?' },
     {
       type: 'CONTENT',
       content:
-        'Oky adalah alat pelacak menstruasi yang didesain untuk remaja perempuan oleh remaja perempuan: ini menyenangkan dan positif karena kami ingin mengubah rasa malu dan perasaan tidak nyaman saat menstruasi menjadi lebih menyenangkan!',
+        'Period Tracker App adalah alat pelacak menstruasi yang didesain untuk remaja perempuan oleh remaja perempuan: ini menyenangkan dan positif karena kami ingin mengubah rasa malu dan perasaan tidak nyaman saat menstruasi menjadi lebih menyenangkan!',
     },
-    { type: 'HEADING', content: 'Kenapa UNICEF membuat Oky?' },
+    { type: 'HEADING', content: 'Kenapa Organization membuat Period Tracker App?' },
     {
       type: 'CONTENT',
       content:
-        'UNICEF membuat Oky sebagai bagian dari misi mereka untuk mempromosikan pendidikan dan kesehatan remaja perempuan dengan mengubah salah satu tabu paling besar di dunia, yaitu: menstruasi.',
+        'Organization membuat Period Tracker App sebagai bagian dari misi mereka untuk mempromosikan pendidikan dan kesehatan remaja perempuan dengan mengubah salah satu tabu paling besar di dunia, yaitu: menstruasi.',
     },
     {
       type: 'CONTENT',
@@ -2038,30 +2041,30 @@ export const id = {
     {
       type: 'CONTENT',
       content:
-        'Hal yang sulit untuk mendapatkan informasi yang bisa dipercaya dan relevan secara online. Banyak sekali mitos-mitos di luar sana. Semua hal ini bisa membuat menstruasi menjadi sumber stres. Oky didesain untuk membuat remaja perempuan mengatur menstruasinya dengan rasa percaya diri karena remaja perempuan seharusnya bisa membuat keputusan yang bertanggung jawab terkait dengan tubuh dan hidup mereka.',
+        'Hal yang sulit untuk mendapatkan informasi yang bisa dipercaya dan relevan secara online. Banyak sekali mitos-mitos di luar sana. Semua hal ini bisa membuat menstruasi menjadi sumber stres. Period Tracker App didesain untuk membuat remaja perempuan mengatur menstruasinya dengan rasa percaya diri karena remaja perempuan seharusnya bisa membuat keputusan yang bertanggung jawab terkait dengan tubuh dan hidup mereka.',
     },
-    { type: 'HEADING', content: 'Bagaimana UNICEF membuat Oky?' },
+    { type: 'HEADING', content: 'Bagaimana Organization membuat Period Tracker App?' },
     {
       type: 'CONTENT',
       content:
-        'Kami menghabiskan waktu berbulan-bulan untuk berdiskusi dengan lebih dari 400 remaja di Mongolia dan Indonesia tentang menstruasi, ketakutan, harapan dan hidup mereka kemudian bekerja bersama untuk membuat Oky! Kami juga bekerja dengan ahli pendidikan dan kesehatan untuk memastikan bahwa Oky merefleksikan prinsip, standar tinggi kesehatan dan panduan UNICEF.',
+        'Kami menghabiskan waktu berbulan-bulan untuk berdiskusi dengan lebih dari 400 remaja di Mongolia dan Indonesia tentang menstruasi, ketakutan, harapan dan hidup mereka kemudian bekerja bersama untuk membuat Period Tracker App! Kami juga bekerja dengan ahli pendidikan dan kesehatan untuk memastikan bahwa Period Tracker App merefleksikan prinsip, standar tinggi kesehatan dan panduan Organization.',
     },
-    { type: 'HEADING', content: 'Bagaimana cara kerja Oky?' },
+    { type: 'HEADING', content: 'Bagaimana cara kerja Period Tracker App?' },
     {
       type: 'CONTENT',
       content:
-        'Oky membiarkan kamu memasukkan informasi tentang menstruasi, tubuh, aktivitas dan mood kamu, kemudian berdasarkan informasi yang kamu masukkan, Oky memberikan tebakan menstruasi yang akan datang dan siklus ovulasi. Terdapat calendar yang berfungsi sebagai buku harian dan membantu kamu untuk mengingat. Oky memberikan tips-tips dan motivasi lewat permainan dan kuis juga!',
+        'Period Tracker App membiarkan kamu memasukkan informasi tentang menstruasi, tubuh, aktivitas dan mood kamu, kemudian berdasarkan informasi yang kamu masukkan, Period Tracker App memberikan tebakan menstruasi yang akan datang dan siklus ovulasi. Terdapat calendar yang berfungsi sebagai buku harian dan membantu kamu untuk mengingat. Period Tracker App memberikan tips-tips dan motivasi lewat permainan dan kuis juga!',
     },
-    { type: 'HEADING', content: 'Apa yang membuat Oky berbeda?' },
+    { type: 'HEADING', content: 'Apa yang membuat Period Tracker App berbeda?' },
     {
       type: 'CONTENT',
       content:
-        'Oky berbeda dari aplikasi pelacak menstruasi lainnya karena aplikasi ini dibuat untuk remaja perempuan. Oky bukanlah sebuah bisnis, tapi ini adalah sebuah layanan bagi remaja perempuan yang mengikutsertakan semua dan tidak menghakimi, dan menjaga standar paling tinggi tentang privasi dan perlindungan data.',
+        'Period Tracker App berbeda dari aplikasi pelacak menstruasi lainnya karena aplikasi ini dibuat untuk remaja perempuan. Period Tracker App bukanlah sebuah bisnis, tapi ini adalah sebuah layanan bagi remaja perempuan yang mengikutsertakan semua dan tidak menghakimi, dan menjaga standar paling tinggi tentang privasi dan perlindungan data.',
     },
     {
       type: 'CONTENT',
       content:
-        'Oky dibuat dengan cara terbuka sehingga orang lain dapat belajar dari proses tentang bagaimana membuat sebuah layanan kesehatan masyarakat digital. Dengan cara ini, diharapkan lebih banyak orang berkontribusi untuk mengubah cara informasi digital digunakan dari mengutamakan profit menjadi lebih mengutamakan kepentingan publik.',
+        'Period Tracker App dibuat dengan cara terbuka sehingga orang lain dapat belajar dari proses tentang bagaimana membuat sebuah layanan kesehatan masyarakat digital. Dengan cara ini, diharapkan lebih banyak orang berkontribusi untuk mengubah cara informasi digital digunakan dari mengutamakan profit menjadi lebih mengutamakan kepentingan publik.',
     },
   ],
   aboutBanner:

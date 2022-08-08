@@ -7,6 +7,7 @@ import * as actions from '../../redux/actions/index'
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { SpinLoader } from '../../components/common/SpinLoader'
+import { navigateAndReset } from '../../services/navigationService'
 
 export const FinalJourneyCard = ({ cards, questionAnswers, goToQuestion }) => {
   const dispatch = useDispatch()
@@ -76,40 +77,40 @@ export const FinalJourneyCard = ({ cards, questionAnswers, goToQuestion }) => {
 
 const FinalSurveyCard = styled.View`
   flex: 1;
-  border-radius: 10;
+  border-radius: 10px;
   background-color: #fff;
   elevation: 4;
-  margin-bottom: 60;
-  margin-left: 20;
-  margin-right: 20;
-  margin-top: 10;
+  margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
   justify-content: space-between;
 `
 const WhiteContainer = styled.View`
   flex: 1;
   background-color: #fff;
-  border-top-left-radius: 10;
-  border-top-right-radius: 10;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   elevation: 4;
 `
 
 const ItemContainer = styled.View`
-  padding-horizontal: 36;
+  padding-horizontal: 36px;
   justify-content: space-around;
 `
 
 const ItemRow = styled.TouchableOpacity`
   flex-direction: row;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: #eaeaea;
   align-items: center;
-  padding-bottom: 10;
-  padding-top: 22;
+  padding-bottom: 10px;
+  padding-top: 22px;
 `
 
 const QuestionIcon = styled.Image`
-  width: 44;
-  height: 44;
+  width: 44px;
+  height: 44px;
 `
 
 const QuestionArea = styled.View`
@@ -118,14 +119,16 @@ const QuestionArea = styled.View`
 
 const Question = styled(Text)`
   font-size: 12;
-  padding-horizontal: 10;
+  padding-horizontal: 10px;
   text-align: justify;
+  color: #000;
 `
 
 const Answer = styled(TextWithoutTranslation)`
   font-size: 16;
   font-family: Roboto-Black;
-  padding-horizontal: 10;
+  padding-horizontal: 10px;
+  color: #000;
 `
 
 const EditButton = styled.View`
@@ -133,16 +136,16 @@ const EditButton = styled.View`
 `
 
 const EditIcon = styled.Image`
-  width: 30;
-  height: 30;
+  width: 30px;
+  height: 30px;
 `
 const ButtonContainer = styled.View``
 
 const TouchableOpacity = styled.TouchableOpacity`
   elevation: 2;
   padding-vertical: 12px;
-  border-bottom-left-radius: 10;
-  border-bottom-right-radius: 10;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: #efefef;
 `
 
@@ -151,5 +154,5 @@ const Title = styled(Text)`
   text-align: center;
   font-family: Roboto-Black;
   font-size: 16;
-  padding-vertical: 10;
+  padding-vertical: 10px;
 `

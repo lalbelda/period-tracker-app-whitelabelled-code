@@ -13,7 +13,7 @@ export const NavigationBar = ({ focused, name }) => {
         width: deviceWidth / 4,
       }}
     >
-      <ImageWrapper style={{ elevation: focused ? 5 : 0 }}>
+      <ImageWrapper accessibilityLabel={name} style={{ elevation: focused ? 5 : 0 }}>
         <Icon
           source={
             focused ? assets.static.icons.tabs[name] : assets.static.icons.tabs[name + 'Grey']
@@ -27,21 +27,21 @@ export const NavigationBar = ({ focused, name }) => {
 const Column = styled.View`
   justify-content: center;
   align-items: center;
-  height: 56;
+  height: 56px;
   margin-bottom: 5;
-  border-left-width: 0.5;
-  border-right-width: 0.5;
+  border-left-width: 0.5px;
+  border-right-width: 0.5px;
   border-color: #e1e2e2;
 `
 
 const Icon = styled.Image`
   width: 44;
-  height: 44;
+  height: 44px;
 `
 
 const ImageWrapper = styled.View`
   width: 44;
-  height: 44;
-  border-radius: 22;
+  height: 44px;
+  border-radius: 22px;
   background-color: transparent;
 `

@@ -63,7 +63,7 @@ export const VerticalSelectBox = ({
             return i + 1
           })
       isStateOne ? onValueChange(items[j]) : onValueChange(items[i])
-      setIsStateOne(val => !val)
+      setIsStateOne((val) => !val)
     })
   }
 
@@ -164,7 +164,7 @@ const SelectedItem = styled(Text)`
 const CardPicker = styled.View`
   width: 95%;
   background-color: #fff;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
   align-self: center;

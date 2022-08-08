@@ -14,6 +14,9 @@ import styled from 'styled-components/native'
 import moment from 'moment'
 import { translate } from '../../../i18n'
 import _ from 'lodash'
+import { navigateAndReset } from '../../../services/navigationService'
+import { ThemedModal } from '../../../components/common/ThemedModal'
+import { ColourButtons } from '../ColourButtons'
 
 const {
   Value,
@@ -43,9 +46,12 @@ export function CarouselElement({ dataEntry, index, isActive, currentIndex }) {
   const clock = new Clock()
   const value = new Value(0)
   const color = useColor(dataEntry.onPeriod, dataEntry.onFertile)
-  const cardAnswersValues = useSelector(state =>
+  const cardAnswersValues = useSelector((state) =>
     selectors.cardAnswerSelector(state, moment(dataEntry.date)),
   )
+
+  const [isVisible, setIsVisible] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
 
   useCode(
     block([
@@ -60,6 +66,15 @@ export function CarouselElement({ dataEntry, index, isActive, currentIndex }) {
 
   const scale = interpolate(value, { inputRange: [0, 1], outputRange: [1, 1.2] })
   const translation = interpolate(value, { inputRange: [0, 1], outputRange: [0, -10] })
+  const navigateToTutorial = () => {
+    setLoading(true)
+    requestAnimationFrame(() => {
+      navigateAndReset('TutorialFirstStack', null)
+    })
+  }
+  const verifiedPeriodDaysData = useSelector((state) =>
+    selectors.verifyPeriodDaySelectorWithDate(state, moment(dataEntry.date)),
+  )
 
   return (
     <View
@@ -78,11 +93,14 @@ export function CarouselElement({ dataEntry, index, isActive, currentIndex }) {
             fontSizes={{ small: 14, big: 20 }}
             style={{ width: 90, height: 35 }}
             dataEntry={dataEntry}
+            cardValues={verifiedPeriodDaysData}
           />
           <DateBadge
             textStyle={{ fontSize: 9 }}
             style={{ width: 55, height: 55 }}
             dataEntry={dataEntry}
+            showModal={() => setIsVisible(true)}
+            cardValues={verifiedPeriodDaysData}
           />
           {dataEntry.onPeriod ? (
             <Image
@@ -124,6 +142,17 @@ export function CarouselElement({ dataEntry, index, isActive, currentIndex }) {
           })}
         </Row>
       </AnimatedContainer>
+      <ThemedModal {...{ isVisible, setIsVisible }}>
+        <ColourButtons
+          navigateToTutorial={navigateToTutorial}
+          inputDay={dataEntry.date}
+          isCalendar={false}
+          hide={() => setIsVisible(false)}
+          onPress={() => setIsVisible(false)}
+          selectedDayInfo={dataEntry}
+          cardValues={cardAnswersValues}
+        />
+      </ThemedModal>
     </View>
   )
 }
@@ -136,7 +165,7 @@ function starImageFill(numberOfElements) {
 }
 
 const AnimatedContainer = styled(Animated.View)`
-  border-radius: 10;
+  border-radius: 10px;
   align-items: center;
   justify-content: center;
   background-color: #fff;
@@ -144,8 +173,8 @@ const AnimatedContainer = styled(Animated.View)`
 `
 
 const Empty = styled.View`
-  height: 25;
-  width: 40;
+  height: 25px;
+  width: 40px;
 `
 
 const Row = styled.View`

@@ -3,7 +3,6 @@ import { createConnection } from 'typeorm'
 import express, { Request, Response } from 'express'
 import * as bodyParser from 'body-parser'
 import { Routes } from './routes'
-import { ormconfig } from '../ormconfig'
 import passport from 'passport'
 import flash from 'connect-flash'
 import i18n from 'i18n'
@@ -14,6 +13,7 @@ import session from 'express-session'
 import { Authentication } from './access/authentication'
 import * as admin from 'firebase-admin'
 import { env } from './env'
+import ormconfig from '../ormconfig'
 
 createConnection(ormconfig)
   .then(() => {

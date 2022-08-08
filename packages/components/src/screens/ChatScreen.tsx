@@ -11,10 +11,11 @@ import { BackgroundTheme } from '../components/layout/BackgroundTheme'
 import { Header } from '../components/common/Header'
 import { Message } from './chatScreen/Message'
 import { SendButton } from './chatScreen/SendButton'
+import { ChatMessage } from '../types'
 
 function useChat() {
   const dispatch = useDispatch()
-  const { messages, ruleSet, isReady, isFlowRunning } = useSelector(state => state.chat)
+  const { messages, ruleSet, isReady, isFlowRunning } = useSelector((state) => state.chat)
 
   React.useEffect(() => {
     dispatch(actions.setupChat())
@@ -51,7 +52,7 @@ const initFlowAction = {
 
 export function ChatScreen() {
   const chat = useChat()
-  const avatar = useSelector(state => state.app.avatar)
+  const avatar = useSelector((state) => state.app.avatar)
   const locale = useSelector(selectors.currentLocaleSelector)
   const [text, setText] = React.useState('')
   const messages = [...chat.messages, initFlowAction.message].slice().reverse()
@@ -64,11 +65,11 @@ export function ChatScreen() {
         <Header screenTitle={'chat'} />
         <ChatBox
           ref={scrollView}
-          onContentSizeChange={_ => scrollView.current.scrollToEnd({ animated: true })}
+          onContentSizeChange={(_) => scrollView.current.scrollToEnd({ animated: true })}
           contentContainerStyle={{ justifyContent: 'flex-end' }}
         >
           {chat.isReady ? (
-            messages.map((message, index) => (
+            messages.map((message: ChatMessage, index) => (
               <Message key={index} avatar={avatar || defaultAvatar} message={message} />
             ))
           ) : (
@@ -106,7 +107,7 @@ export function ChatScreen() {
 const PageContainer = styled.View`
   flex: 1;
   justify-content: space-between;
-  padding-horizontal: 10;
+  padding-horizontal: 10px;
   padding-bottom: 10;
 `
 
