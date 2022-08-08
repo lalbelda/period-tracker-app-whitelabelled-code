@@ -8,10 +8,10 @@ A guide on how to port the app to other languages. There are a few moving parts 
 
 ## App
 
-- The bundle identifier is going to need to change here. This is a platform specific change and a tool like `react-native-rename`can be used. Alternatively manually changing the bundle identifier is (`com.oky.newIdentifier`) and all known references followed by a removal of all node modules / clean / re-sync and rebuild will be sufficient
-  Note: Removal of node_modules and reinstall is a necessity, do not skip this.
+- The bundle identifier is going to need to change here. This is a platform specific change and a tool like `react-native-rename`can be used. Alternatively manually changing the bundle identifier is (`com.periodtrackerapp.newIdentifier`) and all known references followed by a removal of all node modules / clean / re-sync and rebuild will be sufficient 
+ Note: Removal of node_modules and reinstall is a necessity, do not skip this.
 
-- You will then need to add the relevant translations to the `packages/components/i18n/translations` file. Using the `en.ts` as a base line for the translation keys this can be copied and pasted with the appropriate locale identifier. Ensure this is added to the `index.ts` in the same directory
+- You will then need to add the relevant translations to the `packages/components/i18n/translations` file. Using the `en.ts` as a base line for teh translation keys this can be copied and pasted with the appropriate locale identifier. Ensure this is added to teh `index.ts` in the same directory
 
 - If you want to fix the locale of the new app, adjustments to the `packages/components/redux/reducers/appReducer` will be necessary. Adjust the `currentLocale`and `chosenRegion` to the required locale.
 

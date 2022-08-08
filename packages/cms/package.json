@@ -1,9 +1,9 @@
 {
-  "name": "@period-tracker-app/oky-cms",
+  "name": "@period-tracker-app/period-tracker-app-cms",
   "version": "0.0.1",
   "main": "dist/index.js",
   "private": true,
-  "description": "Oky CMS, with Express, typescript, TypeORM and ejs",
+  "description": "Period Tracker App CMS, with Express, typescript, TypeORM and ejs",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/express-session": "^1.17.4",

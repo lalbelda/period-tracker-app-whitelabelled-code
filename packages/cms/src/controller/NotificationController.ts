@@ -21,7 +21,7 @@ export class NotificationController {
   async mobilePermanentNotifications(request: Request, response: Response, next: NextFunction) {
     // LIKE checks if versions string contains the request param version
     const entry = await this.permanentNotificationRepository.query(
-      `SELECT * from oky_en.permanent_notification WHERE versions LIKE '%%' || $1 || '%%' AND live = TRUE AND lang = $2`,
+      `SELECT * from permanent_notification WHERE versions LIKE '%%' || $1 || '%%' AND live = TRUE AND lang = $2`,
       [request.params.ver, request.params.lang],
     )
 

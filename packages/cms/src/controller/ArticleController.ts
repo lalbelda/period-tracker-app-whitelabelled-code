@@ -19,10 +19,10 @@ export class ArticleController {
       ca.primary_emoji,
       ca.primary_emoji_name,
       ar.lang 
-      FROM oky_en.article ar 
-      INNER JOIN oky_en.category ca 
+      FROM article ar 
+      INNER JOIN category ca 
       ON ar.category = CAST(ca.id as CHAR(50))
-      INNER JOIN oky_en.subcategory sc  
+      INNER JOIN subcategory sc  
       ON ar.subcategory = CAST(sc.id as CHAR(50))
       WHERE ar.lang = $1
       AND ar.live = true

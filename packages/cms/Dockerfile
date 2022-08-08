@@ -2,7 +2,7 @@
 FROM oky/base as development
 
 ENV NODE_ENV=development
-ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/packages/cms/oky-firebase-config.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/usr/src/app/packages/cms/period-tracker-app-firebase-config.json
 WORKDIR /usr/src/app/packages/cms
 
 CMD [ "yarn", "run", "start" ]

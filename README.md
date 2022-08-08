@@ -1,4 +1,4 @@
-# Oky
+# Period Tracker App
 
 A period tracker application.
 
@@ -31,7 +31,7 @@ yarn list --pattern @react-native-community/cli
 Install docker:
 
 This is a virtual machine solution that interfaces with the kernel of the OS (basically cutting a number of middlewares out from traditional VM solutions).
-The core interfacing parts of oky are handled in containers and we will use the docker command line to get them working.
+The core interfacing parts of Period Tracker App are handled in containers and we will use the docker command line to get them working.
 
 - [Docker Desktop](https://www.docker.com/ 'Docker')
 
@@ -54,7 +54,7 @@ Ensure you have the package manager `yarn` installed recommended by facebook.
 Clone the repository:
 
 ```bash
-git clone git@github.com:unicef/oky-android.git
+git clone git@github.com:alextyers/period-tracker-app.git
 ```
 
 <strong>Note:</strong> the clone url may be different for different languages
@@ -62,7 +62,7 @@ git clone git@github.com:unicef/oky-android.git
 Go to the root directory of the project:
 
 ```bash
-cd oky-android
+cd period-tracker-app
 ```
 
 Install the dependencies:
@@ -99,8 +99,8 @@ Copy `.env.dist` to `.env`:
    - `cd packages/mobile/`
    - `cp .env.production .env`
    - change the following lines to the below:
-     - API_BASE_URL=http://localhost:3000
-     - API_BASE_CMS_URL=http://localhost:5000
+     - API_BASE_URL=<http://localhost:3000>
+     - API_BASE_CMS_URL=<http://localhost:5000>
 
 4. Add a config.ts
 
@@ -113,15 +113,16 @@ export const config = {
   REDUX_ENCRYPT_KEY: 'Example_Encryption_Key',
 }
 ```
+### config
 
-The REDUX_ENCRYPT_KEY is untraced and should be requested first from the relevant body/person. By default this is:
-
+# The config file oky-config.json is untraced and should be requested first from the relevant body/person. By default this is
 ```
 okyperiodtracker@gmail.com
 ```
 
 It should then be pasted into above added config.ts file in place of 'Example_Encryption_Key'. Different keys have been used depending upon platform (Android/iOS) and application languages (EN/ID/MN)
 
+# Setup your own Firebase Project for your application and add in the config JSON file
 ### config
 
 The config file oky-config.json is untraced and should be requested first from the relevant body/person. By default this is:
@@ -130,7 +131,7 @@ The config file oky-config.json is untraced and should be requested first from t
 okyperiodtracker@gmail.com
 ```
 
-It should then be pasted into `oky-android/packages/cms` alongside the `ormconfig.ts` file.
+It should then be pasted into `period-tracker-app/packages/cms/period-tracker-app-firebase-config.json` alongside the `ormconfig.ts` file.
 This file serves to link the related functionality between the app and dashboard ( dashboard).
 
 ### Build the backend/website/cms/api for development
@@ -167,8 +168,6 @@ Running services include
   - password: oky
 
 - CMS Credentials:
-  - Username: OkyAdmin
-  - Password: password
 
 ### Run a manual migration
 
@@ -210,7 +209,7 @@ cd packages/mobile
 react-native run-ios --simulator="iPhone 12 Pro" 
 ```
 
-<strong>Note:</strong> you will need access to Unicef Apple developer account so you can create your developemnt certificate and profile before running the ios app using xcode. Please contact Oky product manager to gain access.
+<strong>Note:</strong> you will need access to Apple developer account so you can create your developemnt certificate and profile before running the ios app using xcode.
 
 ## Start the backend
 
@@ -269,13 +268,13 @@ docker-compose -f docker-compose.yml build --no-cache
 - Tag each container:
 
 ```
-docker tag oky-android_<RELEVANT_CONTAINER>:latest <DOCKER_HUB_ACCOUNT_NAME>/<RELEVANT_CONTAINER>:v<VERSION_NUMBER>
+docker tag period-tracker-app_<RELEVANT_CONTAINER>:latest <DOCKER_HUB_ACCOUNT_NAME>/<RELEVANT_CONTAINER>:v<VERSION_NUMBER>
 ```
 
 eg:
 
 ```
-docker tag oky-android_cms:latest mydockeraccount/cms:v9
+docker tag period-tracker-app_cms:latest mydockeraccount/cms:v9
 ```
 
 - Push each container:
@@ -312,9 +311,9 @@ You are done. If you navigate to the cluster you should see updated versions on 
 Add to `packages/mobile/android/local.properties`:
 
 ```
-STORE_FILE=oky.keystore
+STORE_FILE=periodtrackerapp.keystore
 STORE_PASSWORD=**(NotPublic)**
-KEY_ALIAS=oky
+KEY_ALIAS=periodtrackerapp
 KEY_PASSWORD=**(NotPublic)**
 ```
 
@@ -347,8 +346,8 @@ cd packages/mobile/android
 How install packages:
 
 ```bash
-yarn workspace @oky/mobile add react-native-linear-gradient
-yarn workspace @oky/components add redux
+yarn workspace @period-tracker-app/mobile add react-native-linear-gradient
+yarn workspace @period-tracker-app/components add redux
 ```
 
 How run the backend in production mode:
@@ -386,7 +385,7 @@ git checkout origin/master -- yarn.lock // this is only necesarry if you have ty
 
 ### VSCode
 
-Open the Oky project with [VS Code](https://code.visualstudio.com/), and install the following extensions:
+Open the Period Tracker App project with [VS Code](https://code.visualstudio.com/), and install the following extensions:
 
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
   You can turn on format-on-save by scoping the setting:
@@ -432,7 +431,7 @@ During Onboarding there is a region selection tool. If the user selects Indonesi
 
 
 ### Set Up project on MAC M1
-Set up Oky on Mac M1
+Set up Period Tracker App on Mac M1
 
 1. Check if you have python 3 installed in your system.
 ``` 
@@ -468,7 +467,7 @@ brew install sqlite3
 arch -arm64 brew install sqlite3
 ```
 
-4. Restart terminal, go to project root directory, remove node_modules and yarn.lock (if any). Now run ‘yarn’ command
+4. Restart terminal, go to project root directory, remove node_modules (if any). Now run ‘yarn’ command
 ```
 yarn
 ```

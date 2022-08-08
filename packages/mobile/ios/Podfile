@@ -9,7 +9,7 @@ platform :ios, '11.0'
 target 'period-tracker-app' do
   config = use_native_modules!
 
-  # Pods for oky
+  # Pods for period-tracker-app
 
   use_react_native!(
     :path => config[:reactNativePath],
