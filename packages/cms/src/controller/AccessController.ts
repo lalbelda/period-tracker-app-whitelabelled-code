@@ -11,7 +11,12 @@ export class AccessController {
   }
 
   async logout(request: Request, response: Response, next: NextFunction) {
-    request.logout()
+    request.logout((err) => {
+      if (err) {
+        return next(err)
+      }
+      return
+    })
     response.redirect('/login')
   }
 }

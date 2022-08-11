@@ -33,6 +33,7 @@ export function AnimatedContainer({ toggled }) {
     Animated.timing(heightInner, {
       toValue: expanded ? 80 : maxHeight,
       duration: 350,
+      useNativeDriver: false,
     }).start(() => {
       if (!expanded) {
         setExpanded((val) => !val)
@@ -49,6 +50,7 @@ export function AnimatedContainer({ toggled }) {
     Animated.timing(heightInner, {
       toValue: height,
       duration: 350,
+      useNativeDriver: false,
     }).start(() => {
       setContentState(newContentState)
     })
