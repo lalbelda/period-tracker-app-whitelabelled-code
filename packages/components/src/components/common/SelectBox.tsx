@@ -29,18 +29,18 @@ export const SelectBox = ({
       Animated.parallel([
         Animated.timing(position, {
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
           toValue: isStateOne ? -width : 0,
         }),
         Animated.timing(positionNext, {
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
           toValue: isStateOne ? -width : -2 * width,
         }),
       ]),
       Animated.timing(isStateOne ? position : positionNext, {
         toValue: isStateOne ? width : 0,
-        useNativeDriver: true,
+        useNativeDriver: false,
         duration: 0,
       }),
     ]).start(() => {

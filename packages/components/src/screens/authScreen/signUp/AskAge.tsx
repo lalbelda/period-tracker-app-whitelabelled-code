@@ -50,6 +50,7 @@ export function AskAge({ step, heightInner }) {
         Animated.timing(heightInner, {
           toValue: formHeights.askLocation + formHeights.buttonConfirmHeight,
           duration: 350,
+          useNativeDriver: false,
         }).start(() => {
           dispatch({ formAction: formActions.goToStep('ask-location') })
         })

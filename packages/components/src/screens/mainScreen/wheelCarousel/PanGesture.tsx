@@ -89,7 +89,7 @@ export function PanGesture({ absoluteIndex, ratio, isActive, isX, children = nul
   )
 
   return (
-    <PanGestureHandler {...gestureEvent} minDist={15}>
+    <PanGestureHandler {...gestureEvent} minDist={15} {...children}>
       <Animated.View style={StyleSheet.absoluteFillObject}>{children}</Animated.View>
     </PanGestureHandler>
   )

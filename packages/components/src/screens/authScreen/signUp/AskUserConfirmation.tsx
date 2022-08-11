@@ -24,6 +24,7 @@ export function AskUserConfirmation({ step, heightInner }) {
         Animated.timing(heightInner, {
           toValue: formHeights.askUserInformation + formHeights.buttonConfirmHeight,
           duration: 350,
+          useNativeDriver: false,
         }).start(() => {
           dispatch({ formAction: formActions.goToStep('ask-user-information') })
         })

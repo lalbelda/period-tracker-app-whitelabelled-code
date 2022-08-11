@@ -25,7 +25,7 @@ export function AnimatedContainer({ toggled }) {
       Animated.timing(innerOpacity.current, {
         toValue: expanded ? 0 : 1,
         duration: 350,
-        useNativeDriver: true,
+        useNativeDriver: false,
       }).start()
     }
     toggled(expanded)
@@ -39,7 +39,7 @@ export function AnimatedContainer({ toggled }) {
         Animated.timing(innerOpacity.current, {
           toValue: expanded ? 0 : 1,
           duration: 350,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }).start()
       }
     })

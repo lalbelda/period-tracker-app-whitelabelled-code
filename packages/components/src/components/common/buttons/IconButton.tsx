@@ -17,7 +17,7 @@ export const IconButton = ({
       style={[touchableStyle, { zIndex: 999 }]}
       onPress={onPress}
     >
-      <Image source={assets.static.icons[name]} width={width} height={height} {...props} />
+      <Image source={assets.static.icons[name]} style={{ width, height }} {...props} />
     </TouchableOpacity>
   )
 }

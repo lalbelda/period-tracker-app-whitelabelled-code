@@ -72,6 +72,7 @@ export function AskUserInformation({ step, heightInner }) {
         Animated.timing(heightInner, {
           toValue: formHeights.askPassword + formHeights.buttonConfirmHeight,
           duration: 350,
+          useNativeDriver: false,
         }).start(() => {
           dispatch({ formAction: formActions.goToStep('ask-password') })
         })

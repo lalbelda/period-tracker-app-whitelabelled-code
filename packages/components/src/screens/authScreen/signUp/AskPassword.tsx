@@ -40,6 +40,7 @@ export function AskPassword({ step, heightInner }) {
         Animated.timing(heightInner, {
           toValue: formHeights.askAge + formHeights.buttonConfirmHeight,
           duration: 350,
+          useNativeDriver: false,
         }).start(() => {
           dispatch({ formAction: formActions.goToStep('ask-age') })
         })
@@ -55,7 +56,7 @@ export function AskPassword({ step, heightInner }) {
         }}
       >
         <VerticalSelectBox
-          items={secretQuestions.map(questions => (questions ? questions : ''))}
+          items={secretQuestions.map((questions) => (questions ? questions : ''))}
           containerStyle={{
             height: 45,
             borderRadius: 22.5,
@@ -63,7 +64,7 @@ export function AskPassword({ step, heightInner }) {
           height={45}
           maxLength={20}
           buttonStyle={{ right: 5, bottom: 7 }}
-          onValueChange={value =>
+          onValueChange={(value) =>
             dispatch({ type: 'change-form-data', inputName: 'selectedQuestion', value })
           }
           hasError={true} // this is to permanently display the i button
@@ -72,7 +73,7 @@ export function AskPassword({ step, heightInner }) {
         />
         <TextInput
           inputStyle={{ color: '#555' }}
-          onChange={value => dispatch({ type: 'change-form-data', inputName: 'answer', value })}
+          onChange={(value) => dispatch({ type: 'change-form-data', inputName: 'answer', value })}
           label="secret_answer"
           isValid={answer.length >= minPasswordLength}
           hasError={notValid && !(answer.length >= minPasswordLength)}
