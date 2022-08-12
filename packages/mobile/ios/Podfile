@@ -39,9 +39,4 @@ target 'period-tracker-app' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 
-  target 'period-tracker-app-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
