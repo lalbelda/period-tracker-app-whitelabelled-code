@@ -9,6 +9,8 @@ import * as selectors from '../../redux/selectors'
 import { useTextToSpeechHook } from '../../hooks/useTextToSpeechHook'
 import { aboutScreenText } from '../../config'
 import { Dimensions } from 'react-native'
+import { assets } from '../../assets/index'
+
 const width = Dimensions.get('window').width
 const imageWidth = width - 30
 export const AboutScreen = ({ navigation }) => {
@@ -25,7 +27,7 @@ export const AboutScreen = ({ navigation }) => {
           <ImagesContainer>
             <Icon
               style={{ width: imageWidth, height: imageWidth / 2, resizeMode: 'contain' }}
-              source={{ uri: aboutBanner }}
+              source={assets.static.launch_icon}
             />
           </ImagesContainer>
           {aboutContent.map((item, ind) => {
