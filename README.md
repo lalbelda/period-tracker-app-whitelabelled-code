@@ -112,27 +112,19 @@ Copy `.env.dist` to `.env`:
 export const config = {
   REDUX_ENCRYPT_KEY: 'Example_Encryption_Key',
 }
-```
+``
+Different keys have been used depending upon platform (Android/iOS)
+
 ### config
 
-# The config file oky-config.json is untraced and should be requested first from the relevant body/person. By default this is
-```
-okyperiodtracker@gmail.com
-```
-
-It should then be pasted into above added config.ts file in place of 'Example_Encryption_Key'. Different keys have been used depending upon platform (Android/iOS) and application languages (EN/ID/MN)
-
-# Setup your own Firebase Project for your application and add in the config JSON file
-### config
-
-The config file oky-config.json is untraced and should be requested first from the relevant body/person. By default this is:
-
-```
-okyperiodtracker@gmail.com
-```
+The config file period-tracker-app-config.json is untraced and hence not part of this repository. Setup your own Firebase Project for your application and download the config JSON file
 
 It should then be pasted into `period-tracker-app/packages/cms/period-tracker-app-firebase-config.json` alongside the `ormconfig.ts` file.
-This file serves to link the related functionality between the app and dashboard ( dashboard).
+This file serves to link the related functionality between the app and dashboard (dashboard).
+
+### GoogleService-Info
+
+You will need to also add a GoogleService-Info.plist which will need to be placed in the `period-tracker-app/packages/mobile/ios` alongside the podfile
 
 ### Build the backend/website/cms/api for development
 
