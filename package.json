@@ -5,15 +5,15 @@
   "scripts": {
     "clean": "yarn workspaces run clean",
     "compile": "yarn workspaces run compile",
-    "dev": "yarn run clean && yarn run compile && concurrently --kill-others \"docker-compose up\" \"yarn workspace @oky/mobile compile -w\" \"yarn workspace @oky/mobile start\"",
+    "dev": "yarn run clean && yarn run compile && concurrently --kill-others \"docker-compose up\" \"yarn workspace @period-tracker-app/mobile compile -w\" \"yarn workspace @period-tracker-app/mobile start\"",
     "dev:mobile": "yarn run clean && yarn run compile && concurrently --kill-others \"yarn workspace @period-tracker-app/mobile compile -w\" \"yarn workspace @period-tracker-app/mobile start\"",
     "prod:web": "docker-compose -f docker-compose.yml build && docker-compose -f docker-compose.yml up",
     "format": "yarn workspaces run format",
     "lint": "yarn workspaces run lint",
     "devtools": "yarn workspace @period-tracker-app/mobile react-devtools",
     "test:all": "yarn run test:saga && yarn run test:prediction-engine",
-    "test:saga": "yarn workspace @oky/components run test",
-    "test:prediction-engine": "yarn workspace @oky/core run test",
+    "test:saga": "yarn workspace @eriod-tracker-app/components run test",
+    "test:prediction-engine": "yarn workspace @eriod-tracker-app/core run test",
     "reverse:all-ports": "adb reverse tcp:3000 tcp:3000 && adb reverse tcp:5000 tcp:5000 && adb reverse tcp:8000 tcp:8000 && adb reverse tcp:8080 tcp:8080 && adb reverse tcp:8081 tcp:8081",
     "postinstall": "test -n \"$NOYARNPOSTINSTALL\" || (patch-package && jetifier && sed -e 's:node ./node_modules/react-native/cli.js config:yarn run --silent react-native config:g' -i.bak node_modules/@react-native-community/cli-platform-android/native_modules.gradle)"
   },
